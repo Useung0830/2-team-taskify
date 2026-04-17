@@ -1,6 +1,6 @@
 ---
-name: 기능추가 템플릿
-about: 기능추가 템플릿
+name: Feature_request
+about: Feature_request
 title: ''
 labels: enhancement
 assignees: ''

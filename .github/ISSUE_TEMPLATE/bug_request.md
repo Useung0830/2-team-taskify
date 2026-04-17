@@ -1,6 +1,6 @@
 ---
-name: 버그 템플릿
-about: 버그 템플릿
+name: Bug_request
+about: Bug_request
 title: ''
 labels: bug
 assignees: ''
