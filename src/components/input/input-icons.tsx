@@ -1,8 +1,10 @@
 import { cn } from "@/util/cn";
-import SearchIcon from "../icons/search-icon";
-import { useInputContext } from "./input-context";
-import EyeOpenIcon from "../icons/eye-open-icon";
+
 import EyeCloseIcon from "../icons/eye-close-icon";
+import EyeOpenIcon from "../icons/eye-open-icon";
+import SearchIcon from "../icons/search-icon";
+
+import { useInputContext } from "./input-context";
 
 interface InputIconProps {
   className?: string;

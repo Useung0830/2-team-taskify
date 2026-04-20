@@ -25,8 +25,6 @@ const InputWrapperStyles = cva(
   }
 );
 
-interface InputWrapperStylesProps extends VariantProps<
-  typeof InputWrapperStyles
-> {}
+type InputWrapperStylesProps = VariantProps<typeof InputWrapperStyles>;
 
 export { InputWrapperStyles, type InputWrapperStylesProps };

@@ -1,5 +1,5 @@
-import { ComponentPropsWithRef } from "react";
 import { cva, VariantProps } from "class-variance-authority";
+import { ComponentPropsWithRef } from "react";
 
 const labelStyles = cva("font-pretendard font-semibold text-gray-300", {
   variants: {
@@ -14,8 +14,7 @@ const labelStyles = cva("font-pretendard font-semibold text-gray-300", {
 });
 
 interface LabelProps
-  extends ComponentPropsWithRef<"label">,
-    VariantProps<typeof labelStyles> {}
+  extends ComponentPropsWithRef<"label">, VariantProps<typeof labelStyles> {}
 
 const Label = ({ className, labelSize, ...props }: LabelProps) => {
   return <label className={labelStyles({ labelSize, className })} {...props} />;

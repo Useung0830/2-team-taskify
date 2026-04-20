@@ -1,10 +1,9 @@
 ---
 name: Bug_request
 about: Bug_request
-title: ''
+title: ""
 labels: bug
-assignees: ''
-
+assignees: ""
 ---
 
 ## 어떤 버그인가요?

@@ -1,7 +1,11 @@
+"use client";
+
 import { useState } from "react";
-import { InputWrapperStylesProps } from "./input-style";
-import { InputContext } from "./input-context";
+
 import { cn } from "@/util/cn";
+
+import { InputContext } from "./input-context";
+import { InputWrapperStylesProps } from "./input-style";
 
 interface InputRootProps extends InputWrapperStylesProps {
   children: React.ReactNode;

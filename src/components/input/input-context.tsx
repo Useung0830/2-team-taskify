@@ -1,6 +1,5 @@
-"use client"
-
 import { createContext, useContext } from "react";
+
 import { InputWrapperStylesProps } from "./input-style";
 
 interface InputContextType extends InputWrapperStylesProps {
@@ -24,7 +23,4 @@ const useInputContext = () => {
   return context;
 };
 
-export {
-    InputContext,
-    useInputContext
-};
+export { InputContext, useInputContext };

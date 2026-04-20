@@ -67,7 +67,15 @@ const eslintConfig = defineConfig([
         "error",
         { extensions: [".tsx", ".jsx"] },
       ],
-      "react/jsx-props-no-spreading": "warn",
+      "react/jsx-props-no-spreading": [
+        "warn",
+        {
+          // html 태그에 {...props} 허용
+          html: "ignore",
+          // 컴포넌트에는 허용 안 함
+          custom: "enforce",
+        },
+      ],
       "react/require-default-props": "off", // TypeScript handles this
       "react/function-component-definition": [
         "warn",

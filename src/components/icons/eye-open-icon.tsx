@@ -1,3 +1,5 @@
+import { svgProps } from "@/types/svgProps";
+
 const EyeOpenIcon = ({ className, width, height }: svgProps) => {
   return (
     <svg

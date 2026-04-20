@@ -1,7 +1,9 @@
 import { ComponentPropsWithRef } from "react";
-import { InputWrapperStylesProps } from "./input-style";
-import { useInputContext } from "./input-context";
+
 import { cn } from "@/util/cn";
+
+import { useInputContext } from "./input-context";
+import { InputWrapperStylesProps } from "./input-style";
 
 interface InputFieldProps
   extends
@@ -10,7 +12,6 @@ interface InputFieldProps
 
 /**
  * @description Input.Field
- * @param {React.ReactNode} children - Input.Field의 자식 요소
  * @param {string} className - Input.Field의 클래스 이름
  * @returns {JSX.Element} Input.Field 컴포넌트
  */
@@ -23,7 +24,7 @@ const InputField = ({ className, type, ...props }: InputFieldProps) => {
   return (
     <input
       type={inputType}
-      disabled={disabled ?? undefined}
+      disabled={disabled ?? props.disabled}
       className={cn(
         "w-full bg-transparent text-gray-300 outline-none placeholder:text-gray-500 disabled:text-gray-400",
         className

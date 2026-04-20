@@ -1,3 +1,5 @@
+import { svgProps } from "@/types/svgProps";
+
 const SearchIcon = ({ className, width, height }: svgProps) => {
   return (
     <svg

@@ -1,4 +1,5 @@
 import { cn } from "@/util/cn";
+
 import { useInputContext } from "./input-context";
 import { InputWrapperStyles } from "./input-style";
 
@@ -13,10 +14,7 @@ interface InputWrapperProps {
  * @param {string} className - Input.Wrapper의 클래스 이름
  * @returns {JSX.Element} Input.Wrapper 컴포넌트
  */
-const InputWrapper = ({
-  children,
-  className,
-}: InputWrapperProps) => {
+const InputWrapper = ({ children, className }: InputWrapperProps) => {
   const { inputSize, error, disabled } = useInputContext();
   return (
     <div
