@@ -1,9 +1,17 @@
 "use client";
 
+import { useState } from "react";
+
 import Input from "@/components/input/input";
 import Label from "@/components/label/label";
 
 const FormTest = () => {
+  const [value, setValue] = useState("");
+
+  const handleFieldChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setValue(e.target.value);
+  };
+
   return (
     <div className="bg-background flex h-dvh flex-col gap-2 p-2">
       <Input>
@@ -33,6 +41,21 @@ const FormTest = () => {
           <Input.Field id="small" placeholder="작은 사이즈" />
         </Input.Wrapper>
       </Input>
+      <Input>
+        <Label htmlFor="test">State 연동 테스트</Label>
+        <Input.Wrapper>
+          <Input.Field
+            id="test"
+            placeholder="메시지를 입력해주세요"
+            value={value}
+            onChange={handleFieldChange}
+          />
+        </Input.Wrapper>
+      </Input>
+      <div className="flex gap-2 text-white">
+        <p>입력값:</p>
+        <p className="text-base text-gray-300">{value}</p>
+      </div>
     </div>
   );
 };
