@@ -18,7 +18,7 @@ export default function Home() {
                 <div>
                   <span>state=normal | {size}</span>
                   <Button colortype={type} size={size}>
-                    Label
+                    유승님
                   </Button>
                 </div>
 
@@ -26,7 +26,7 @@ export default function Home() {
                 <div>
                   <span>state=active | {size}</span>
                   <Button colortype={type} size={size} isActive>
-                    Label
+                    지원님
                   </Button>
                 </div>
 
@@ -34,7 +34,7 @@ export default function Home() {
                 <div>
                   <span>state=hover | {size}</span>
                   <Button colortype={type} size={size} isHovered>
-                    Label
+                    태양님
                   </Button>
                 </div>
 
@@ -42,7 +42,7 @@ export default function Home() {
                 <div>
                   <span>state=disable | {size}</span>
                   <Button colortype={type} size={size} disabled>
-                    Label
+                    채민님
                   </Button>
                 </div>
               </div>

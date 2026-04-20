@@ -4,7 +4,7 @@ import { SquarePlusIcon } from "./SquarePlusIcon";
 import { ProfileIcon } from "./ProfileIcon";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center rounded-full font-semibold transition-all duration-100 disabled:cursor-not-allowed",
+  "inline-flex items-center justify-center rounded-full font-semibold whitespace-nowrap transition-all duration-100 disabled:cursor-not-allowed",
   {
     variants: {
       // [Type] 색상
@@ -17,10 +17,10 @@ const buttonVariants = cva(
       },
       // [Size] 크기
       size: {
-        lg: "h-[60px] w-[200px] gap-[8px] px-[30px] py-[6px] text-[18px]",
-        md: "h-[50px] w-[200px] gap-[8px] px-[30px] py-[6px] text-[16px]",
-        sm: "h-[36px] w-[120px] gap-[4px] px-[20px] py-[6px] text-[16px]",
-        xs: "h-[29px] w-[91px] gap-[2px] px-[12px] py-[6px] text-[14px]",
+        lg: "h-[60px] min-w-[200px] gap-[8px] px-[30px] py-[6px] text-[18px]",
+        md: "h-[50px] min-w-[200px] gap-[8px] px-[30px] py-[6px] text-[16px]",
+        sm: "h-[36px] min-w-[120px] gap-[4px] px-[20px] py-[6px] text-[16px]",
+        xs: "h-[29px] min-w-[91px] gap-[2px] px-[12px] py-[6px] text-[14px]",
       },
     },
     defaultVariants: {
