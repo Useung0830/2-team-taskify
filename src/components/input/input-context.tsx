@@ -5,6 +5,7 @@ import { InputWrapperStylesProps } from "./input-style";
 interface InputContextType extends InputWrapperStylesProps {
   isPasswordVisible: boolean;
   togglePassword: () => void;
+  errorMsg: string;
 }
 
 /**
