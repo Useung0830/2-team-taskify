@@ -7,9 +7,19 @@ import Label from "@/components/label/label";
 
 const FormTest = () => {
   const [value, setValue] = useState("");
+  const [error, setError] = useState("");
 
   const handleFieldChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
+    if (error) {
+      setError("");
+    }
+  };
+
+  const handleFieldBlur = () => {
+    if (value.length < 3) {
+      setError("검색 글자 수는 3글자 이상이어야 합니다.");
+    }
   };
 
   return (
@@ -17,10 +27,8 @@ const FormTest = () => {
       <Input>
         <Label htmlFor="name">이름</Label>
         <Input.Wrapper>
-          <Input.SearchIcon />
           <Input.Field id="name" placeholder="이름을 입력해주세요" />
         </Input.Wrapper>
-        <Input.Error>잘못된 이름입니다.</Input.Error>
       </Input>
       <Input>
         <Label htmlFor="password">비밀번호</Label>
@@ -35,22 +43,25 @@ const FormTest = () => {
       </Input>
       <Input inputSize="sm" disabled>
         <Label htmlFor="small" labelSize="sm">
-          작은 사이즈
+          작은 사이즈 + 비활성화
         </Label>
         <Input.Wrapper>
           <Input.Field id="small" placeholder="작은 사이즈" />
         </Input.Wrapper>
       </Input>
-      <Input>
-        <Label htmlFor="test">State 연동 테스트</Label>
+      <Input errorMessage={error}>
+        <Label htmlFor="test">검색</Label>
         <Input.Wrapper>
+          <Input.SearchIcon />
           <Input.Field
             id="test"
             placeholder="메시지를 입력해주세요"
             value={value}
             onChange={handleFieldChange}
+            onBlur={handleFieldBlur}
           />
         </Input.Wrapper>
+        <Input.Error />
       </Input>
       <div className="flex gap-2 text-white">
         <p>입력값:</p>

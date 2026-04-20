@@ -2,9 +2,10 @@ import { createContext, useContext } from "react";
 
 import { InputWrapperStylesProps } from "./input-style";
 
-interface InputContextType extends InputWrapperStylesProps {
+interface InputContextType extends Omit<InputWrapperStylesProps, "error"> {
   isPasswordVisible: boolean;
   togglePassword: () => void;
+  errorMessage?: string;
 }
 
 /**

@@ -7,8 +7,9 @@ import { cn } from "@/util/cn";
 import { InputContext } from "./input-context";
 import { InputWrapperStylesProps } from "./input-style";
 
-interface InputRootProps extends InputWrapperStylesProps {
+interface InputRootProps extends Omit<InputWrapperStylesProps, "error"> {
   children: React.ReactNode;
+  errorMessage?: string;
   className?: string;
 }
 
@@ -16,7 +17,7 @@ interface InputRootProps extends InputWrapperStylesProps {
  * @description Input 컴포넌트의 루트
  * @param {React.ReactNode} children - Input 컴포넌트의 자식 요소
  * @param {"sm" | "md" | "lg"} inputSize - Input의 크기
- * @param {boolean} error - 에러 발생 여부
+ * @param {string} error - 에러 메시지
  * @param {boolean} disabled - Input의 비활성화 여부
  * @param {string} className - Input의 클래스 이름
  * @returns {JSX.Element} Input 컴포넌트의 루트
@@ -24,7 +25,7 @@ interface InputRootProps extends InputWrapperStylesProps {
 const InputRoot = ({
   children,
   inputSize = "md",
-  error = false,
+  errorMessage = "",
   disabled = false,
   className,
 }: InputRootProps) => {
@@ -35,7 +36,7 @@ const InputRoot = ({
     <InputContext.Provider
       value={{
         inputSize,
-        error,
+        errorMessage,
         disabled,
         isPasswordVisible,
         togglePassword,
