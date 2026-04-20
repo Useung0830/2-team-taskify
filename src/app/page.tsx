@@ -1,3 +1,9 @@
+import SideMenu from "@/components/SideMenu";
+
 export default function Home() {
-  return <div>hi</div>;
+  return (
+    <div>
+      <SideMenu />
+    </div>
+  );
 }
