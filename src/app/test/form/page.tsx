@@ -7,19 +7,9 @@ import Label from "@/components/label/label";
 
 const FormTest = () => {
   const [value, setValue] = useState("");
-  const [error, setError] = useState("");
 
   const handleFieldChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
-    if (error) {
-      setError("");
-    }
-  };
-
-  const handleFieldBlur = () => {
-    if (value.length < 3) {
-      setError("이름은 3글자 이상이어야 합니다.");
-    }
   };
 
   return (
@@ -27,8 +17,10 @@ const FormTest = () => {
       <Input>
         <Label htmlFor="name">이름</Label>
         <Input.Wrapper>
+          <Input.SearchIcon />
           <Input.Field id="name" placeholder="이름을 입력해주세요" />
         </Input.Wrapper>
+        <Input.Error>잘못된 이름입니다.</Input.Error>
       </Input>
       <Input>
         <Label htmlFor="password">비밀번호</Label>
@@ -49,16 +41,14 @@ const FormTest = () => {
           <Input.Field id="small" placeholder="작은 사이즈" />
         </Input.Wrapper>
       </Input>
-      <Input errorMsg={error}>
+      <Input>
         <Label htmlFor="test">State 연동 테스트</Label>
         <Input.Wrapper>
-          <Input.SearchIcon />
           <Input.Field
             id="test"
             placeholder="메시지를 입력해주세요"
             value={value}
             onChange={handleFieldChange}
-            onBlur={handleFieldBlur}
           />
         </Input.Wrapper>
       </Input>

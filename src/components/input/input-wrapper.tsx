@@ -15,8 +15,7 @@ interface InputWrapperProps {
  * @returns {JSX.Element} Input.Wrapper 컴포넌트
  */
 const InputWrapper = ({ children, className }: InputWrapperProps) => {
-  const { inputSize, errorMsg, disabled } = useInputContext();
-  const error = !!errorMsg;
+  const { inputSize, error, disabled } = useInputContext();
   return (
     <div
       className={cn(

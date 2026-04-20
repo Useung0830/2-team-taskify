@@ -7,10 +7,9 @@ import { cn } from "@/util/cn";
 import { InputContext } from "./input-context";
 import { InputWrapperStylesProps } from "./input-style";
 
-interface InputRootProps extends Omit<InputWrapperStylesProps, "error"> {
+interface InputRootProps extends InputWrapperStylesProps {
   children: React.ReactNode;
   className?: string;
-  errorMsg?: string;
 }
 
 /**
@@ -25,8 +24,8 @@ interface InputRootProps extends Omit<InputWrapperStylesProps, "error"> {
 const InputRoot = ({
   children,
   inputSize = "md",
+  error = false,
   disabled = false,
-  errorMsg = "",
   className,
 }: InputRootProps) => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
@@ -36,7 +35,7 @@ const InputRoot = ({
     <InputContext.Provider
       value={{
         inputSize,
-        errorMsg,
+        error,
         disabled,
         isPasswordVisible,
         togglePassword,
