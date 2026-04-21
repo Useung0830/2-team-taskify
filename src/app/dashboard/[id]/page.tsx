@@ -1,10 +1,13 @@
-import ColumnAddList from "./components/ColumnAddList";
+import Image from "next/image";
+import ColumnAdd from "./components/ColumnAdd";
 import ColumnList from "./components/ColumnList";
+import colorchip from "./assets/colorchips.svg";
 
 export default function Dashboard() {
   return (
     <div>
       <h1 className="flex px-12.5 pt-6 pb-3.5 text-4xl font-bold text-gray-100">
+        <Image src={colorchip} alt="color chip" />
         포트폴리오
       </h1>
       <div className="flex gap-15 px-12.5 py-2.5">
@@ -12,7 +15,7 @@ export default function Dashboard() {
         <ColumnList columnTitle="To-do" />
         <ColumnList columnTitle="On Progress" />
         <ColumnList columnTitle="Done" />
-        <ColumnAddList />
+        <ColumnAdd />
       </div>
     </div>
   );
