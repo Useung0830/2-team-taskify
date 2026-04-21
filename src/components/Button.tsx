@@ -10,10 +10,10 @@ const buttonVariants = cva(
       // [Type] 색상
       colortype: {
         primary:
-          "rounded-full bg-[#00A200] text-white hover:bg-[#0B8A0B] active:bg-[#00A200] disabled:bg-[#10671F] disabled:text-[#00330D]",
+          "bg-brand-500 hover:bg-brand-600 active:bg-brand-500 disabled:bg-brand-800 disabled:text-brand-950 rounded-full text-white",
         secondary:
-          "rounded-full bg-[#3C3C41] text-[#F8F7FA] hover:bg-[#333236] active:bg-[#3C3C41] disabled:bg-[#3C3C41] disabled:text-[#787486]",
-        ghost: "bg-transparent text-white disabled:text-[#787486]",
+          "hover:bg-black-600 rounded-full bg-gray-900 text-gray-100 active:bg-gray-900 disabled:bg-gray-900 disabled:text-gray-500",
+        ghost: "bg-transparent text-white disabled:text-gray-500",
       },
       // [Size] 크기
       size: {
@@ -51,10 +51,10 @@ export default function Button({
 }: ButtonProps) {
   // + 아이콘 로직
   const handlePlusIconFill = () => {
-    if (disabled) return colortype === "secondary" ? "#787486" : "#00330D";
+    if (disabled) return colortype === "secondary" ? "gray-500" : "brand-950";
     if (isActive) return "white";
-    if (isHovered && colortype === "primary") return "#ECECEE";
-    return colortype === "secondary" ? "#D6D5D9" : "white";
+    if (isHovered && colortype === "primary") return "gray-200";
+    return colortype === "secondary" ? "gray-300" : "white";
   };
 
   // 프로필 아이콘 로직
@@ -63,20 +63,20 @@ export default function Button({
 
     if (isActive) {
       return {
-        bg: "bg-[#242429]",
+        bg: "bg-modal-background",
         rounded: size === "lg" ? "rounded-[12px]" : "rounded-[8px]",
         text: "text-white",
       };
     }
     if (isHovered) {
       return {
-        bg: "bg-[#262629]",
+        bg: "bg-black-700",
         rounded: size === "lg" ? "rounded-[12px]" : "rounded-[8px]",
         text: "text-white",
       };
     }
     if (disabled)
-      return { bg: "bg-transparent", rounded: "", text: "text-[#787486]" };
+      return { bg: "bg-transparent", rounded: "", text: "text-gray-500" };
 
     return {
       bg: "bg-transparent",
@@ -103,9 +103,9 @@ export default function Button({
         !disabled &&
           colortype !== "ghost" && [
             isHovered &&
-              (colortype === "primary" ? "bg-[#0B8A0B]" : "bg-[#333236]"),
+              (colortype === "primary" ? "bg-brand-600" : "bg-black-600"),
             isActive &&
-              (colortype === "primary" ? "bg-[#00A200]" : "bg-[#3C3C41]"),
+              (colortype === "primary" ? "bg-brand-500" : "bg-gray-900"),
           ],
 
         // 프로필 아이콘 Label 버튼
