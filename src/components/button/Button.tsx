@@ -49,8 +49,6 @@ export default function Button({
   children,
   ...props
 }: ButtonProps) {
-  const shouldIcon = size === "sm" || size === "xs";
-
   // + 아이콘 로직
   const handlePlusIconFill = () => {
     if (disabled) return colortype === "secondary" ? "#787486" : "#00330D";
