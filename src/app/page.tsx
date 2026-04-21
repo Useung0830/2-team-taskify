@@ -13,9 +13,8 @@ export default function Home() {
       <MainHeader 
         isLoggedIn={isLoggedIn} 
         firstDashboardId={firstDashboardId} 
-       />
-      <main>
-      </main>
+      />
+      <main></main>
     </div>
   );
 }
