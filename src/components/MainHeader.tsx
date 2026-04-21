@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import logoImg from "../assets/logo.svg";
+import logoImg from "@/assets/logo.svg";
 
 interface MainHeaderProps {
     isLoggedIn?: boolean;
