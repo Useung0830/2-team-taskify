@@ -1,7 +1,7 @@
 import { cva, VariantProps } from "class-variance-authority";
 import { cn } from "@/util/cn";
-import { SquarePlusIcon } from "./SquarePlusIcon";
-import { ProfileIcon } from "./ProfileIcon";
+import PlusIcon from "@/assets/button-icon/PlusIcon";
+import ProfileIcon from "@/assets/button-icon/ProfileIcon";
 
 const buttonVariants = cva(
   "inline-flex items-center justify-center rounded-full font-semibold whitespace-nowrap transition-all duration-100 disabled:cursor-not-allowed",
@@ -118,7 +118,7 @@ export default function Button({
       {...props}
     >
       {/* 앞쪽 아이콘 */}
-      {isSquarePlusIcon && <SquarePlusIcon size={iconSize} fill={iconFill} />}
+      {isSquarePlusIcon && <PlusIcon size={iconSize} fill={iconFill} />}
       {isProfileIcon && (
         <ProfileIcon size={size as "lg" | "md"} fill={iconFill} />
       )}
@@ -126,7 +126,7 @@ export default function Button({
       <span className="mx-1">{children || "Label"}</span>
 
       {/* 뒤쪽 아이콘 */}
-      {isSquarePlusIcon && <SquarePlusIcon size={iconSize} fill={iconFill} />}
+      {isSquarePlusIcon && <PlusIcon size={iconSize} fill={iconFill} />}
       {isProfileIcon && (
         <ProfileIcon size={size as "lg" | "md"} fill={iconFill} />
       )}

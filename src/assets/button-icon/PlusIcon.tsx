@@ -1,13 +1,13 @@
-interface IconProps extends React.SVGProps<SVGSVGElement> {
+interface PlusIconProps extends React.SVGProps<SVGSVGElement> {
   fill?: string;
   size?: 14 | 16;
 }
 
-export const SquarePlusIcon = ({
+export default function PlusIcon({
   fill = "white",
   size = 16,
   ...props
-}: IconProps) => {
+}: PlusIconProps) {
   // 사이즈에 따라 viewBox와 path 데이터가 달라지도록 설정합니다.
   const isXs = size === 14;
 
@@ -30,4 +30,4 @@ export const SquarePlusIcon = ({
       />
     </svg>
   );
-};
+}

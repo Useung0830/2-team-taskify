@@ -3,7 +3,10 @@ interface ProfileIconProps {
   fill?: string;
 }
 
-export function ProfileIcon({ size, fill = "#769683" }: ProfileIconProps) {
+export default function ProfileIcon({
+  size,
+  fill = "#769683",
+}: ProfileIconProps) {
   const dimension = size === "lg" ? 20 : 18;
   const rx = size === "lg" ? 10 : 9;
 
