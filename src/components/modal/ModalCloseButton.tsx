@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import icX from "../assets/ic-x.svg";
+import icX from "@/assets/ic-x.svg";
 import { useRouter } from "next/navigation";
 
 function ModalCloseButton() {

@@ -1,6 +1,6 @@
 "use client";
 
-import ModalHeader from "@/components/ModalHeader";
+import ModalHeader from "@/components/modal/ModalHeader";
 import { useRouter } from "next/navigation";
 
 export default function TaskEdit() {
