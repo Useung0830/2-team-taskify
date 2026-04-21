@@ -35,7 +35,7 @@ interface ButtonProps
   extends
     React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
-  isHovered?: boolean;
+  isHover?: boolean;
   isActive?: boolean;
 }
 
@@ -44,7 +44,7 @@ export default function Button({
   colortype,
   size,
   disabled,
-  isHovered,
+  isHover,
   isActive,
   children,
   ...props
@@ -53,7 +53,7 @@ export default function Button({
   const handlePlusIconFill = () => {
     if (disabled) return colortype === "secondary" ? "gray-500" : "brand-950";
     if (isActive) return "white";
-    if (isHovered && colortype === "primary") return "gray-200";
+    if (isHover && colortype === "primary") return "gray-200";
     return colortype === "secondary" ? "gray-300" : "white";
   };
 
@@ -68,7 +68,7 @@ export default function Button({
         text: "text-white",
       };
     }
-    if (isHovered) {
+    if (isHover) {
       return {
         bg: "bg-black-700",
         rounded: size === "lg" ? "rounded-[12px]" : "rounded-[8px]",
@@ -102,7 +102,7 @@ export default function Button({
         // 기본 Label 및 + 아이콘 Label 버튼
         !disabled &&
           colortype !== "ghost" && [
-            isHovered &&
+            isHover &&
               (colortype === "primary" ? "bg-brand-600" : "bg-black-600"),
             isActive &&
               (colortype === "primary" ? "bg-brand-500" : "bg-gray-900"),
