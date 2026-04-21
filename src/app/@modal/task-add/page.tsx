@@ -1,0 +1,14 @@
+"use client";
+
+import ModalHeader from "@/components/ModalHeader";
+import { useRouter } from "next/navigation";
+
+export default function TaskAdd() {
+  const router = useRouter();
+
+  const handleCloseModal = () => {
+    router.back();
+  };
+
+  return <ModalHeader onClose={handleCloseModal}>할 일 생성</ModalHeader>;
+}

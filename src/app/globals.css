@@ -1,5 +1,61 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "Pretendard";
+  font-weight: 45 920;
+  font-style: normal;
+  font-display: swap;
+  src: url("/src/assets/fonts/PretendardVariable.woff2")
+    format("woff2-variations");
+}
+
+@theme {
+  --color-background: #1b1a1f;
+  --color-modal-background: #242429;
+  --color-stroke: #676975;
+
+  --color-black-900: #131215;
+  --color-black-800: #201f23;
+  --color-black-700: #262629;
+  --color-black-600: #333236;
+  --color-black-500: #4b4b4b;
+
+  --color-gray-900: #3c3c41;
+  --color-gray-800: #49474f;
+  --color-gray-700: #524f5b;
+  --color-gray-600: #5b5963;
+  --color-gray-500: #787486;
+  --color-gray-400: #a39fb2;
+  --color-gray-300: #d6d5d9;
+  --color-gray-200: #ececee;
+  --color-gray-100: #f8f7fa;
+
+  --color-brand-950: #00330d;
+  --color-brand-900: #00490c;
+  --color-brand-800: #10671f;
+  --color-brand-700: #0d7910;
+  --color-brand-600: #0b8a0b;
+  --color-brand-500: #00a200;
+  --color-brand-400: #3fc03f;
+  --color-brand-300: #6bda71;
+  --color-brand-200: #a6ebaa;
+  --color-brand-100: #cff8d2;
+
+  --color-red: #ca372b;
+  --color-blue: #1458bc;
+  --color-sky-blue: #76a5ea;
+
+  --color-profile-green: #206e4e;
+  --color-profile-violet: #593ea5;
+  --color-profile-cyan: #1f6a83;
+  --color-profile-rose: #ae2e24;
+  --color-profile-cobalt: #1458bc;
+  --color-profile-yellow: #bd8c00;
+  --color-profile-orange: #9f4b00;
+
+  --font-pretendard: "Pretendard", sans-serif;
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
