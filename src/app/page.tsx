@@ -1,4 +1,4 @@
-import MainHeader from '@/components/layout/MainHeader';
+import MainHeader from '@/components/MainHeader';
 
 export default function Home() {
   /**
