@@ -1,5 +1,13 @@
+import Comment from "@/components/Comment";
+import CommentForm from "@/components/CommentForm";
 import Link from "next/link";
 
 export default function Home() {
-  return <Link href={"./account-setting"}>hi</Link>;
+  return (
+    <>
+      <CommentForm />
+      <Comment />
+      <Link href={"./task-detail"}></Link>
+    </>
+  );
 }

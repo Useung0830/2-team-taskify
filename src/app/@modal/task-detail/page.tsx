@@ -1,5 +1,8 @@
+import Badge from "@/components/Badge";
 import ModalHeader from "@/components/modal/ModalHeader";
 
 export default function TaskDetail() {
-  return <ModalHeader>새 칼럼 생성</ModalHeader>;
+  const badgeColor = "blue" as const;
+
+  return <ModalHeader>와이어프레임 만들기</ModalHeader>;
 }
