@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Button from "./button/Button";
 
 function CommentForm() {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -27,16 +28,16 @@ function CommentForm() {
             <button
               type="button"
               onClick={() => setIsExpanded(false)}
-              className="rounded-full bg-gray-900 px-4 py-1.5 text-sm text-gray-100 hover:underline"
+              className="rounded-full bg-gray-900 px-4 py-1.5 text-sm text-gray-100 transition-colors duration-300 hover:bg-gray-700"
             >
               취소
             </button>
             <button
               type="submit"
-              className="bg-brand-600 rounded-full px-4 py-1.5 text-sm text-white"
+              className="bg-brand-600 hover:bg-brand-800 rounded-full px-4 py-1.5 text-sm text-white transition-colors duration-300"
             >
               등록
-            </button>{" "}
+            </button>
           </div>
         </div>
       ) : (
