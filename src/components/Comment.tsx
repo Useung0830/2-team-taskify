@@ -1,7 +1,7 @@
 function Comment() {
   return (
     <div className="flex gap-3">
-      <div>정은</div>
+      <div className="text-gray-100">정은</div>
       <div className="flex flex-col items-start justify-center gap-2">
         <div className="flex items-center justify-start gap-1">
           <span className="text-base font-medium text-gray-100">이름</span>
