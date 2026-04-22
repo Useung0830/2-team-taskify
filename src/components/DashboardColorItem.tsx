@@ -11,6 +11,8 @@ export function DashboardColorItem({ color }: DashboardColorItemProp) {
     blue: "bg-profile-cobalt",
   };
   return (
-    <div className={`h-22.5 w-full rounded-2xl ${colorMatch[color]}`}></div>
+    <div
+      className={`h-full w-full cursor-pointer rounded-2xl ${colorMatch[color]}`}
+    ></div>
   );
 }
