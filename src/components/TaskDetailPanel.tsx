@@ -1,5 +1,5 @@
-import ModalCloseButton from "@/components/modal/ModalCloseButton";
-import KebabButton from "@/components/KebabButton";
+import { KebabButton } from "@/components/KebabButton";
+import { ModalCloseButton } from "@/components/modal/ModalCloseButton";
 
 export function TaskDetailPanel() {
   return (

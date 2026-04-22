@@ -1,4 +1,4 @@
-function Comment() {
+export function Comment() {
   return (
     <div className="flex gap-3">
       <div className="text-gray-100">정은</div>
@@ -16,5 +16,3 @@ function Comment() {
     </div>
   );
 }
-
-export default Comment;

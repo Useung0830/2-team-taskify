@@ -1,10 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import icX from "@/assets/ic-x.svg";
 import { useRouter } from "next/navigation";
 
-function ModalCloseButton() {
+import icX from "@/assets/ic-x.svg";
+
+export function ModalCloseButton() {
   const router = useRouter();
 
   const handleCloseModal = () => {
@@ -19,4 +20,3 @@ function ModalCloseButton() {
     </button>
   );
 }
-export default ModalCloseButton;

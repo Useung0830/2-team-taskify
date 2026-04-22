@@ -1,6 +1,7 @@
-import Comment from "@/components/Comment";
-import CommentForm from "@/components/CommentForm";
 import Link from "next/link";
+
+import { Comment } from "@/components/Comment";
+import { CommentForm } from "@/components/CommentForm";
 
 export default function Home() {
   return (

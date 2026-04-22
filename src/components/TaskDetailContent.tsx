@@ -1,4 +1,5 @@
 import Image from "next/image";
+
 import ExImage from "@/assets/task-detail-ex.svg";
 
 export function TaskDetailContent() {

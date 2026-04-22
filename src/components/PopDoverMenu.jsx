@@ -1,6 +1,7 @@
 import Image from "next/image";
-import icEdit from "@/assets/ic-edit.svg";
+
 import icDelete from "@/assets/ic-delete.svg";
+import icEdit from "@/assets/ic-edit.svg";
 
 export function PopDoverMenu() {
   return (

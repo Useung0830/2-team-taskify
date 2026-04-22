@@ -1,8 +1,8 @@
-import CommentForm from "@/components/CommentForm";
-import Comment from "@/components/Comment";
-import { TaskDetailPanel } from "@/components/TaskDetailPanel";
+import { Comment } from "@/components/Comment";
+import { CommentForm } from "@/components/CommentForm";
 import { TaskDetailContent } from "@/components/TaskDetailContent";
 import { TaskDetailHeader } from "@/components/TaskDetailHeader";
+import { TaskDetailPanel } from "@/components/TaskDetailPanel";
 
 export default function TaskDetail() {
   return (

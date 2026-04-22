@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-function CommentForm() {
+export function CommentForm() {
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
@@ -50,5 +50,3 @@ function CommentForm() {
     </div>
   );
 }
-
-export default CommentForm;

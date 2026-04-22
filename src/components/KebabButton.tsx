@@ -1,11 +1,11 @@
 "use client";
-
-import icMore from "@/assets/ic-more.svg";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+
+import icMore from "@/assets/ic-more.svg";
 import { PopDoverMenu } from "@/components/PopDoverMenu";
 
-function KebabButton() {
+export function KebabButton() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -42,5 +42,3 @@ function KebabButton() {
     </div>
   );
 }
-
-export default KebabButton;
