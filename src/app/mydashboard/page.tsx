@@ -1,6 +1,6 @@
-import { Emptydashboard } from "./_components/Emptydashboard";
-import InventionContainer from "./_components/InventionContainer";
-import MydashContainer from "./_components/MydashContainer";
+import { Emptydashboard } from "./components/Emptydashboard";
+import InventionContainer from "./components/InventionContainer";
+import MydashContainer from "./components/MydashContainer";
 
 export default function MyDashboard() {
   const mydata = true;

@@ -1,8 +1,8 @@
 import Image from "next/image";
-import MydashboardList from "../components/MydashboardList";
+import MydashboardList from "./MydashboardList";
 import rightbtn from "../assets/rightBtn.svg";
 import leftbtn from "../assets/leftBtn.svg";
-import InventionContainer from "../components/InventionContainer";
+import InventionContainer from "./InventionContainer";
 
 export default function MydashboardContent() {
   return (
