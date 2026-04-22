@@ -68,7 +68,7 @@ export default function Button({
     <button
       className={cn(
         buttonVariants({ colortype, size }),
-        // Primary, Secondary 상태 대응
+        // Primary, Secondary 상태
         !disabled &&
           colortype !== "ghost" && [
             isHover &&
@@ -76,7 +76,7 @@ export default function Button({
             isActive &&
               (colortype === "primary" ? "bg-brand-500" : "bg-gray-900"),
           ],
-        // Ghost 상태 대응
+        // Ghost 상태
         getGhostStyle(),
         className
       )}
