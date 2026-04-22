@@ -1,26 +1,22 @@
 import { cva, VariantProps } from "class-variance-authority";
 import { cn } from "@/util/cn";
-import PlusIcon from "@/assets/button-icon/PlusIcon";
-import ProfileIcon from "@/assets/button-icon/ProfileIcon";
 
 const buttonVariants = cva(
-  "inline-flex w-fit items-center justify-center rounded-full font-semibold whitespace-nowrap transition-all duration-100 disabled:cursor-not-allowed", // w-fit 속성 추가
+  "inline-flex w-fit items-center justify-center rounded-full font-semibold whitespace-nowrap transition-all duration-100 disabled:cursor-not-allowed",
   {
     variants: {
-      // [Type]
       colortype: {
         primary:
-          "bg-brand-500 hover:bg-brand-600 active:bg-brand-500 disabled:bg-brand-800 disabled:text-brand-950 rounded-full text-white",
+          "bg-brand-500 hover:bg-brand-600 active:bg-brand-500 disabled:bg-brand-800 disabled:text-brand-950 text-white",
         secondary:
-          "hover:bg-black-600 rounded-full bg-gray-900 text-gray-100 active:bg-gray-900 disabled:bg-gray-900 disabled:text-gray-500",
+          "hover:bg-black-600 bg-gray-900 text-gray-100 active:bg-gray-900 disabled:bg-gray-900 disabled:text-gray-500",
         ghost: "bg-transparent text-white disabled:text-gray-500",
       },
-      // [Size] 크기
       size: {
-        lg: "h-[60px] gap-[8px] px-[30px] py-[6px] text-[18px]",
-        md: "h-[50px] gap-[8px] px-[30px] py-[6px] text-[16px]",
-        sm: "h-[36px] gap-[4px] px-[20px] py-[6px] text-[16px]",
-        xs: "h-[29px] gap-[2px] px-[12px] py-[6px] text-[14px]",
+        lg: "h-[60px] px-[30px] py-[6px] text-[18px]",
+        md: "h-[50px] px-[30px] py-[6px] text-[16px]",
+        sm: "h-[36px] px-[20px] py-[6px] text-[16px]",
+        xs: "h-[29px] px-[12px] py-[6px] text-[14px]",
       },
     },
     defaultVariants: {
@@ -30,7 +26,6 @@ const buttonVariants = cva(
   }
 );
 
-// ButtonProps 정의
 interface ButtonProps
   extends
     React.ButtonHTMLAttributes<HTMLButtonElement>,
@@ -49,57 +44,31 @@ export default function Button({
   children,
   ...props
 }: ButtonProps) {
-  // + 아이콘
-  const handlePlusIconFill = () => {
-    if (disabled) return colortype === "secondary" ? "gray-500" : "brand-950";
-    if (isActive) return "white";
-    if (isHover && colortype === "primary") return "gray-200";
-    return colortype === "secondary" ? "gray-300" : "white";
-  };
-
-  // 프로필 아이콘
-  const handleTypeGhost = () => {
-    if (colortype !== "ghost") return null;
+  const getGhostStyle = () => {
+    if (colortype !== "ghost") return "";
 
     if (isActive) {
-      return {
-        bg: "bg-modal-background",
-        rounded: size === "lg" ? "rounded-[12px]" : "rounded-[8px]",
-        text: "text-white",
-      };
+      return cn(
+        "bg-modal-background text-white",
+        size === "lg" ? "rounded-[12px]" : "rounded-[8px]"
+      );
     }
     if (isHover) {
-      return {
-        bg: "bg-black-700",
-        rounded: size === "lg" ? "rounded-[12px]" : "rounded-[8px]",
-        text: "text-white",
-      };
+      return cn(
+        "bg-black-700 text-white",
+        size === "lg" ? "rounded-[12px]" : "rounded-[8px]"
+      );
     }
-    if (disabled)
-      return { bg: "bg-transparent", rounded: "", text: "text-gray-500" };
+    if (disabled) return "bg-transparent text-gray-500";
 
-    return {
-      bg: "bg-transparent",
-      rounded: "",
-      text: size === "lg" ? "text-[16px]" : "text-[14px]",
-    };
+    return cn("bg-transparent", size === "lg" ? "text-[16px]" : "text-[14px]");
   };
-
-  const ghostStyle = handleTypeGhost();
-
-  const isSquarePlusIcon =
-    colortype !== "ghost" && (size === "sm" || size === "xs");
-  const isProfileIcon =
-    colortype === "ghost" && (size === "lg" || size === "md");
-
-  const iconSize = size === "xs" ? 14 : 16;
-  const iconFill = colortype === "ghost" ? "#769683" : handlePlusIconFill();
 
   return (
     <button
       className={cn(
         buttonVariants({ colortype, size }),
-        // 기본 Label 및 + 아이콘 Label 버튼
+        // Primary, Secondary 상태 대응
         !disabled &&
           colortype !== "ghost" && [
             isHover &&
@@ -107,29 +76,14 @@ export default function Button({
             isActive &&
               (colortype === "primary" ? "bg-brand-500" : "bg-gray-900"),
           ],
-
-        // 프로필 아이콘 Label 버튼
-        colortype === "ghost" &&
-          ghostStyle && [ghostStyle.bg, ghostStyle.rounded, ghostStyle.text],
-
+        // Ghost 상태 대응
+        getGhostStyle(),
         className
       )}
       disabled={disabled}
       {...props}
     >
-      {/* 앞쪽 아이콘 */}
-      {isSquarePlusIcon && <PlusIcon size={iconSize} fill={iconFill} />}
-      {isProfileIcon && (
-        <ProfileIcon size={size as "lg" | "md"} fill={iconFill} />
-      )}
-
       <span className="mx-1">{children || "Label"}</span>
-
-      {/* 뒤쪽 아이콘 */}
-      {isSquarePlusIcon && <PlusIcon size={iconSize} fill={iconFill} />}
-      {isProfileIcon && (
-        <ProfileIcon size={size as "lg" | "md"} fill={iconFill} />
-      )}
     </button>
   );
 }
