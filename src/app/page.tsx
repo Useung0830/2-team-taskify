@@ -7,7 +7,7 @@ export default function ModalTestPage() {
   const [showDesktop, setShowDesktop] = useState(false);
 
   return (
-    <div className="flex min-h-screen items-center justify-center gap-10 bg-[#1a1a1a] text-white">
+    <div className="bg-background flex min-h-screen items-center justify-center gap-10 text-white">
       {/* Modal size | 모바일 */}
       <div className="flex flex-col items-center gap-4">
         <p className="font-mono text-gray-400">Modal size | 모바일</p>

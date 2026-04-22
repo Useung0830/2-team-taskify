@@ -52,7 +52,6 @@ export default function DeleteAlertModal({
           </svg>
         </button>
 
-        {/* 텍스트 영역 */}
         <div
           className={cn(
             "flex flex-col items-center text-center",
@@ -84,22 +83,22 @@ export default function DeleteAlertModal({
           <Button
             colortype="secondary"
             className={cn(
-              "!min-w-0 flex-1",
-              isDesktop ? "h-[60px]" : "h-[50px]",
-              isDesktop ? "text-[18px]" : "text-[16px]"
+              "hover:!bg-black-600 !min-w-0 flex-1 !bg-gray-900 !text-gray-100",
+              isDesktop ? "h-[60px] text-[18px]" : "h-[50px] text-[16px]"
             )}
             onClick={onClose}
           >
             취소
           </Button>
           <Button
-            colortype="primary"
             className={cn(
-              "bg-red !min-w-0 flex-1",
-              isDesktop ? "h-[60px]" : "h-[50px]",
-              isDesktop ? "text-[18px]" : "text-[16px]"
+              "!bg-red hover:!bg-rose !min-w-0 flex-1 !text-gray-100",
+              isDesktop ? "h-[60px] text-[18px]" : "h-[50px] text-[16px]"
             )}
-            onClick={onDelete}
+            onClick={() => {
+              onDelete();
+              onClose();
+            }}
           >
             삭제
           </Button>
