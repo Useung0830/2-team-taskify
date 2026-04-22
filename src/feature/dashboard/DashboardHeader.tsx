@@ -27,7 +27,7 @@ interface DashboardHeaderProps {
   totalCount: number;
 }
 
-export default function DashboardHeader({ members, totalCount }: DashboardHeaderProps) {
+export function DashboardHeader({ members, totalCount }: DashboardHeaderProps) {
   const router = useRouter();
   const params = useParams();
   const [isMounted, setIsMounted] = useState(false);
