@@ -1,7 +1,8 @@
 "use client";
 
-import ModalHeader from "@/components/ModalHeader";
 import { useRouter } from "next/navigation";
+
+import { ModalHeader } from "@/components/ModalHeader";
 
 export default function TaskDetail() {
   const router = useRouter();
