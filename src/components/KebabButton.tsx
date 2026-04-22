@@ -31,7 +31,10 @@ export function KebabButton() {
   }, []);
 
   return (
-    <div ref={containerRef} className="relative inline-block">
+    <div
+      ref={containerRef}
+      className="relative flex items-center justify-center"
+    >
       <button
         onClick={handleDropdown}
         className="h-6 w-6 transition-transform hover:scale-110 active:opacity-70"
