@@ -4,10 +4,10 @@ import PlusIcon from "@/assets/button-icon/PlusIcon";
 import ProfileIcon from "@/assets/button-icon/ProfileIcon";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center rounded-full font-semibold whitespace-nowrap transition-all duration-100 disabled:cursor-not-allowed",
+  "inline-flex w-fit items-center justify-center rounded-full font-semibold whitespace-nowrap transition-all duration-100 disabled:cursor-not-allowed", // w-fit 속성 추가
   {
     variants: {
-      // [Type] 색상
+      // [Type]
       colortype: {
         primary:
           "bg-brand-500 hover:bg-brand-600 active:bg-brand-500 disabled:bg-brand-800 disabled:text-brand-950 rounded-full text-white",
@@ -17,10 +17,10 @@ const buttonVariants = cva(
       },
       // [Size] 크기
       size: {
-        lg: "h-[60px] min-w-[200px] gap-[8px] px-[30px] py-[6px] text-[18px]",
-        md: "h-[50px] min-w-[200px] gap-[8px] px-[30px] py-[6px] text-[16px]",
-        sm: "h-[36px] min-w-[120px] gap-[4px] px-[20px] py-[6px] text-[16px]",
-        xs: "h-[29px] min-w-[91px] gap-[2px] px-[12px] py-[6px] text-[14px]",
+        lg: "h-[60px] gap-[8px] px-[30px] py-[6px] text-[18px]",
+        md: "h-[50px] gap-[8px] px-[30px] py-[6px] text-[16px]",
+        sm: "h-[36px] gap-[4px] px-[20px] py-[6px] text-[16px]",
+        xs: "h-[29px] gap-[2px] px-[12px] py-[6px] text-[14px]",
       },
     },
     defaultVariants: {
@@ -30,7 +30,7 @@ const buttonVariants = cva(
   }
 );
 
-// Props 정의
+// ButtonProps 정의
 interface ButtonProps
   extends
     React.ButtonHTMLAttributes<HTMLButtonElement>,
@@ -49,7 +49,7 @@ export default function Button({
   children,
   ...props
 }: ButtonProps) {
-  // + 아이콘 로직
+  // + 아이콘
   const handlePlusIconFill = () => {
     if (disabled) return colortype === "secondary" ? "gray-500" : "brand-950";
     if (isActive) return "white";
@@ -57,7 +57,7 @@ export default function Button({
     return colortype === "secondary" ? "gray-300" : "white";
   };
 
-  // 프로필 아이콘 로직
+  // 프로필 아이콘
   const handleTypeGhost = () => {
     if (colortype !== "ghost") return null;
 
