@@ -44,7 +44,6 @@ export default function Button({
   children,
   ...props
 }: ButtonProps) {
-  // Ghost 타입일 때의 스타일 대응 (아이콘은 없지만 배경/텍스트 스타일은 유지)
   const getGhostStyle = () => {
     if (colortype !== "ghost") return "";
 
@@ -69,7 +68,7 @@ export default function Button({
     <button
       className={cn(
         buttonVariants({ colortype, size }),
-        // Primary, Secondary 상태 대응
+        // Primary, Secondary 상태
         !disabled &&
           colortype !== "ghost" && [
             isHover &&
@@ -77,7 +76,7 @@ export default function Button({
             isActive &&
               (colortype === "primary" ? "bg-brand-500" : "bg-gray-900"),
           ],
-        // Ghost 상태 대응
+        // Ghost 상태
         getGhostStyle(),
         className
       )}
