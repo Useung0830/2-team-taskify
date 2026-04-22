@@ -18,10 +18,7 @@ export default function NewDashboard() {
         className="bg-black-800 h-13.5 rounded-[14px] border border-gray-700 px-5 py-1.5 text-gray-400"
         placeholder="새로운 대시보드"
       />
-      <div className="w-[540px]">
-        <DashboardColorChoiceList height={60} />
-      </div>
-
+      <DashboardColorChoiceList />
       <div className="flex gap-5">
         <button className="h-[60px] w-full rounded-[100px] bg-gray-900 px-7.5 py-1.5">
           취소
