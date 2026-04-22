@@ -1,7 +1,9 @@
-import { cva, VariantProps } from "class-variance-authority";
-import { cn } from "@/util/cn";
-import { SquarePlusIcon } from "./SquarePlusIcon";
+import { cva, type VariantProps } from "class-variance-authority";
+
+import { cn } from "@/lib/cn";
+
 import { ProfileIcon } from "./ProfileIcon";
+import { SquarePlusIcon } from "./SquarePlusIcon";
 
 const buttonVariants = cva(
   "inline-flex items-center justify-center rounded-full font-semibold whitespace-nowrap transition-all duration-100 disabled:cursor-not-allowed",
@@ -39,7 +41,7 @@ interface ButtonProps
   isActive?: boolean;
 }
 
-export default function Button({
+export function Button({
   className,
   colortype,
   size,

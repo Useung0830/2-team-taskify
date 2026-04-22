@@ -4,6 +4,8 @@ import { DashboardColorChoiceList } from "@/components/DashboardColorChoiceList"
 import ModalHeader from "@/components/ModalHeader";
 import { useRouter } from "next/navigation";
 
+import { ModalHeader } from "@/components/ModalHeader";
+
 export default function NewDashboard() {
   const router = useRouter();
 
