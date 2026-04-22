@@ -7,7 +7,7 @@ const buttonVariants = cva(
   "inline-flex w-fit items-center justify-center rounded-full font-semibold whitespace-nowrap transition-all duration-100 disabled:cursor-not-allowed", // w-fit 속성 추가
   {
     variants: {
-      // [Type]
+      // [Type] colortype 중요도 & 색
       colortype: {
         primary:
           "bg-brand-500 hover:bg-brand-600 active:bg-brand-500 disabled:bg-brand-800 disabled:text-brand-950 rounded-full text-white",
