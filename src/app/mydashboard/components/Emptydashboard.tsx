@@ -6,7 +6,7 @@ interface DashboardProps {
   dashtype: "my" | "invite";
 }
 
-export default function Emptydashboard({ dashtype }: DashboardProps) {
+export function Emptydashboard({ dashtype }: DashboardProps) {
   return (
     <div className="bg-black-800 mt-7 mb-7 flex min-h-65 w-full flex-col items-center justify-center rounded-[30px] border border-gray-700 py-10">
       {dashtype === "my" ? (
