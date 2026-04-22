@@ -24,8 +24,8 @@ export default function DeleteAlertModal({
         className={cn(
           "bg-modal-background relative flex flex-col items-center border border-white/10 shadow-2xl",
           isDesktop
-            ? "w-[600px] gap-[30px] rounded-[24px] p-[40px_30px_30px]"
-            : "w-[335px] gap-[20px] rounded-[20px] p-[30px_20px_24px]"
+            ? "w-150 gap-7.5 rounded-3xl p-[40px_30px_30px]"
+            : "w-83.75 gap-5 rounded-[20px] p-[30px_20px_24px]"
         )}
       >
         <button
@@ -55,7 +55,7 @@ export default function DeleteAlertModal({
         <div
           className={cn(
             "flex flex-col items-center text-center",
-            isDesktop ? "w-[285px] gap-[12px]" : "w-[228px] gap-[8px]"
+            isDesktop ? "w-71.25 gap-3" : "w-57 gap-2"
           )}
         >
           <h2
@@ -77,14 +77,12 @@ export default function DeleteAlertModal({
         </div>
 
         {/* 확인 | 취소 버튼 */}
-        <div
-          className={cn("flex w-full", isDesktop ? "gap-[20px]" : "gap-[12px]")}
-        >
+        <div className={cn("flex w-full", isDesktop ? "gap-5" : "gap-3")}>
           <Button
             colortype="secondary"
             className={cn(
-              "hover:!bg-black-600 !min-w-0 flex-1 !bg-gray-900 !text-gray-100",
-              isDesktop ? "h-[60px] text-[18px]" : "h-[50px] text-[16px]"
+              "hover:bg-black-600 min-w-0! flex-1 bg-gray-900! text-gray-100!",
+              isDesktop ? "h-15 text-[18px]" : "h-12.5 text-[16px]"
             )}
             onClick={onClose}
           >
@@ -92,8 +90,8 @@ export default function DeleteAlertModal({
           </Button>
           <Button
             className={cn(
-              "!bg-red hover:!bg-rose !min-w-0 flex-1 !text-gray-100",
-              isDesktop ? "h-[60px] text-[18px]" : "h-[50px] text-[16px]"
+              "bg-red1! hover:bg-rose! min-w-0! flex-1 text-gray-100!",
+              isDesktop ? "h-15 text-[18px]" : "h-12.5 text-[16px]"
             )}
             onClick={() => {
               onDelete();
