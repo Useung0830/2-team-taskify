@@ -95,7 +95,7 @@ export function DashboardHeader({ members, totalCount }: DashboardHeaderProps) {
           {extraCount > 0 && (
             <div className={`
               -ml-[8px] md:-ml-[13px] flex items-center justify-center rounded-full border-2 border-black-900 bg-pink-100 font-bold text-pink-500 z-10
-              flex-shrink-0 /* <--- 이 부분이 핵심입니다 */
+              flex-shrink-0
               h-[24px] w-[24px] text-[10px] 
               md:h-[34px] md:w-[34px] md:text-[12px]
             `}>

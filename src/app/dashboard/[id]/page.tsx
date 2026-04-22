@@ -5,7 +5,6 @@ import {DashboardHeader} from "@/feature/dashboard/DashboardHeader";
 export default function DashboardPage() {
   // 1. 백엔드에서 받아올 데이터 예시 (나중에 API 연결 대상)
   const mockDashboardData = {
-    title: "비즈니스 대시보드",
     members: [
       { id: 1, nickname: "우기", profileImageUrl: null },
       { id: 2, nickname: "수지", profileImageUrl: null },
