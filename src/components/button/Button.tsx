@@ -49,8 +49,6 @@ export default function Button({
   children,
   ...props
 }: ButtonProps) {
-  const shouldIcon = size === "sm" || size === "xs";
-
   // + 아이콘 로직
   const handlePlusIconFill = () => {
     if (disabled) return colortype === "secondary" ? "#787486" : "#00330D";
@@ -105,7 +103,7 @@ export default function Button({
         !disabled &&
           colortype !== "ghost" && [
             isHovered &&
-              (colortype === "primary" ? "bg-[#0B8A0B]" : "bg-[#333236]"),
+              (colortype === "primary" ? "bg-[#0B8A0B]" : "bg-black-600"),
             isActive &&
               (colortype === "primary" ? "bg-[#00A200]" : "bg-[#3C3C41]"),
           ],

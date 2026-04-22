@@ -9,7 +9,7 @@ function Comment() {
             2025년 4월 21일 오전 9:00
           </span>
         </div>
-        <span className="flex-1 text-base font-medium text-gray-700">
+        <span className="flex-1 text-base font-medium text-gray-100">
           Comment Text
         </span>
       </div>

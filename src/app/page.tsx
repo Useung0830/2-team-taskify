@@ -7,7 +7,7 @@ export default function Home() {
     <>
       <CommentForm />
       <Comment />
-      <Link href={"./task-detail"}></Link>
+      <Link href={"./task-detail"}>알랄랄</Link>
     </>
   );
 }
