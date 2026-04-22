@@ -1,113 +1,52 @@
 ---
 tags:
-  - convention-todo
-created: 2026 4월 22 10:21:51 오전
-updated: 2026 4월 22 3:18:06 오후
+created: 2026 4월 22 11:00:49 오전
+updated: 2026 4월 22 11:26:28 오전
 ---
 
-# 네이밍 규칙
+# git 규칙
 
-## 폴더 이름
+## commit message
 
-- 모두 소문자 사용
-  - `components`
-  - `utils`
-  - `hooks`
-  - …
-- kebab-case 사용
-  - `input-wrapper`
-  - …
-- 예외적으로 약속된 이름은 그대로 두기
-  - [[#컴포넌트]]
-    - PascalCase
-  - `node_modules`
-  - `ISSUE_TEMPLATE`
-  - …
+[https://github.com/gyoogle/tech-interview-for-developer/blob/master/ETC/Git Commit Message Convention.md](https://github.com/gyoogle/tech-interview-for-developer/blob/master/ETC/Git%20Commit%20Message%20Convention.md)
 
-## 컴포넌트
+### 커밋 머릿말
 
-### 파일 이름
+| 태그       | 설명                                                       |
+|------------|------------------------------------------------------------|
+| `feat`     | 새로운 기능 추가                                           |
+| `fix`      | 버그 수정                                                  |
+| `docs`     | 문서 내용 변경                                             |
+| `style`    | 포맷팅, 세미콜론 누락 등 코드 동작에 영향 없는 변경        |
+| `refactor` | 코드 리팩토링                                              |
+| `test`     | 테스트 코드 작성                                           |
+| `chore`    | 빌드 수정, 패키지 설정 등 운영 코드 변경이 없는 작업       |
 
-- PascalCase 사용
-  - `ModalHeader`
-  - `ProfileIcon`
-  - …
+## PR Rule
 
-### 함수 이름
+- PR 제목은 `Type (Scope): Summary of changes`
+- PR 안에 상세 내용을 작성해야 한다.
 
-- PascalCase 사용
-  - `ModalHeader`
-  - `ProfileIcon`
-  - …
+## 머지 전략
 
-## 나머지 파일 이름
+- `feature` -> `dev`: Merge Commit
+- `dev` -> `main`: Squash and Merge
 
-- kebab-case
-  - 이쪽으로
+## 브랜치 전략
 
-## 일반 함수, 변수, props 이름
+### Main Branch
 
-- camelCase 사용
-- 불리언 값 변수 이름에는 "is" 접두사 사용
-  - ex: `isDisabled`, `isActive`, `isHovered`
-- 이벤트 함수
-  - 정의 시에는 `handle`로 시작
-  - props로 넘겨줄 때는 `on`으로 시작
+- 출시 가능한 프로덕션 코드를 모아두는 브랜치
 
----
+### Develop Branch
 
-## 아이콘 이름
+- 다음 버전 개발을 위한 코드를 모아두는 브랜치 > 개발이 완료되면, **`Main`** 으로 머지
 
-- kebab-case 사용
-- **파일명 시작의 접두사를 정해야 함**
-  - `ic-` 접두사 사용
-- 확장자: svg
+### Feature Branch
 
-## 이미지
+- 기능별로 브런치 생성 후 `dev` 브랜치로 머지
+- 네이밍 : `type/지라의 이슈넘버/feature`
 
-- `img-` 접두사
-- png 사용
+## 코드 리뷰
 
----
-
-## 상수 이름
-
-- SCREAMING_SNAKE_CASE
-  - `DEFAULT_PAGE_SIZE`
-  - …
-
-### 상수 값 집합 관리
-
-- as const로 사용
-
-```typescript
-const COLOR = {
-  red: 0,
-  blue: 1,
-  green: 2,
-} as const;
-```
-
-## 커스텀 훅 이름
-
-- file 이름과 function 이름 모두 use + camelCase
-  - `useUser`, `useAuthState`, `useInput`
-
-## type 이름
-
-- kebab-case
-  - `user-info.ts`
-
-## API 함수
-
-- 비즈니스 로직 함수 이름: 동사‑명사 조합 + `camelCase`
-  - `getCurrentUser`, `postOrder`,  `updateUserProfile`, `deletePost` 등
-- file 이름: `kebab-case`
-- 폴더 구조
-  - `apis/user.ts`
-- `fetch` / `axios`
-  - `fetch` 사용
-
-## 개인적 의견
-
-- 디렉토리 및 파일 이름은 파일 시스템의 대소문자 이슈를 해결하기 위해 kebab-case로 통일을 권장
+- 작성자 이외 3명의 리뷰를 승인받아야 통과 가능
