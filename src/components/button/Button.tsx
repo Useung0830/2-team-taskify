@@ -1,6 +1,6 @@
-import { cva, VariantProps } from "class-variance-authority";
+import { cva, type VariantProps } from "class-variance-authority";
 
-import { cn } from "@/util/cn";
+import { cn } from "@/lib/cn";
 
 import { ProfileIcon } from "./ProfileIcon";
 import { SquarePlusIcon } from "./SquarePlusIcon";
