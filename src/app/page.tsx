@@ -30,7 +30,7 @@ export default function ModalTestPage() {
         </button>
       </div>
 
-      {/* 모바일 버전 모달 */}
+      {/* 테스트코드 모바일용 모달 */}
       <DeleteAlertModal
         variant="mobile"
         isOpen={showMobile}
@@ -41,7 +41,7 @@ export default function ModalTestPage() {
         }}
       />
 
-      {/* 데스크탑 버전 모달 */}
+      {/* 테스트코드 데스크탑용 모달 */}
       <DeleteAlertModal
         variant="desktop"
         isOpen={showDesktop}
