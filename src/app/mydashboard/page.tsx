@@ -1,13 +1,13 @@
-import { Emptydashboard } from "./components/Emptydashboard";
-import InventionContainer from "./components/InventionContainer";
-import MydashContainer from "./components/MydashContainer";
+import { Emptydashboard } from "./_components/Emptydashboard";
+import InventionContainer from "./_components/InventionContainer";
+import MydashContainer from "./_components/MydashContainer";
 
 export default function MyDashboard() {
   const mydata = true;
   const invitedata = true;
 
   return (
-    <div className="font-pretendard flex min-h-screen w-full flex-col text-gray-100">
+    <div className="font-pretendard flex min-h-screen w-full min-w-306 flex-col text-gray-100">
       <h1 className="px-12.5 pt-6 pb-3.5 text-4xl font-bold">홈</h1>
       <div className="flex flex-col gap-5 px-12.5 pb-12.5 text-xl">
         <div className="py-1">내 대시보드</div>
