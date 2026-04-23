@@ -1,4 +1,4 @@
-"use Client";
+"use client";
 
 import MyDashboardItemContainer from "./MyDashBoardItemContainer";
 import MyDashboardItemContainerAdd from "./MyDashboardItemContainerAdd";
@@ -25,7 +25,7 @@ export default function MydashboardList({
 
       {currentPage === 0 && <MyDashboardItemContainerAdd />}
       {data.map((item: mockdataType) => (
-        <MyDashboardItemContainer>
+        <MyDashboardItemContainer key={item.id}>
           <Image src={tag} alt="tag" />
           {item.title}
         </MyDashboardItemContainer>
