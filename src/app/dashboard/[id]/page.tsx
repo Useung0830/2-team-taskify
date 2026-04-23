@@ -1,23 +1,32 @@
-import Image from "next/image";
+"use client";
 
-import colorchip from "./assets/ic-colorchips.svg";
-import { ColumnAdd } from "./components/ColumnAdd";
-import { ColumnList } from "./components/ColumnList";
+import {DashboardHeader} from "@/feature/dashboard/DashboardHeader";
 
-export default function Dashboard() {
+export default function DashboardPage() {
+  // 1. 백엔드에서 받아올 데이터 예시 (나중에 API 연결 대상)
+  const mockDashboardData = {
+    members: [
+      { id: 1, nickname: "우기", profileImageUrl: null },
+      { id: 2, nickname: "수지", profileImageUrl: null },
+      { id: 3, nickname: "예나", profileImageUrl: null },
+      { id: 4, nickname: "준혁", profileImageUrl: null },
+      { id: 5, nickname: "재민", profileImageUrl: null },
+      { id: 6, nickname: "동욱", profileImageUrl: null },
+      { id: 7, nickname: "동dl", profileImageUrl: null },
+
+    ],
+    totalCount: 7,
+  };
+
   return (
-    <div>
-      <h1 className="flex px-12.5 pt-6 pb-3.5 text-4xl font-bold text-gray-100">
-        <Image src={colorchip} alt="color chip" />
-        포트폴리오
-      </h1>
-      <div className="flex gap-15 px-12.5 py-2.5">
-        {/* @TODO 실제로는 데이터를 prop으로 넘겨주어야 한다. */}
-        <ColumnList columnTitle="To-do" />
-        <ColumnList columnTitle="On Progress" />
-        <ColumnList columnTitle="Done" />
-        <ColumnAdd />
-      </div>
+    <div className="min-h-screen bg-black-900">
+      <DashboardHeader
+        members={mockDashboardData.members}
+        totalCount={mockDashboardData.totalCount}
+      />
+
+      <main className="p-8">
+      </main>
     </div>
   );
 }
