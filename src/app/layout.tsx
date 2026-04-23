@@ -1,6 +1,6 @@
 import "./globals.css";
 
-export function RootLayout({
+export default function RootLayout({
   children,
   modal,
 }: Readonly<{
@@ -16,5 +16,3 @@ export function RootLayout({
     </html>
   );
 }
-
-export default RootLayout;
