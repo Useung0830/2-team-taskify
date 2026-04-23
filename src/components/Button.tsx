@@ -1,8 +1,9 @@
 import { cva, VariantProps } from "class-variance-authority";
-import { cn } from "@/util/cn";
+
+import { cn } from "@/lib/cn";
 
 const buttonVariants = cva(
-  "inline-flex w-fit items-center justify-center rounded-full font-semibold whitespace-nowrap transition-all duration-100 disabled:cursor-not-allowed",
+  "inline-flex w-fit cursor-pointer items-center justify-center rounded-full font-semibold whitespace-nowrap transition-all active:scale-95 disabled:cursor-not-allowed",
   {
     variants: {
       colortype: {
@@ -15,7 +16,7 @@ const buttonVariants = cva(
       size: {
         lg: "h-[60px] px-[30px] py-[6px] text-[18px]",
         md: "h-[50px] px-[30px] py-[6px] text-[16px]",
-        sm: "h-[36px] px-[20px] py-[6px] text-[16px]",
+        sm: "h-[36px] px-[16px] py-[6px] text-[16px]",
         xs: "h-[29px] px-[12px] py-[6px] text-[14px]",
       },
     },
@@ -25,62 +26,20 @@ const buttonVariants = cva(
     },
   }
 );
-
 interface ButtonProps
   extends
     React.ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof buttonVariants> {
-  isHover?: boolean;
-  isActive?: boolean;
-}
-
-export default function Button({
+    VariantProps<typeof buttonVariants> {}
+export function Button({
   className,
   colortype,
   size,
-  disabled,
-  isHover,
-  isActive,
   children,
   ...props
 }: ButtonProps) {
-  const getGhostStyle = () => {
-    if (colortype !== "ghost") return "";
-
-    if (isActive) {
-      return cn(
-        "bg-modal-background text-white",
-        size === "lg" ? "rounded-[12px]" : "rounded-[8px]"
-      );
-    }
-    if (isHover) {
-      return cn(
-        "bg-black-700 text-white",
-        size === "lg" ? "rounded-[12px]" : "rounded-[8px]"
-      );
-    }
-    if (disabled) return "bg-transparent text-gray-500";
-
-    return cn("bg-transparent", size === "lg" ? "text-[16px]" : "text-[14px]");
-  };
-
   return (
     <button
-      className={cn(
-        buttonVariants({ colortype, size }),
-        // Primary, Secondary 상태
-        !disabled &&
-          colortype !== "ghost" && [
-            isHover &&
-              (colortype === "primary" ? "bg-brand-600" : "bg-black-600"),
-            isActive &&
-              (colortype === "primary" ? "bg-brand-500" : "bg-gray-900"),
-          ],
-        // Ghost 상태
-        getGhostStyle(),
-        className
-      )}
-      disabled={disabled}
+      className={cn(buttonVariants({ colortype, size }), className)}
       {...props}
     >
       <span className="mx-1">{children || "Label"}</span>

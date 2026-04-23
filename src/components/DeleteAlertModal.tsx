@@ -1,5 +1,6 @@
-import Button from "./Button";
-import { cn } from "@/util/cn";
+import { cn } from "@/lib/cn";
+
+import { Button } from "./Button";
 
 interface DeleteAlertModalProps {
   isOpen: boolean;
@@ -8,7 +9,7 @@ interface DeleteAlertModalProps {
   variant: "mobile" | "desktop";
 }
 
-export default function DeleteAlertModal({
+export function DeleteAlertModal({
   isOpen,
   onClose,
   onDelete,
@@ -18,44 +19,26 @@ export default function DeleteAlertModal({
 
   const isDesktop = variant === "desktop";
 
+  const handleClose = () => onClose();
+  const handleDelete = () => {
+    onDelete();
+    onClose();
+  };
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4">
       <div
         className={cn(
           "bg-modal-background relative flex flex-col items-center border border-white/10 shadow-2xl",
           isDesktop
-            ? "w-[600px] gap-[30px] rounded-[24px] p-[40px_30px_30px]"
-            : "w-[335px] gap-[20px] rounded-[20px] p-[30px_20px_24px]"
+            ? "w-150 gap-7.5 rounded-3xl p-[40px_30px_30px]"
+            : "w-83.75 gap-5 rounded-[20px] p-[30px_20px_24px]"
         )}
       >
-        <button
-          onClick={onClose}
-          className={cn(
-            "absolute text-gray-400 transition-colors hover:text-white",
-            isDesktop ? "top-6 right-6" : "top-4 right-4"
-          )}
-          aria-label="닫기"
-        >
-          <svg
-            width={isDesktop ? "32" : "24"}
-            height={isDesktop ? "32" : "24"}
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <line x1="18" y1="6" x2="6" y2="18"></line>
-            <line x1="6" y1="6" x2="12" y2="12"></line>
-            <line x1="6" y1="6" x2="18" y2="18"></line>
-          </svg>
-        </button>
-
         <div
           className={cn(
             "flex flex-col items-center text-center",
-            isDesktop ? "w-[285px] gap-[12px]" : "w-[228px] gap-[8px]"
+            isDesktop ? "w-71.25 gap-3" : "w-57 gap-2"
           )}
         >
           <h2
@@ -76,29 +59,23 @@ export default function DeleteAlertModal({
           </p>
         </div>
 
-        {/* 확인 | 취소 버튼 */}
-        <div
-          className={cn("flex w-full", isDesktop ? "gap-[20px]" : "gap-[12px]")}
-        >
+        <div className={cn("flex w-full", isDesktop ? "gap-5" : "gap-3")}>
           <Button
             colortype="secondary"
             className={cn(
-              "hover:!bg-black-600 !min-w-0 flex-1 !bg-gray-900 !text-gray-100",
-              isDesktop ? "h-[60px] text-[18px]" : "h-[50px] text-[16px]"
+              "hover:bg-black-600! min-w-0! flex-1 bg-gray-900! text-gray-100!",
+              isDesktop ? "h-15 text-[18px]" : "h-12.5 text-[16px]"
             )}
-            onClick={onClose}
+            onClick={handleClose}
           >
             취소
           </Button>
           <Button
             className={cn(
-              "!bg-red hover:!bg-rose !min-w-0 flex-1 !text-gray-100",
-              isDesktop ? "h-[60px] text-[18px]" : "h-[50px] text-[16px]"
+              "bg-red! hover:bg-rose! min-w-0! flex-1 text-gray-100!",
+              isDesktop ? "h-15 text-[18px]" : "h-12.5 text-[16px]"
             )}
-            onClick={() => {
-              onDelete();
-              onClose();
-            }}
+            onClick={handleDelete}
           >
             삭제
           </Button>
