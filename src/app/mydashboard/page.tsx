@@ -1,4 +1,4 @@
-import Emptydashboard from "./components/Emptydashboard";
+import { Emptydashboard } from "./components/Emptydashboard";
 
 export default function MyDashboard() {
   return (

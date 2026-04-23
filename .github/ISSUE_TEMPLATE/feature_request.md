@@ -1,10 +1,9 @@
 ---
 name: Feature_request
 about: Feature_request
-title: ''
+title: ""
 labels: enhancement
-assignees: ''
-
+assignees: ""
 ---
 
 ## 어떤 기능인가요?

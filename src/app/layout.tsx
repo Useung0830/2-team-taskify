@@ -1,6 +1,6 @@
 import "./globals.css";
 
-export default function RootLayout({
+function RootLayout({
   children,
   modal,
 }: Readonly<{
@@ -9,10 +9,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body>
+      <body className="bg-background">
         {children}
         {modal}
       </body>
     </html>
   );
 }
+
+export default RootLayout;

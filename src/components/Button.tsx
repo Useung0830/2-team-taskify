@@ -30,6 +30,7 @@ interface ButtonProps
   extends
     React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {}
+
 export function Button({
   className,
   colortype,
