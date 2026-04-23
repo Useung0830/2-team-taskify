@@ -9,6 +9,20 @@
     format("woff2-variations");
 }
 
+@layer base {
+  *,
+  ::before,
+  ::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: var(--font-pretendard);
+  }
+}
+
 @theme {
   --color-background: #1b1a1f;
   --color-modal-background: #242429;

@@ -3,7 +3,7 @@ interface Prop {
   color: "blue" | "violet" | "green";
 }
 
-export default function Badge({ children = "", color }: Prop) {
+export function Badge({ children = "", color }: Prop) {
   const bgColor = {
     green: "bg-profile-green text-[#BAF3DB]",
     violet: "bg-profile-violet text-[#EED7FC]",

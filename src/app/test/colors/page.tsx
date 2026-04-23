@@ -1,5 +1,5 @@
 // TODO: 나중에 반드시 삭제할 것
-export default function Test() {
+const ColorTest = () => {
   const divStyle = "flex h-20 items-center justify-center flex-1";
   const containerStyle = "flex gap-2";
 
@@ -105,4 +105,6 @@ export default function Test() {
       </div>
     </div>
   );
-}
+};
+
+export default ColorTest;
