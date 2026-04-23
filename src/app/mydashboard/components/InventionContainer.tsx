@@ -1,11 +1,15 @@
+"use client";
+
+import { useWindowSize } from "../hooks/window-size";
+
 import { InventionHeader } from "./InventionHeader";
 import { InventionRow } from "./InventionRow";
 
 export function InventionContainer() {
+  const widthSize = useWindowSize();
   return (
     <div>
-      <InventionHeader />
-      {/* api 연결 시 렌더링 하는 로직 수정 */}
+      <div>{widthSize > 768 && <InventionHeader />}</div>
       {Array.from({ length: 10 }).map((_, i) => (
         <InventionRow key={i} />
       ))}
