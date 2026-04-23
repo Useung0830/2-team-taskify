@@ -1,11 +1,11 @@
 "use client";
 
 import MydashboardList from "./MydashboardList";
-import rightbtn from "../assets/rightBtn.svg";
-import leftbtn from "../assets/leftBtn.svg";
+import rightbtn from "../assets/ic_right_arrow.svg";
+import leftbtn from "../assets/ic_left_arrow.svg";
 import Image from "next/image";
 import mockdata from "./mock";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function MydashContainer() {
   const [currentPage, setCurrentPage] = useState(0);
@@ -42,22 +42,22 @@ export default function MydashContainer() {
       <div className="ml-auto flex gap-5 pt-5">
         <div>
           {" "}
-          {currentPage} of {totalPages}
+          {currentPage + 1} of {totalPages}
         </div>
-        <Image
-          onClick={() => {
-            handlePrev;
-          }}
-          src={leftbtn}
-          alt="left"
-        />
-        <Image
-          onClick={() => {
-            handleNext;
-          }}
-          src={rightbtn}
-          alt="right"
-        />
+        <button
+          className="disabled: disabled:opacity-30"
+          onClick={handlePrev}
+          disabled={currentPage === 0}
+        >
+          <Image src={leftbtn} alt="left" />
+        </button>
+        <button
+          className="disabled: disabled:opacity-30"
+          onClick={handleNext}
+          disabled={currentPage === totalPages - 1}
+        >
+          <Image src={rightbtn} alt="right" />
+        </button>
       </div>
     </div>
   );
