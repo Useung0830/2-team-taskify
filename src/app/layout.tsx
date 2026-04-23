@@ -1,6 +1,10 @@
 import "./globals.css";
 
+<<<<<<< feature/TASKIFY2-47/dashboard-page
 export function RootLayout({
+=======
+function RootLayout({
+>>>>>>> dev
   children,
   modal,
 }: Readonly<{
