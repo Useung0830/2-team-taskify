@@ -1,0 +1,48 @@
+import { cva, VariantProps } from "class-variance-authority";
+
+import { cn } from "@/lib/cn";
+
+const buttonVariants = cva(
+  "inline-flex w-fit cursor-pointer items-center justify-center font-semibold whitespace-nowrap transition-all duration-100 active:scale-95 disabled:cursor-not-allowed",
+  {
+    variants: {
+      colortype: {
+        primary:
+          "bg-brand-500 hover:bg-brand-600 active:bg-brand-500 disabled:bg-brand-800 disabled:text-brand-950 text-white",
+        secondary:
+          "hover:bg-black-600 bg-gray-900 text-gray-100 active:bg-gray-900 disabled:bg-gray-900 disabled:text-gray-500",
+        ghost: "bg-transparent text-white disabled:text-gray-500",
+      },
+      size: {
+        lg: "h-[60px] px-[30px] py-[6px] text-[18px]",
+        md: "h-[50px] px-[30px] py-[6px] text-[16px]",
+        sm: "h-[36px] px-[16px] py-[6px] text-[16px]",
+        xs: "h-[29px]-[12px] py-[6px] text-[14px]",
+      },
+    },
+    defaultVariants: {
+      colortype: "primary",
+      size: "lg",
+    },
+  }
+);
+interface ButtonProps
+  extends
+    React.ButtonHTMLAttributes<HTMLButtonElement>,
+    VariantProps<typeof buttonVariants> {}
+export function Button({
+  className,
+  colortype,
+  size,
+  children,
+  ...props
+}: ButtonProps) {
+  return (
+    <button
+      className={cn(buttonVariants({ colortype, size }), className)}
+      {...props}
+    >
+      <span className="mx-1">{children || "Label"}</span>
+    </button>
+  );
+}
