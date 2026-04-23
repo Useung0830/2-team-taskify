@@ -8,8 +8,8 @@ import { InventionContainer } from "./components/InventionContainer";
 import { MydashContainer } from "./components/MydashContainer";
 
 export default function MyDashboard() {
-  const hasMydata = false;
-  const hasInvitedata = false;
+  const hasMydata = true;
+  const hasInvitedata = true;
 
   const [value, setValue] = useState("");
   const [error, setError] = useState("");
