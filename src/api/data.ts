@@ -9,13 +9,52 @@ import { get, post, put, del } from "./fetch";
 export async function postLogin(
   data: T.LoginRequest
 ): Promise<T.LoginResponse> {
-  return post<T.LoginRequest, T.LoginResponse>("/auth/login", data);
+  const response = await post<T.LoginRequest, T.LoginResponse>(
+    "/auth/login",
+    data
+  );
+
+  if (response.accessToken) {
+    sessionStorage.setItem("accessToken", response.accessToken);
+  }
+
+  return response;
 }
 
 export async function putPasswordUpdate(
   data: T.PasswordUpdateRequest
 ): Promise<void> {
   return put<T.PasswordUpdateRequest, void>("/auth/password", data);
+}
+
+// ==========================================================
+// [ Users ] - 회원가입, 내 정보 조회, 수정, 프로필 이미지 업로드
+// ==========================================================
+
+export async function postSignup(data: T.SignupRequest): Promise<T.User> {
+  return post<T.SignupRequest, T.User>("/users", data);
+}
+
+export async function getMyInfo(): Promise<T.User> {
+  return get<T.User>("/users/me");
+}
+
+export async function putMyInfoUpdate(
+  data: T.UpdateUserRequest
+): Promise<T.User> {
+  return put<T.UpdateUserRequest, T.User>("/users/me", data);
+}
+
+export async function postProfileImage(
+  imageFile: File
+): Promise<T.UploadProfileImageResponse> {
+  const formData = new FormData();
+  formData.append("image", imageFile);
+
+  return post<FormData, T.UploadProfileImageResponse>(
+    "/users/me/image",
+    formData
+  );
 }
 
 // ==========================================================
@@ -277,34 +316,4 @@ export async function getMemberList(
 
 export async function deleteMember(memberId: number): Promise<void> {
   return del<void>(`/members/${memberId}`);
-}
-
-// ==========================================================
-// [ Users ] - 회원가입, 내 정보 조회, 수정, 프로필 이미지 업로드
-// ==========================================================
-
-export async function postSignup(data: T.SignupRequest): Promise<T.User> {
-  return post<T.SignupRequest, T.User>("/users", data);
-}
-
-export async function getMyInfo(): Promise<T.User> {
-  return get<T.User>("/users/me");
-}
-
-export async function putMyInfoUpdate(
-  data: T.UpdateUserRequest
-): Promise<T.User> {
-  return put<T.UpdateUserRequest, T.User>("/users/me", data);
-}
-
-export async function postProfileImage(
-  imageFile: File
-): Promise<T.UploadProfileImageResponse> {
-  const formData = new FormData();
-  formData.append("image", imageFile);
-
-  return post<FormData, T.UploadProfileImageResponse>(
-    "/users/me/image",
-    formData
-  );
 }

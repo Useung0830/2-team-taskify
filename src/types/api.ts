@@ -25,6 +25,34 @@ export interface PasswordUpdateRequest {
 }
 
 // ==========================================================
+// [ Users ] - 회원가입, 내 정보 조회, 수정, 프로필 이미지 업로드
+// ==========================================================
+
+export interface User {
+  id: number;
+  email: string;
+  nickname: string;
+  profileImageUrl: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface SignupRequest {
+  email: string;
+  nickname: string;
+  password: string;
+}
+
+export interface UpdateUserRequest {
+  nickname: string;
+  profileImageUrl: string | null;
+}
+
+export interface UploadProfileImageResponse {
+  profileImageUrl: string;
+}
+
+// ==========================================================
 // [ Card ] - 카드 생성, 목록 조회, 수정, 상세 조회, 삭제
 // ==========================================================
 
@@ -320,32 +348,4 @@ export interface GetMemberListRequest {
 export interface GetMemberListResponse {
   members: Member[];
   totalCount: number;
-}
-
-// ==========================================================
-// [ Users ] - 회원가입, 내 정보 조회, 수정, 프로필 이미지 업로드
-// ==========================================================
-
-export interface User {
-  id: number;
-  email: string;
-  nickname: string;
-  profileImageUrl: string | null;
-  createdAt: string;
-  updatedAt: string;
-}
-
-export interface SignupRequest {
-  email: string;
-  nickname: string;
-  password: string;
-}
-
-export interface UpdateUserRequest {
-  nickname: string;
-  profileImageUrl: string | null;
-}
-
-export interface UploadProfileImageResponse {
-  profileImageUrl: string;
 }

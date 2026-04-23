@@ -6,7 +6,9 @@ export const fetchInstance = async (
 ) => {
   // localStorage에서 토큰 가져오기
   const token =
-    typeof window !== "undefined" ? localStorage.getItem("accessToken") : null;
+    typeof window !== "undefined"
+      ? sessionStorage.getItem("accessToken")
+      : null;
 
   // 기본 헤더 설정
   const defaultHeaders: HeadersInit = {
@@ -23,7 +25,7 @@ export const fetchInstance = async (
     ...options,
     headers: {
       ...defaultHeaders,
-      ...options.headers, // 호출 시 직접 넣은 헤더가 있다면 덮어씌움
+      ...(options.headers || {}), // headers가 undefined일 경우 대비
     },
   };
 
