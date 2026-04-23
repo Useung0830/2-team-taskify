@@ -26,8 +26,7 @@ function InputField({ className, type, ...props }: InputFieldProps) {
       type={inputType}
       disabled={isDisabled ?? props.disabled}
       className={cn(
-        "w-full bg-transparent text-gray-300 outline-none placeholder:text-gray-500 disabled:text-gray-400",
-        { "cursor-not-allowed": isDisabled },
+        "w-full bg-transparent text-gray-300 outline-none placeholder:text-gray-500 disabled:cursor-not-allowed disabled:text-gray-400",
         className
       )}
       {...props}
