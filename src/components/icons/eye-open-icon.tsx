@@ -1,6 +1,6 @@
-import { svgProps } from "@/types/svgProps";
+import { SvgProps } from "@/types/svgProps";
 
-function EyeOpenIcon({ className, width, height }: svgProps) {
+function EyeOpenIcon({ className, width, height }: SvgProps) {
   return (
     <svg
       width={width}

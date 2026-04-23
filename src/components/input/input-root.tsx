@@ -30,7 +30,7 @@ function InputRoot({
   className,
 }: InputRootProps) {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-  const togglePassword = () => setIsPasswordVisible((prev) => !prev);
+  const handlePassword = () => setIsPasswordVisible((prev) => !prev);
 
   return (
     <InputContext.Provider
@@ -39,7 +39,7 @@ function InputRoot({
         errorMessage,
         disabled,
         isPasswordVisible,
-        togglePassword,
+        handlePassword,
       }}
     >
       <div
