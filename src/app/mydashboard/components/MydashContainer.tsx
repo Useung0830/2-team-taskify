@@ -5,14 +5,16 @@ import { useState } from "react";
 
 import leftbtn from "../assets/ic_left_arrow.svg";
 import rightbtn from "../assets/ic_right_arrow.svg";
+import { useWindowSize } from "../hooks/window-size";
 
 import { mockdata } from "./mock";
 import { MydashboardList } from "./MydashboardList";
 
 export function MydashContainer() {
   const [currentPage, setCurrentPage] = useState(0);
-  const SHOW_FIRST_ITEM = 3;
-  const SHOW_ITEMS = 4;
+  const widthSize = useWindowSize();
+  const SHOW_FIRST_ITEM = widthSize >= 1024 ? 3 : 1;
+  const SHOW_ITEMS = widthSize >= 1024 ? 4 : 2;
 
   const getDataSlicing = () => {
     if (currentPage === 0) {
