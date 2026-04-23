@@ -1,6 +1,6 @@
 "use client";
 
-import { useWindowSize } from "../hooks/window-size";
+import { useWindowSize } from "../hooks/usewindow-size";
 
 import { InventionHeader } from "./InventionHeader";
 import { InventionRow } from "./InventionRow";
