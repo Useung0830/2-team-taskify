@@ -14,10 +14,10 @@ const buttonVariants = cva(
         ghost: "bg-transparent text-white disabled:text-gray-500",
       },
       size: {
-        lg: "h-[60px] px-[30px] py-[6px] text-[18px]",
-        md: "h-[50px] px-[30px] py-[6px] text-[16px]",
-        sm: "h-[36px] px-[16px] py-[6px] text-[16px]",
-        xs: "h-[29px] px-[12px] py-[6px] text-[14px]",
+        lg: "h-15 px-7 py-1.5 text-lg",
+        md: "h-12 px-7 py-1.5 text-base",
+        sm: "h-9 px-4 py-1.5 text-base",
+        xs: "h-7 px-3 py-1.5 text-sm",
       },
     },
     defaultVariants: {
