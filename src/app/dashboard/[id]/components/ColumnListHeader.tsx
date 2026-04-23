@@ -1,8 +1,16 @@
 import Image from "next/image";
-import plusicon from "../assets/plusIcon.svg";
-import settingicon from "../assets/settingIcon.svg";
 
-export default function ColumnListHeader({ columnTitle, contentCount }: any) {
+import plusicon from "../assets/ic-plusbtn.svg";
+import settingicon from "../assets/ic-setting.svg";
+
+interface ColumnListHeaderProp {
+  columnTitle: string;
+  contentCount: number;
+}
+export function ColumnListHeader({
+  columnTitle,
+  contentCount,
+}: ColumnListHeaderProp) {
   return (
     <div className="flex items-center justify-between">
       <div className="flex items-baseline justify-center gap-2">

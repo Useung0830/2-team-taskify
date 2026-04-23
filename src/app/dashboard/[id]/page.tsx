@@ -1,7 +1,8 @@
 import Image from "next/image";
-import ColumnAdd from "./components/ColumnAdd";
-import ColumnList from "./components/ColumnList";
-import colorchip from "./assets/colorchips.svg";
+
+import colorchip from "./assets/ic-colorchips.svg";
+import { ColumnAdd } from "./components/ColumnAdd";
+import { ColumnList } from "./components/ColumnList";
 
 export default function Dashboard() {
   return (
