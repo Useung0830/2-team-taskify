@@ -35,30 +35,6 @@ export function DeleteAlertModal({
             : "w-83.75 gap-5 rounded-[20px] p-[30px_20px_24px]"
         )}
       >
-        <button
-          onClick={handleClose}
-          className={cn(
-            "absolute text-gray-400 transition-colors hover:text-white",
-            isDesktop ? "top-6 right-6" : "top-4 right-4"
-          )}
-          aria-label="닫기"
-        >
-          <svg
-            width={isDesktop ? "32" : "24"}
-            height={isDesktop ? "32" : "24"}
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <line x1="18" y1="6" x2="6" y2="18"></line>
-            <line x1="6" y1="6" x2="12" y2="12"></line>
-            <line x1="6" y1="6" x2="18" y2="18"></line>
-          </svg>
-        </button>
-
         <div
           className={cn(
             "flex flex-col items-center text-center",
