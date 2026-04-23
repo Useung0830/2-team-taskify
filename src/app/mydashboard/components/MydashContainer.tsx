@@ -1,13 +1,15 @@
 "use client";
 
-import MydashboardList from "./MydashboardList";
-import rightbtn from "../assets/ic_right_arrow.svg";
-import leftbtn from "../assets/ic_left_arrow.svg";
 import Image from "next/image";
-import mockdata from "./mock";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
-export default function MydashContainer() {
+import leftbtn from "../assets/ic_left_arrow.svg";
+import rightbtn from "../assets/ic_right_arrow.svg";
+
+import { mockdata } from "./mock";
+import { MydashboardList } from "./MydashboardList";
+
+export function MydashContainer() {
   const [currentPage, setCurrentPage] = useState(0);
   const SHOW_FIRST_ITEM = 3;
   const SHOW_ITEMS = 4;

@@ -1,7 +1,7 @@
-import InventionHeader from "./InventionHeader";
-import InventionRow from "./InventionRow";
+import { InventionHeader } from "./InventionHeader";
+import { InventionRow } from "./InventionRow";
 
-export default function InventionContainer() {
+export function InventionContainer() {
   return (
     <div>
       <InventionHeader />

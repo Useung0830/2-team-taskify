@@ -1,6 +1,6 @@
-import Profile from "./Profile";
+import { Profile } from "./Profile";
 
-export default function InventionRow() {
+export function InventionRow() {
   return (
     <div className="flex h-16 items-center justify-between px-7.5 py-3.5 text-[18px]">
       <div className="w-75">프로덕트 디자인</div>

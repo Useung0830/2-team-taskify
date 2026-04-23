@@ -1,6 +1,5 @@
-// 상단에 tag 이미지 import 되어 있다고 가정
 // import tag from '@/assets/tag.svg';
-export interface mockdataType {
+export interface MockdataType {
   id: number;
   title: string;
   color: string;
@@ -8,7 +7,8 @@ export interface mockdataType {
   updatedAt: string;
   createdByMe: boolean;
 }
-const mockdata = [
+
+export const mockdata = [
   {
     id: 1,
     title: "나의 첫 포트폴리오",
@@ -90,6 +90,3 @@ const mockdata = [
     createdByMe: true,
   },
 ];
-
-export default mockdata;
-

@@ -1,20 +1,19 @@
 "use client";
 
-import MyDashboardItemContainer from "./MyDashBoardItemContainer";
-import MyDashboardItemContainerAdd from "./MyDashboardItemContainerAdd";
-import tag from "../assets/colorchips.svg";
 import Image from "next/image";
-import { mockdataType } from "./mock";
+
+import tag from "../assets/colorchips.svg";
+
+import { MockdataType } from "./mock";
+import { MyDashboardItemContainer } from "./MyDashBoardItemContainer";
+import { MyDashboardItemContainerAdd } from "./MyDashboardItemContainerAdd";
 
 interface MydashboardListProp {
-  data: mockdataType[];
+  data: MockdataType[];
   currentPage: number;
 }
 
-export default function MydashboardList({
-  data,
-  currentPage,
-}: MydashboardListProp) {
+export function MydashboardList({ data, currentPage }: MydashboardListProp) {
   return (
     <div className="flex gap-5">
       {/* <MyDashboardItemContainerAdd />
@@ -24,7 +23,7 @@ export default function MydashboardList({
       </MyDashboardItemContainer> */}
 
       {currentPage === 0 && <MyDashboardItemContainerAdd />}
-      {data.map((item: mockdataType) => (
+      {data.map((item: MockdataType) => (
         <MyDashboardItemContainer key={item.id}>
           <Image src={tag} alt="tag" />
           {item.title}
