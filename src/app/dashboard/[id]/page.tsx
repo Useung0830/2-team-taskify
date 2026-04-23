@@ -29,7 +29,7 @@ export default function Dashboard() {
             onClick={() => handleTabSwitch(column.id)}
             className={`min-h-8 rounded-4xl border border-gray-600 px-4 whitespace-nowrap transition-colors lg:hidden ${
               activeColumnId === column.id
-                ? "bg-violet-600 text-white"
+                ? "bg-green-500 text-white"
                 : "bg-gray-900"
             }`}
           >
