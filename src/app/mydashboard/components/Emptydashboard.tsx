@@ -1,4 +1,5 @@
 import Image from "next/image";
+
 import chartIcon from "../assets/chart.svg";
 import mailIcon from "../assets/MailIcon.svg";
 

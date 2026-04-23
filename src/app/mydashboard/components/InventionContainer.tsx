@@ -1,5 +1,5 @@
-import InventionHeader from "./InventionHeader";
-import InventionRow from "./InventionRow";
+import { InventionHeader } from "./InventionHeader";
+import { InventionRow } from "./InventionRow";
 
 export function InventionContainer() {
   return (

@@ -1,10 +1,11 @@
 import Image from "next/image";
-import MydashboardList from "../components/MydashboardList";
-import rightbtn from "../assets/rightBtn.svg";
-import leftbtn from "../assets/leftBtn.svg";
-import InventionContainer from "../components/InventionContainer";
 
-export default function MydashboardContent() {
+import leftbtn from "../assets/leftBtn.svg";
+import rightBtn from "../assets/rightBtn.svg";
+import { InventionContainer } from "../components/InventionContainer";
+import { MydashboardList } from "../components/MydashboardList";
+
+export function MydashboardContent() {
   return (
     <div className="bg-background font-pretendard min-h-screen min-w-275 overflow-x-auto text-gray-100">
       <h1 className="pt-6 pr-12.5 pb-4.5 pl-12.5 text-4xl">홈</h1>
@@ -14,7 +15,7 @@ export default function MydashboardContent() {
         <div className="ml-auto flex gap-5 text-base">
           1 of 3
           <Image src={leftbtn} alt="left" />
-          <Image src={rightbtn} alt="right" />
+          <Image src={rightBtn} alt="right" />
         </div>
       </div>
       <div className="flex flex-col gap-5 px-12.5 pt-2.5 pb-4.5 text-xl">

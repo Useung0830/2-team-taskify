@@ -1,9 +1,11 @@
-import MyDashboardItemContainer from "./MyDashBoardItemContainer";
-import MyDashboardItemContainerAdd from "./MyDashboardItemContainerAdd";
-import tag from "../assets/colorchips.svg";
 import Image from "next/image";
 
-export default function MydashboardList() {
+import tag from "../assets/colorchips.svg";
+
+import { MyDashboardItemContainer } from "./MyDashBoardItemContainer";
+import { MyDashboardItemContainerAdd } from "./MyDashboardItemContainerAdd";
+
+export function MydashboardList() {
   return (
     <div className="flex gap-5">
       <MyDashboardItemContainerAdd />

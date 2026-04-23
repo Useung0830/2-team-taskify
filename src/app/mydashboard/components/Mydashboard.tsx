@@ -1,5 +1,5 @@
-import MyDashboardItemContainer from "./MyDashBoardItemContainer";
+import { MyDashboardItemContainer } from "./MyDashBoardItemContainer";
 
-export default function Mydashboard() {
+export function Mydashboard() {
   return <MyDashboardItemContainer>d</MyDashboardItemContainer>;
 }
