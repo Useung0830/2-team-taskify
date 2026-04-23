@@ -1,7 +1,6 @@
 import { MainHeader } from "@/components/MainHeader";
 import { MainFooter } from "@/components/MainFooter";
 
-
 export default function Home() {
   /**
    * 1. isLoggedIn = false : 랜딩 페이지와 로그인/회원가입 버튼
@@ -21,4 +20,3 @@ export default function Home() {
 </div>
   );
 }
-

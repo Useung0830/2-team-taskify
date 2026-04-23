@@ -11,9 +11,9 @@ export function MainFooter() {
   return (
     <footer className="w-full bg-black-900 border-t border-black-800">
       <div
-        className="flex flex-col gap-[20px] h-[151px] px-[30px] pt-[14px] pb-[24px] md:flex-row md:items-center md:justify-between md:h-[92px] md:px-[40px] md:py-[24px] md:gap-0 lg:h-[96px] lg:px-[120px]"
+        className="flex flex-col gap-5 h-[151px] px-[30px] pt-[14px] pb-6 md:flex-row md:items-center md:justify-between md:h-[92px] md:px-10 md:py-6 md:gap-0 lg:h-24 lg:px-[120px]"
       >
-        <div className="relative h-[34px] w-[130px] md:h-[44px] md:w-[170px] lg:h-[48px] lg:w-[186px]">
+        <div className="relative h-[34px] w-[130px] md:h-[44px] md:w-[170px] lg:h-12 lg:w-[186px]">
           <Image
             src={logoImg}
             alt="Taskify 로고"
@@ -23,16 +23,16 @@ export function MainFooter() {
           />
         </div>
 
-        <div className="flex gap-[20px] md:gap-[24px] lg:gap-[32px]">
+        <div className="flex gap-5 md:gap-6 lg:gap-8">
           <Link
             href="/privacy"
-            className="text-[14px] md:text-[15px] lg:text-[16px] text-gray-400 hover:text-white transition"
+            className="text-sm md:text-[15px] lg:text-base text-gray-400 hover:text-white transition"
           >
             Privacy Policy
           </Link>
           <Link
             href="/faq"
-            className="text-[14px] md:text-[15px] lg:text-[16px] text-gray-400 hover:text-white transition"
+            className="text-sm md:text-[15px] lg:text-base text-gray-400 hover:text-white transition"
           >
             FAQ
           </Link>
