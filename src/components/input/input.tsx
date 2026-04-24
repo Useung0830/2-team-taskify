@@ -4,7 +4,7 @@ import InputError from "./input-error";
 import InputField from "./input-field";
 import { InputPasswordToggle, InputSearchIcon } from "./input-icons";
 import InputRoot from "./input-root";
-import InputWrapper from "./input-wrapper";
+import { InputWrapper } from "./input-wrapper";
 
 export const Input = Object.assign(InputRoot, {
   Wrapper: InputWrapper,
@@ -13,5 +13,3 @@ export const Input = Object.assign(InputRoot, {
   PasswordToggle: InputPasswordToggle,
   Error: InputError,
 });
-
-export default Input;

@@ -14,7 +14,7 @@ interface InputWrapperProps {
  * @param {string} className - Input.Wrapper의 클래스 이름
  * @returns {JSX.Element} Input.Wrapper 컴포넌트
  */
-const InputWrapper = ({ children, className }: InputWrapperProps) => {
+export function InputWrapper({ children, className }: InputWrapperProps) {
   const { inputSize, errorMessage, disabled } = useInputContext();
   return (
     <div
@@ -26,6 +26,4 @@ const InputWrapper = ({ children, className }: InputWrapperProps) => {
       {children}
     </div>
   );
-};
-
-export default InputWrapper;
+}
