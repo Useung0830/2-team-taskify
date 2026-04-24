@@ -1,5 +1,6 @@
 import { MainHeader } from "@/components/MainHeader";
 import { MainFooter } from "@/components/MainFooter";
+import {ImageUpload} from "@/components/ImageUpload"
 
 
 export default function Home() {
@@ -17,6 +18,7 @@ export default function Home() {
     firstDashboardId={firstDashboardId} 
   />
   <main className="flex-1"></main>
+  <ImageUpload/>
   <MainFooter />
 </div>
   );
