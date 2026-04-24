@@ -13,7 +13,7 @@ export default function NewDashboard() {
   };
 
   return (
-    <div className="border-gray-stroke flex flex-col gap-4 rounded-3xl lg:gap-5">
+    <div className="border-gray-stroke flex flex-col gap-4 rounded-3xl md:gap-5">
       <ModalHeader onClose={handleCloseModal}>새 대시보드 생성</ModalHeader>
       <input
         className="bg-black-800 h-13.5 rounded-[14px] border border-gray-700 px-5 py-1.5 text-gray-400"
