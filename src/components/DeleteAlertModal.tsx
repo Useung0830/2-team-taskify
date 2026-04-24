@@ -1,31 +1,31 @@
 "use client";
-import { usePathname, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 import { cn } from "@/lib/cn";
 
 import { Button } from "./Button";
+interface DeleteAlertModaLProps {
+  onCancel?: () => void;
+  onDelete?: () => void;
+}
 
-export function DeleteAlertModal() {
+export function DeleteAlertModal({
+  onCancel,
+  onDelete,
+}: DeleteAlertModaLProps) {
   const router = useRouter();
-  const pathname = usePathname();
-  //const parmas = useParams();
-  //const dashboardId = parmas.dashboardId;
-  //const movePath = "/dashboards";
 
   // 취소 클릭 시
   const handleCancel = () => {
-    if (typeof window !== "undefined" && window.history.length > 1) {
-      router.back();
-    } else {
-      router.push(pathname);
-    }
+    console.warn("칼럼 취소 클릭");
+    onCancel?.();
   };
 
   // 삭제 클릭 시
-  const handleDeleteColumns = () => {
+  const handleDelete = () => {
     try {
-      console.warn("칼럼 삭제 성공");
-      router.push(pathname);
+      console.warn("칼럼 삭제 클릭");
+      onDelete?.();
       router.refresh();
     } catch (error) {
       console.error("칼럼 삭제 실패 : ", error);
@@ -52,13 +52,13 @@ export function DeleteAlertModal() {
         <Button
           colortype="secondary"
           className="h-15 flex-1 text-base text-gray-100 lg:h-12.5 lg:text-lg"
-          onClick={handleCancel}
+          onClick={() => handleCancel()}
         >
           취소
         </Button>
         <Button
           className="bg-profile-rose h-15 flex-1 text-base text-white hover:bg-red-800 active:bg-red-900 lg:h-12.5 lg:text-lg"
-          onClick={handleDeleteColumns}
+          onClick={() => handleDelete()}
         >
           삭제
         </Button>
