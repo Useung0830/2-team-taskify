@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 
-import Input from "@/components/input/input";
+import { Input } from "@/components/input/input";
 
 import { Emptydashboard } from "./components/Emptydashboard";
 import { InventionContainer } from "./components/InventionContainer";

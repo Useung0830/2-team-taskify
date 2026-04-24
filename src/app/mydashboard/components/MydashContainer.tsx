@@ -49,14 +49,14 @@ export function MydashContainer() {
           {currentPage + 1} of {totalPages}
         </div>
         <button
-          className="disabled: disabled:opacity-30"
+          className="disabled:opacity-30"
           onClick={handlePrev}
           disabled={currentPage === 0}
         >
           <Image src={leftbtn} alt="left" />
         </button>
         <button
-          className="disabled: disabled:opacity-30"
+          className="disabled:opacity-30"
           onClick={handleNext}
           disabled={currentPage === totalPages - 1}
         >
