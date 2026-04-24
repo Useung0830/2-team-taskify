@@ -15,19 +15,23 @@ export default function Dashboard() {
   const handleTabSwitch = (id: number) => {
     setActiveColumnId(id);
   };
+
   return (
-    <div className="px-5 text-gray-100">
-      <div className="items-centergap-1 flex pt-3.5 pb-2.5">
+    <div className="px-5 text-gray-100 lg:px-12.5">
+      <div className="flex items-center gap-1 pt-6 pb-3.5">
+        {/* colorchip도 데이터에 맞게 변동 필요 */}
         <Image src={colorchip} alt="color chip" />
         <h1 className="text-2xl font-bold">포트폴리오</h1>
       </div>
-      <div className="flex w-full gap-4 py-6">
+
+      {/* 모바일과 태블릿 환경 전용 UI */}
+      <div className="flex w-full gap-4 py-6 lg:hidden">
         {data.map((column) => (
           <button
             key={column.id}
             value={column.title}
             onClick={() => handleTabSwitch(column.id)}
-            className={`min-h-8 rounded-4xl border border-gray-600 px-4 whitespace-nowrap transition-colors lg:hidden ${
+            className={`min-h-8 rounded-4xl border border-gray-600 px-4 whitespace-nowrap transition-colors ${
               activeColumnId === column.id
                 ? "bg-green-500 text-white"
                 : "bg-gray-900"
@@ -37,10 +41,17 @@ export default function Dashboard() {
           </button>
         ))}
       </div>
-      <div className="pt-2.5">
+      <div className="pt-2.5 lg:hidden">
         <div className="flex w-full justify-center gap-1.5">
-          <ColumnList column={activeColumn} />
+          <ColumnList column={activeColumn!} />
         </div>
+      </div>
+
+      {/* 데스크탑 전용 화면 */}
+      <div className="flex gap-15">
+        {data.map((column) => (
+          <ColumnList key={column.id} column={column} />
+        ))}
       </div>
     </div>
   );
