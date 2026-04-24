@@ -1,9 +1,14 @@
 "use client";
 
-import { useState, useRef, ChangeEvent, MouseEvent } from "react";
+import { useState, useRef, ChangeEvent, MouseEvent, useEffect } from "react";
 import Image from "next/image";
 import iconX from "@/assets/ic-x-circle.svg";
 import imageIcon from "@/assets/ic-image.svg";
+
+interface ImageUploaderProps {
+  onImageChange?: (file: File | null) => void;
+  initialImageUrl?: string;
+}
 
 export function ImageUpload({ onImageChange, initialImageUrl }: ImageUploaderProps) {
   const [previewUrl, setPreviewUrl] = useState<string | null>(initialImageUrl || null);
@@ -11,7 +16,6 @@ export function ImageUpload({ onImageChange, initialImageUrl }: ImageUploaderPro
 
   const handleClick = (e: MouseEvent) => {
     e.preventDefault();
-    
     if (!previewUrl) {
       fileInputRef.current?.click();
     }
@@ -19,10 +23,12 @@ export function ImageUpload({ onImageChange, initialImageUrl }: ImageUploaderPro
 
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
+
     if (file) {
       if (previewUrl && !initialImageUrl) {
         URL.revokeObjectURL(previewUrl);
       }
+
       const url = URL.createObjectURL(file);
       setPreviewUrl(url);
       onImageChange?.(file);
@@ -30,32 +36,43 @@ export function ImageUpload({ onImageChange, initialImageUrl }: ImageUploaderPro
   };
 
   const handleReset = (e: MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault(); // 중요: 어떤 기본 동작도 막음
-    e.stopPropagation(); // 중요: 부모 div의 클릭 이벤트가 실행되지 않게 함
-    
+    e.preventDefault();
+    e.stopPropagation();
+
     if (previewUrl && !initialImageUrl) {
       URL.revokeObjectURL(previewUrl);
     }
-    
+
     setPreviewUrl(null);
+
     if (fileInputRef.current) {
-      fileInputRef.current.value = ""; 
+      fileInputRef.current.value = "";
     }
+
     onImageChange?.(null);
   };
+
+  useEffect(() => {
+    return () => {
+      if (previewUrl && !initialImageUrl) {
+        URL.revokeObjectURL(previewUrl);
+      }
+    };
+  }, [previewUrl, initialImageUrl]);
 
   return (
     <div className="flex flex-col gap-[10px] w-full">
       <span className="text-[18px] font-medium text-white">이미지</span>
-      
+
       <div
         onClick={handleClick}
         className={`
           relative flex items-center justify-center transition-all
           w-full h-[180px] md:h-[220px] rounded-[12px]
-          ${previewUrl 
-            ? "cursor-default overflow-visible" 
-            : "bg-black-800 border-2 border-dashed border-gray-600 hover:bg-black-700 cursor-pointer overflow-hidden"
+          ${
+            previewUrl
+              ? "cursor-default overflow-visible"
+              : "bg-black-800 border-2 border-dashed border-gray-600 hover:bg-black-700 cursor-pointer overflow-hidden"
           }
         `}
       >
@@ -93,7 +110,7 @@ export function ImageUpload({ onImageChange, initialImageUrl }: ImageUploaderPro
           onChange={handleFileChange}
           accept="image/*"
           className="hidden"
-          onClick={(e) => e.stopPropagation()} // input 클릭 시 이벤트 전파 방지
+          onClick={(e) => e.stopPropagation()}
         />
       </div>
     </div>
