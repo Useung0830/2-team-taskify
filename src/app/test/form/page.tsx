@@ -5,7 +5,7 @@ import { useState } from "react";
 import Input from "@/components/input/input";
 import Label from "@/components/label/label";
 
-const FormTest = () => {
+function FormTest() {
   const [value, setValue] = useState("");
   const [error, setError] = useState("");
 
@@ -69,6 +69,6 @@ const FormTest = () => {
       </div>
     </div>
   );
-};
+}
 
 export default FormTest;

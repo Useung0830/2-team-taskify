@@ -22,13 +22,13 @@ interface InputRootProps extends Omit<InputWrapperStylesProps, "error"> {
  * @param {string} className - Input의 클래스 이름
  * @returns {JSX.Element} Input 컴포넌트의 루트
  */
-const InputRoot = ({
+function InputRoot({
   children,
   inputSize = "md",
   errorMessage = "",
   disabled = false,
   className,
-}: InputRootProps) => {
+}: InputRootProps) {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const togglePassword = () => setIsPasswordVisible((prev) => !prev);
 
@@ -52,6 +52,6 @@ const InputRoot = ({
       </div>
     </InputContext.Provider>
   );
-};
+}
 
 export default InputRoot;

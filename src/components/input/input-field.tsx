@@ -15,7 +15,7 @@ interface InputFieldProps
  * @param {string} className - Input.Field의 클래스 이름
  * @returns {JSX.Element} Input.Field 컴포넌트
  */
-const InputField = ({ className, type, ...props }: InputFieldProps) => {
+function InputField({ className, type, ...props }: InputFieldProps) {
   const { isPasswordVisible, disabled } = useInputContext();
 
   // 비밀번호 타입일 경우 토글 상태에 따라 실제 type 결정
@@ -33,6 +33,6 @@ const InputField = ({ className, type, ...props }: InputFieldProps) => {
       {...props}
     />
   );
-};
+}
 
 export default InputField;

@@ -13,20 +13,18 @@ export default function DashboardPage() {
       { id: 5, nickname: "재민", profileImageUrl: null },
       { id: 6, nickname: "동욱", profileImageUrl: null },
       { id: 7, nickname: "동dl", profileImageUrl: null },
-
     ],
     totalCount: 7,
   };
 
   return (
-    <div className="min-h-screen bg-black-900">
+    <div className="bg-black-900 min-h-screen">
       <DashboardHeader
         members={mockDashboardData.members}
         totalCount={mockDashboardData.totalCount}
       />
 
-      <main className="p-8">
-      </main>
+      <main className="p-8"></main>
     </div>
   );
 }

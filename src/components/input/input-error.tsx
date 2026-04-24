@@ -10,7 +10,7 @@ interface InputErrorProps {
  * @description Input 컴포넌트의 에러 메시지
  * @param {string} className - 에러 메시지에 추가할 클래스
  */
-const InputError = ({ className }: InputErrorProps) => {
+function InputError({ className }: InputErrorProps) {
   const { errorMessage } = useInputContext();
 
   if (!errorMessage) return null;
@@ -19,6 +19,6 @@ const InputError = ({ className }: InputErrorProps) => {
       {errorMessage}
     </p>
   );
-};
+}
 
 export default InputError;
