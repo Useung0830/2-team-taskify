@@ -1,3 +1,7 @@
+/**
+ * DeleteAlertModal 코멘트 모두 resolve conversation 해서 올리는 2차 PR
+ */
+
 import { cva, VariantProps } from "class-variance-authority";
 
 import { cn } from "@/lib/cn";
