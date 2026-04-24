@@ -2,11 +2,13 @@
 
 import { useState } from "react";
 
-import Input from "@/components/input/input";
-import Label from "@/components/label/label";
+import { Input } from "@/components/input/input";
+import { Label } from "@/components/label/label";
+import { Textarea } from "@/components/Textarea/Textarea";
 
-const FormTest = () => {
+export default function FormTest() {
   const [value, setValue] = useState("");
+  const [textareaValue, setTextareaValue] = useState("");
   const [error, setError] = useState("");
 
   const handleFieldChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -14,6 +16,10 @@ const FormTest = () => {
     if (error) {
       setError("");
     }
+  };
+
+  const handleTextareaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setTextareaValue(e.target.value);
   };
 
   const handleFieldBlur = () => {
@@ -67,8 +73,14 @@ const FormTest = () => {
         <p>입력값:</p>
         <p className="text-base text-gray-300">{value}</p>
       </div>
+
+      {/* Textarea */}
+      <Textarea
+        value={textareaValue}
+        onChange={handleTextareaChange}
+        placeholder="메세지를 입력해주세요"
+        label="textarea"
+      />
     </div>
   );
-};
-
-export default FormTest;
+}
