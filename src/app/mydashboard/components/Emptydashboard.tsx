@@ -13,12 +13,13 @@ export function Emptydashboard({ dashtype }: DashboardProps) {
       {dashtype === "my" ? (
         <Image
           className="h-15 w-15 md:h-20 md:w-20 lg:h-25 lg:w-25"
+          sizes="(max-width: 768px) 60px, (max-width: 1024px) 80px, 100px"
           src={chartIcon}
           alt="chartIcon"
         />
       ) : (
         <Image
-          className="h-[81.25px] w-[47px] md:h-20 md:w-20 lg:h-25 lg:w-25"
+          className="h-20.25 w-11.75 md:h-20 md:w-20 lg:h-25 lg:w-25"
           src={mailIcon}
           alt="mailIcon"
         />
