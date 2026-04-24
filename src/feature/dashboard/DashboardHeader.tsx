@@ -38,7 +38,7 @@ export function DashboardHeader({ members, totalCount }: DashboardHeaderProps) {
      * ESLint 규칙 → useEffect 안에서 setState 쓰는 걸 막는 것이므로 에러 발생
      * 1. eslint-disable 주석으로 예외처리
      * 2. 커스텀 훅 파일 생성
-     */
+     **/
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setIsMounted(true);
   }, []);
