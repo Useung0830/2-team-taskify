@@ -14,16 +14,12 @@ interface InputWrapperProps {
  * @param {string} className - Input.Wrapper의 클래스 이름
  * @returns {JSX.Element} Input.Wrapper 컴포넌트
  */
-function InputWrapper({ children, className }: InputWrapperProps) {
-  const { inputSize, errorMessage, disabled: isDisabled } = useInputContext();
+export function InputWrapper({ children, className }: InputWrapperProps) {
+  const { inputSize, errorMessage, isDisabled } = useInputContext();
   return (
     <div
       className={cn(
-        InputWrapperStyles({
-          inputSize,
-          error: !!errorMessage,
-          disabled: isDisabled,
-        }),
+        InputWrapperStyles({ inputSize, error: !!errorMessage, isDisabled }),
         className
       )}
     >
@@ -31,5 +27,3 @@ function InputWrapper({ children, className }: InputWrapperProps) {
     </div>
   );
 }
-
-export { InputWrapper };

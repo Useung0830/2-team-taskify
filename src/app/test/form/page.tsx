@@ -47,7 +47,7 @@ function FormTest() {
           <Input.PasswordToggle />
         </Input.Wrapper>
       </Input>
-      <Input inputSize="sm" disabled>
+      <Input inputSize="sm" isDisabled>
         <Label htmlFor="small" labelSize="sm">
           작은 사이즈 + 비활성화
         </Label>

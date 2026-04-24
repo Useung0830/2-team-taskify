@@ -40,13 +40,14 @@ function InputSearchIcon({ className }: InputIconProps) {
  * @param {string} className - 비밀번호 토글 아이콘의 클래스 이름
  */
 function InputPasswordToggle({ className }: InputIconProps) {
-  const { inputSize, isPasswordVisible, handlePassword } = useInputContext();
+  const { inputSize, isPasswordVisible, handleTogglePassword } =
+    useInputContext();
   const size = inputSize === "sm" ? 18 : 20;
 
   return (
     <button
       type="button"
-      onClick={handlePassword}
+      onClick={handleTogglePassword}
       aria-label={isPasswordVisible ? "비밀번호 숨기기" : "비밀번호 보기"}
       className={cn("flex shrink-0 cursor-pointer items-center", className)}
     >

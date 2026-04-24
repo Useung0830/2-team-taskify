@@ -16,7 +16,7 @@ interface InputFieldProps
  * @returns {JSX.Element} Input.Field 컴포넌트
  */
 function InputField({ className, type, ...props }: InputFieldProps) {
-  const { isPasswordVisible, disabled: isDisabled } = useInputContext();
+  const { isPasswordVisible, isDisabled } = useInputContext();
 
   // 비밀번호 타입일 경우 토글 상태에 따라 실제 type 결정
   const inputType = type === "password" && isPasswordVisible ? "text" : type;

@@ -18,28 +18,28 @@ interface InputRootProps extends Omit<InputWrapperStylesProps, "error"> {
  * @param {React.ReactNode} children - Input 컴포넌트의 자식 요소
  * @param {"sm" | "md" | "lg"} inputSize - Input의 크기
  * @param {string} error - 에러 메시지
- * @param {boolean} disabled - Input의 비활성화 여부
+ * @param {boolean} isDisabled - Input의 비활성화 여부
  * @param {string} className - Input의 클래스 이름
  * @returns {JSX.Element} Input 컴포넌트의 루트
  */
-function InputRoot({
+export function InputRoot({
   children,
   inputSize = "md",
   errorMessage = "",
-  disabled = false,
+  isDisabled = false,
   className,
 }: InputRootProps) {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-  const handlePassword = () => setIsPasswordVisible((prev) => !prev);
+  const handleTogglePassword = () => setIsPasswordVisible((prev) => !prev);
 
   return (
     <InputContext.Provider
       value={{
         inputSize,
         errorMessage,
-        disabled,
+        isDisabled,
         isPasswordVisible,
-        handlePassword,
+        handleTogglePassword,
       }}
     >
       <div
@@ -53,5 +53,3 @@ function InputRoot({
     </InputContext.Provider>
   );
 }
-
-export { InputRoot };
