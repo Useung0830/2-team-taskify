@@ -13,7 +13,7 @@ const labelStyles = cva("font-pretendard font-semibold text-gray-300", {
   },
 });
 
-interface LabelProps
+export interface LabelProps
   extends ComponentPropsWithRef<"label">, VariantProps<typeof labelStyles> {}
 
 function Label({ className, labelSize, ...props }: LabelProps) {
