@@ -1,4 +1,5 @@
 import { cva, VariantProps } from "class-variance-authority";
+
 import { DashboardColorItem } from "./DashboardColorItem";
 
 type DashboardColorChoiceListProp = VariantProps<typeof sizeVariants>;
