@@ -1,9 +1,8 @@
 "use client";
 
-import { DashboardColorChoiceList } from "@/components/DashboardColorChoiceList";
-import ModalHeader from "@/components/ModalHeader";
 import { useRouter } from "next/navigation";
 
+import { DashboardColorChoiceList } from "@/components/DashboardColorChoiceList";
 import { ModalHeader } from "@/components/ModalHeader";
 
 export default function NewDashboard() {
