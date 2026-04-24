@@ -1,7 +1,7 @@
 import { cva, VariantProps } from "class-variance-authority";
 
 const InputWrapperStyles = cva(
-  "group flex relative items-center gap-2 px-5 bg-black-800 w-full text-base outline outline-gray-800 focus-within:text-gray-200 focus-within:outline-[1.5px] focus-within:outline-sky-blue text-gray-300 placeholder:text-gray-400 rounded-2xl",
+  "group bg-black-800 focus-within:outline-sky-blue relative flex w-full items-center gap-2 rounded-2xl px-5 text-base text-gray-300 outline outline-gray-800 placeholder:text-gray-400 focus-within:text-gray-200 focus-within:outline-[1.5px]",
   {
     variants: {
       inputSize: {
@@ -12,15 +12,15 @@ const InputWrapperStyles = cva(
         true: "outline-red",
         false: "",
       },
-      disabled: {
-        true: "cursor-not-allowed outline-none bg-gray-900 text-gray-400",
+      isDisabled: {
+        true: "cursor-not-allowed bg-gray-900 text-gray-400 outline-none",
         false: "",
       },
     },
     defaultVariants: {
       inputSize: "md",
       error: false,
-      disabled: false,
+      isDisabled: false,
     },
   }
 );
