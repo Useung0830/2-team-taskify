@@ -48,7 +48,7 @@ export default function Dashboard() {
       </div>
 
       {/* 데스크탑 전용 화면 */}
-      <div className="flex gap-15">
+      <div className="hidden gap-15 lg:flex">
         {data.map((column) => (
           <ColumnList key={column.id} column={column} />
         ))}
