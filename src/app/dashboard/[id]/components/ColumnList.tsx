@@ -20,7 +20,7 @@ interface ColumnListProps {
 export function ColumnList({ column }: ColumnListProps) {
   const { title } = column;
   return (
-    <div className="flex flex-col gap-5">
+    <div className="flex w-full flex-col gap-5 md:mx-10 lg:mx-0">
       <ColumnListHeader title={title} contentCount={3} />
       <ColumnCard cardTitle="기능 설정" creator="김정은" imgSrc={userAddImg} />
       <ColumnCard cardTitle="레퍼런스 찾기" creator="박민영" />
