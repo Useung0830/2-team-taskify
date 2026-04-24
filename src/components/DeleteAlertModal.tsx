@@ -15,19 +15,25 @@ export function DeleteAlertModal({
   onClose,
   onDelete,
 }: DeleteAlertModalProps) {
-  const handleClose = () => onClose();
+  if (!isOpen) return null;
+
+  const handleClose = () => {
+    onClose();
+  };
+
   const handleDelete = () => {
     onDelete();
     onClose();
   };
 
   return (
-    <Modal isOpen={isOpen} handleClose={() => handleClose}>
+    <Modal>
       <div
         className={cn(
-          "mx-auto flex flex-col items-center justify-center",
-          "px-5  pb-6 min-h-43 w-[calc(100vw-32px)] max-w-83.75 gap-5 pt-8",
-          "md:h-fit md:w-150 md:max-w-none md:gap-7.5 md:px-8 md:pt-10 md:pb-8"
+          "mx-auto flex flex-col items-center justify-center text-center",
+          "max-w-150 min-w-83.75",
+          "h-auto",
+          "gap-6 py-2 pt-2 md:gap-8 md:pt-4"
         )}
       >
         <div className="flex w-full flex-col items-center gap-2 text-center md:gap-3">
