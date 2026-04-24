@@ -54,7 +54,7 @@ export default function MyDashboard() {
             초대받은 대시보드
           </h2>
           <div>
-            {invitaionList && (
+            {invitaionList.length !== 0 && (
               <Input>
                 <Input.Wrapper>
                   <Input.SearchIcon />
@@ -71,7 +71,7 @@ export default function MyDashboard() {
             )}
           </div>
         </div>
-        {invitaionList ? (
+        {invitaionList.length !== 0 ? (
           <InventionContainer invitedData={invitaionList} />
         ) : (
           <Emptydashboard dashtype="invite" />
