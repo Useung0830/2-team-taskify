@@ -17,30 +17,30 @@ export function Dropdown({
 
   return (
     <div className="relative w-full">
-      <label className="mb-2 block text-[16px] font-medium text-white">
+      <label className="font-pretendard mb-2 block text-[16px] font-semibold text-white">
         {label}
       </label>
 
       <div
-        className={`/* 공통 스타일 */ /* 모바일 스타일 (기본) */ /* 데스크톱 스타일 (md 이상) */ flex h-[75px] w-[157.5px] items-center gap-[10px] rounded-[14px] border-[1px] border-solid border-[#333333] bg-[#171717] px-[20px] py-[6px] opacity-100 transition-all md:h-[54px] md:w-[260px] md:justify-between`}
+        onClick={() => setIsOpen(!isOpen)}
+        className="bg-black-800 flex h-[54px] w-[157.5px] cursor-pointer items-center justify-between rounded-[14px] border-[1px] border-solid border-gray-700 px-[20px] py-[6px] transition-all md:w-[260px]"
       >
         <span
-          className={`truncate ${selected ? "text-white" : "text-gray-400"}`}
+          className={`font-pretendard truncate text-[16px] ${selected ? "text-white" : "text-gray-400"}`}
         >
-          {selected || `${label} 선택`}
+          {selected || `선택`}
         </span>
 
         <button
           type="button"
-          onClick={() => setIsOpen(!isOpen)}
-          className={`rounded-md p-1 transition-transform duration-200 hover:bg-[#333333] ${isOpen ? "rotate-180" : ""}`}
+          className={`transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
         >
           <Image src={iconChevronDown} alt="열기" width={24} height={24} />
         </button>
       </div>
 
       {isOpen && (
-        <ul className="absolute z-10 mt-2 w-[157.5px] overflow-hidden rounded-lg border border-[#333333] bg-[#171717] shadow-lg md:w-[260px]">
+        <ul className="bg-black-800 /* 스크롤바 설정: 최대 높이 지정 및 스크롤 허용 */ /* 파일 내부 커스텀 스크롤바 스타일 */ absolute z-10 mt-2 max-h-[200px] w-[157.5px] overflow-y-auto rounded-lg border border-gray-700 shadow-lg md:w-[260px] [&::-webkit-scrollbar]:w-[6px] [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-gray-600 [&::-webkit-scrollbar-track]:bg-transparent">
           {options.map((option) => (
             <li
               key={option}
@@ -48,7 +48,7 @@ export function Dropdown({
                 setSelected(option);
                 setIsOpen(false);
               }}
-              className="cursor-pointer px-4 py-3 text-sm text-white hover:bg-[#333333] md:text-base"
+              className="font-pretendard hover:bg-black-700 cursor-pointer px-4 py-3 text-[16px] text-white transition-colors"
             >
               {option}
             </li>

@@ -10,15 +10,29 @@ export default function Home() {
    */
   const isLoggedIn = false;
   const firstDashboardId = 1;
-  const categoryOptions = ["개발", "디자인", "기획", "마케팅"];
+  const categoryOptions = [
+    "개발",
+    "디자인",
+    "기획",
+    "마케팅",
+    "영업",
+    "인사",
+    "재무",
+    "운영",
+    "고객지원",
+    "데이터분석",
+    "QA",
+    "보안",
+  ];
   return (
     <div className="bg-background flex min-h-screen flex-col">
       <MainHeader isLoggedIn={isLoggedIn} firstDashboardId={firstDashboardId} />
-      <main className="flex-1">
+      <main className="flex-1 px-4 pt-[70px] md:pt-[100px]">
         <ImageUpload />
-        <Dropdown label="카테고리" options={categoryOptions} />
-        <MainFooter />
+        <span> ""</span>
+        <Dropdown label="상태" options={categoryOptions} />
       </main>
+      <MainFooter />
     </div>
   );
 }

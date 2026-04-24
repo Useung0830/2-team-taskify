@@ -51,7 +51,9 @@ export function ImageUpload({
 
   return (
     <div className="flex w-full flex-col gap-[10px]">
-      <span className="text-[18px] font-medium text-white">이미지</span>
+      <label className="font-pretendard text-[16px] font-semibold text-gray-400">
+        이미지
+      </label>
 
       <div
         onClick={handleClick}
@@ -62,17 +64,7 @@ export function ImageUpload({
         } `}
       >
         {previewUrl ? (
-          <div
-            className="relative border-[#4B5563]"
-            style={{
-              width: "231px",
-              height: "140px",
-              borderRadius: "14px",
-              borderWidth: "1.5px",
-              borderStyle: "solid",
-              marginLeft: "4px",
-            }}
-          >
+          <div className="relative ml-1 h-[140px] w-[231px] rounded-[14px] border-[1.5px] border-solid border-gray-700">
             <div className="h-full w-full overflow-hidden rounded-[12px]">
               <Image
                 src={previewUrl}
@@ -85,21 +77,15 @@ export function ImageUpload({
             <button
               type="button"
               onClick={handleReset}
-              className="absolute z-50 transition-transform hover:scale-110"
-              style={{
-                top: "-12px",
-                right: "-12px",
-                width: "28px",
-                height: "28px",
-              }}
+              className="absolute -top-3 -right-3 z-50 h-7 w-7 transition-transform hover:scale-110"
             >
               <Image src={iconX} alt="초기화" fill className="drop-shadow-lg" />
             </button>
           </div>
         ) : (
-          <div className="flex flex-col items-center gap-[10px] md:gap-[12px]">
-            <Image src={imageIcon} alt="이미지아이콘" width={24} height={24} />
-            <span className="text-[14px] font-semibold text-gray-400">
+          <div className="flex flex-col items-center gap-[2px]">
+            <Image src={imageIcon} alt="이미지아이콘" width={32} height={32} />
+            <span className="font-pretendard text-[16px] font-semibold text-gray-400">
               + image upload
             </span>
           </div>
