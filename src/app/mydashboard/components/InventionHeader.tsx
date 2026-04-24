@@ -1,6 +1,6 @@
 export function InventionHeader() {
   return (
-    <div className="flex h-11.75 justify-between px-7.5 py-3.5 text-[16px]">
+    <div className="flex h-11.75 justify-between text-[16px]">
       <div className="w-75">이름</div>
       <div className="flex gap-25">
         <span className="w-50">초대자</span>
