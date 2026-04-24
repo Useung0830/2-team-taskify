@@ -15,11 +15,11 @@ interface InputWrapperProps {
  * @returns {JSX.Element} Input.Wrapper 컴포넌트
  */
 export function InputWrapper({ children, className }: InputWrapperProps) {
-  const { inputSize, errorMessage, disabled } = useInputContext();
+  const { inputSize, errorMessage, isDisabled } = useInputContext();
   return (
     <div
       className={cn(
-        InputWrapperStyles({ inputSize, error: !!errorMessage, disabled }),
+        InputWrapperStyles({ inputSize, error: !!errorMessage, isDisabled }),
         className
       )}
     >

@@ -1,4 +1,5 @@
-import { MainHeader } from "@/components/MainHeader";
+import { MainFooter } from "@/components/layout/MainFooter";
+import { MainHeader } from "@/components/layout/MainHeader";
 
 export default function Home() {
   /**
@@ -9,9 +10,10 @@ export default function Home() {
   const firstDashboardId = 1;
 
   return (
-    <div className="bg-background min-h-screen">
+    <div className="bg-background flex min-h-screen flex-col">
       <MainHeader isLoggedIn={isLoggedIn} firstDashboardId={firstDashboardId} />
-      <main></main>
+      <main className="flex-1"></main>
+      <MainFooter />
     </div>
   );
 }
