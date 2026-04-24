@@ -1,6 +1,6 @@
 "use client";
 
-import {DashboardHeader} from "@/feature/dashboard/DashboardHeader";
+import { DashboardHeader } from "@/components/layout/DashboardHeader";
 
 export default function DashboardPage() {
   // 1. 백엔드에서 받아올 데이터 예시 (나중에 API 연결 대상)

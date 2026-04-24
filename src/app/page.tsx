@@ -1,7 +1,7 @@
-import { MainHeader } from "@/components/MainHeader";
-import { MainFooter } from "@/components/MainFooter";
-import {ImageUpload} from "@/components/ImageUpload"
-
+import { MainHeader } from "@/components/layout/MainHeader";
+import { MainFooter } from "@/components/layout/MainFooter";
+import { ImageUpload } from "@/components/ImageUpload"
+import { Dropdown } from "@/components/Dropdown";
 
 export default function Home() {
   /**
@@ -10,17 +10,19 @@ export default function Home() {
    */
   const isLoggedIn = false;
   const firstDashboardId = 1;
-
+const categoryOptions = ["개발", "디자인", "기획", "마케팅"];
   return (
-<div className="bg-background min-h-screen flex flex-col">
-  <MainHeader 
-    isLoggedIn={isLoggedIn} 
-    firstDashboardId={firstDashboardId} 
-  />
-  <main className="flex-1"></main>
-  <ImageUpload/>
-  <MainFooter />
-</div>
+    <div className="bg-background min-h-screen flex flex-col">
+      <MainHeader
+        isLoggedIn={isLoggedIn}
+        firstDashboardId={firstDashboardId}
+      />
+      <main className="flex-1"></main>
+      <ImageUpload />
+      <Dropdown label="카테고리" 
+          options={categoryOptions}/>
+      <MainFooter />
+    </div>
   );
 }
 
