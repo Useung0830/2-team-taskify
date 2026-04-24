@@ -1,18 +1,32 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-import Input from "@/components/input/input";
+import { getMyInvitationList, postLogin } from "@/api/data";
+import { Input } from "@/components/input/input";
+import * as T from "@/types/api";
 
 import { Emptydashboard } from "./components/Emptydashboard";
 import { InventionContainer } from "./components/InventionContainer";
 import { MydashContainer } from "./components/MydashContainer";
 
 export default function MyDashboard() {
-  const hasMydata = true;
-  const hasInvitedata = true;
-
+  // const [mydashboardList, setMydashboard] = useState();
+  const [invitaionList, setInvitationList] = useState<T.Invitation[]>([]);
   const [value, setValue] = useState("");
   const [error, setError] = useState("");
+
+  useEffect(() => {
+    const setUp = async () => {
+      await postLogin({ email: "email@mail.com", password: "12341234" });
+      //데이터 불러오기
+      const { invitations } = await getMyInvitationList({ size: 10 });
+      setInvitationList(invitations);
+    };
+
+    setUp();
+  }, []);
+
+  const hasMydata = true;
 
   const handleFieldChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
@@ -40,7 +54,7 @@ export default function MyDashboard() {
             초대받은 대시보드
           </h2>
           <div>
-            {hasInvitedata && (
+            {invitaionList && (
               <Input>
                 <Input.Wrapper>
                   <Input.SearchIcon />
@@ -57,8 +71,8 @@ export default function MyDashboard() {
             )}
           </div>
         </div>
-        {hasInvitedata ? (
-          <InventionContainer />
+        {invitaionList ? (
+          <InventionContainer invitedData={invitaionList} />
         ) : (
           <Emptydashboard dashtype="invite" />
         )}
