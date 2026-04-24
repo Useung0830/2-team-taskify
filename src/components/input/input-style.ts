@@ -12,7 +12,7 @@ const InputWrapperStyles = cva(
         true: "outline-red",
         false: "",
       },
-      disabled: {
+      isDisabled: {
         true: "cursor-not-allowed bg-gray-900 text-gray-400 outline-none",
         false: "",
       },
@@ -20,7 +20,7 @@ const InputWrapperStyles = cva(
     defaultVariants: {
       inputSize: "md",
       error: false,
-      disabled: false,
+      isDisabled: false,
     },
   }
 );
