@@ -26,8 +26,8 @@ export default function MyDashboard() {
   };
 
   return (
-    <div className="font-pretendard flex flex-col gap-3.5 px-5 text-gray-100">
-      <h1 className="pt-3.5 pb-2.5 text-4xl font-bold">홈</h1>
+    <div className="font-pretendard flex flex-col gap-2.5 px-5 text-gray-100">
+      <h1 className="pt-3.5 text-4xl font-bold">홈</h1>
       <div className="gap-3">
         <h2 className="py-1 text-lg font-bold md:text-[18px] lg:text-xl">
           내 대시보드
