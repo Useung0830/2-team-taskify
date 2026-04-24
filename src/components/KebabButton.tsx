@@ -1,9 +1,10 @@
 "use client";
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 
 import icMore from "@/assets/ic-more.svg";
 import { PopDoverMenu } from "@/components/PopDoverMenu";
+import { useClickOutside } from "@/hooks/useClickOutsise";
 
 export function KebabButton() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -13,22 +14,9 @@ export function KebabButton() {
     setIsOpen((prev) => !prev);
   };
 
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        containerRef.current &&
-        !containerRef.current.contains(event.target as Node)
-      ) {
-        setIsOpen(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
+  useClickOutside(containerRef, () => {
+    setIsOpen(false);
+  });
 
   return (
     <div
@@ -39,7 +27,7 @@ export function KebabButton() {
         onClick={handleDropdown}
         className="h-6 w-6 transition-transform hover:scale-110 active:opacity-70"
       >
-        <Image src={icMore} alt="더보기 아이콘" />
+        <Image src={icMore} height={24} width={24} alt="더보기 아이콘" />
       </button>
       {isOpen && <PopDoverMenu />}
     </div>

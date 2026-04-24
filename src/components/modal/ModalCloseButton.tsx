@@ -16,7 +16,7 @@ export function ModalCloseButton() {
       onClick={handleCloseModal}
       className="relative h-6 w-6 transition-transform hover:scale-110 active:opacity-70"
     >
-      <Image src={icX} alt="닫기 버튼" fill className="object-contain" />
+      <Image src={icX} height={24} width={24} alt="닫기 버튼" />
     </button>
   );
 }

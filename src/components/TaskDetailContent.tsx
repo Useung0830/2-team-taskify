@@ -9,7 +9,13 @@ export function TaskDetailContent() {
         먼저 전체 플로우를 개괄적으로 파악하고, 주요 화면 구성을 나열 초기
         와이어프레임은 빠르게 그리고, 이후 단계에서 세부 요소를 보완합니다.
       </p>
-      <Image src={ExImage} alt="상세 이미지" />
+      <Image
+        src={ExImage}
+        width={361}
+        height={219}
+        sizes="(max-width: 768px) 100vw, 361px"
+        alt="상세 이미지"
+      />
     </div>
   );
 }
