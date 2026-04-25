@@ -28,4 +28,4 @@ function SideButton({ title = "사이드 메뉴", color = "#206E4E" }) {
     </div>
   );
 }
-export default SideButton;
+export { SideButton };

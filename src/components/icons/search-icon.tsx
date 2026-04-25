@@ -1,6 +1,6 @@
-import { svgProps } from "@/types/svgProps";
+import { SvgProps } from "@/types/svgProps";
 
-function SearchIcon({ className, width, height }: svgProps) {
+function SearchIcon({ className, width, height }: SvgProps) {
   return (
     <svg
       width={width}
@@ -14,4 +14,4 @@ function SearchIcon({ className, width, height }: svgProps) {
   );
 }
 
-export default SearchIcon;
+export { SearchIcon };

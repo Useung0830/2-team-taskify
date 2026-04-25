@@ -18,4 +18,4 @@ function UserAccount() {
   );
 }
 
-export default UserAccount;
+export { UserAccount };

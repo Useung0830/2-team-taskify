@@ -4,7 +4,7 @@ import { InputWrapperStylesProps } from "./input-style";
 
 interface InputContextType extends Omit<InputWrapperStylesProps, "error"> {
   isPasswordVisible: boolean;
-  togglePassword: () => void;
+  handleTogglePassword: () => void;
   errorMessage?: string;
 }
 
