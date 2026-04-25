@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { getMyInvitationList, postLogin } from "@/api/data";
 import { Input } from "@/components/input/input";
@@ -12,20 +12,70 @@ import { MydashContainer } from "./components/MydashContainer";
 export default function MyDashboard() {
   // const [mydashboardList, setMydashboard] = useState();
   const [invitaionList, setInvitationList] = useState<T.Invitation[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [hasMore, setHasMore] = useState(true);
   const [value, setValue] = useState("");
   const [error, setError] = useState("");
+  const targetdiv = useRef(null);
 
   useEffect(() => {
     const setUp = async () => {
       //임시 로그인
       await postLogin({ email: "email@mail.com", password: "12341234" });
-      //데이터 불러오기
-      const { invitations } = await getMyInvitationList({ size: 10 });
-      setInvitationList(invitations);
     };
-
     setUp();
   }, []);
+
+  //데이터 가져올 함수 정의
+  const fetchInvitionList = async () => {
+    if (isLoading || !hasMore) {
+      return;
+    }
+    setIsLoading(true);
+
+    try {
+      const lastInvitationId = invitaionList[invitaionList.length - 1]?.id;
+      const { invitations } = await getMyInvitationList({
+        size: 10,
+        cursorId: lastInvitationId,
+      });
+
+      if (invitations.length === 0) {
+        setHasMore(false);
+      } else {
+        setInvitationList((prev) => [...prev, ...invitations]);
+      }
+    } catch {
+      console.error("에러발생");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    //관찰하는 요소에 변화가 생기면 실행할 콜백함수
+    const onIntersection = (entries: IntersectionObserverEntry[]) => {
+      entries.forEach(async (entry) => {
+        if (entry.isIntersecting) {
+          //데이터 불러오기
+          fetchInvitionList();
+        }
+      });
+    };
+
+    //옵션 설정
+    const options = {
+      threshold: 0.5,
+    };
+    //생성자 함수로 관찰자 초기화
+    const observer = new IntersectionObserver(onIntersection, options);
+
+    if (targetdiv.current) {
+      observer.observe(targetdiv.current);
+    }
+
+    return () => observer.disconnect();
+  }, [invitaionList, isLoading, hasMore]);
 
   const hasMydata = true;
 
@@ -73,11 +123,14 @@ export default function MyDashboard() {
           </div>
         </div>
         {invitaionList.length !== 0 ? (
-          <InvitionContainer invitedData={invitaionList} />
+          <div>
+            <InvitionContainer invitedData={invitaionList} />
+          </div>
         ) : (
           <Emptydashboard dashtype="invite" />
         )}
       </div>
+      <div ref={targetdiv}></div>
     </div>
   );
 }
