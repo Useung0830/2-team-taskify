@@ -4,11 +4,10 @@ import { DashboardColorItem } from "./DashboardColorItem";
 
 type DashboardColorChoiceListProp = VariantProps<typeof sizeVariants>;
 
-const sizeVariants = cva("flex gap-4", {
+const sizeVariants = cva("flex gap-2", {
   variants: {
     size: {
-      default: "h-15 w-135",
-      sm: "h-10 w-73.75",
+      default: "h-10 w-73.75 md:h-15 md:w-135",
       lg: "h-22.5 w-185",
     },
   },
