@@ -8,7 +8,8 @@ export function CommentForm() {
   const [isExpanded, setIsExpanded] = useState(false);
   const [content, setContent] = useState("");
   const formRef = useRef<HTMLFormElement>(null);
-  const handleContentChange = (e) => {
+
+  const handleContentChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setContent(e.target.value);
     e.target.style.height = "auto";
     e.target.style.height = `${e.target.scrollHeight}px`;
@@ -19,7 +20,7 @@ export function CommentForm() {
     setContent("");
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault(); // 페이지 새로고침 방지
 
     if (!content.trim()) {
