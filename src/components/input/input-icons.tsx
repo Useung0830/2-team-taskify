@@ -1,8 +1,8 @@
-import { cn } from "@/util/cn";
+import { cn } from "@/lib/cn";
 
-import EyeCloseIcon from "../icons/eye-close-icon";
-import EyeOpenIcon from "../icons/eye-open-icon";
-import SearchIcon from "../icons/search-icon";
+import { EyeCloseIcon } from "../icons/eye-close-icon";
+import { EyeOpenIcon } from "../icons/eye-open-icon";
+import { SearchIcon } from "../icons/search-icon";
 
 import { useInputContext } from "./input-context";
 
@@ -14,7 +14,7 @@ interface InputIconProps {
  * @description 검색 아이콘
  * @param {string} className - 검색 아이콘의 클래스 이름
  */
-const InputSearchIcon = ({ className }: InputIconProps) => {
+function InputSearchIcon({ className }: InputIconProps) {
   const { inputSize } = useInputContext();
   const size = inputSize === "sm" ? 18 : 20;
   return (
@@ -33,20 +33,21 @@ const InputSearchIcon = ({ className }: InputIconProps) => {
       />
     </button>
   );
-};
+}
 
 /**
  * @description 비밀번호 토글 아이콘
  * @param {string} className - 비밀번호 토글 아이콘의 클래스 이름
  */
-const InputPasswordToggle = ({ className }: InputIconProps) => {
-  const { inputSize, isPasswordVisible, togglePassword } = useInputContext();
+function InputPasswordToggle({ className }: InputIconProps) {
+  const { inputSize, isPasswordVisible, handleTogglePassword } =
+    useInputContext();
   const size = inputSize === "sm" ? 18 : 20;
 
   return (
     <button
       type="button"
-      onClick={togglePassword}
+      onClick={handleTogglePassword}
       aria-label={isPasswordVisible ? "비밀번호 숨기기" : "비밀번호 보기"}
       className={cn("flex shrink-0 cursor-pointer items-center", className)}
     >
@@ -65,6 +66,6 @@ const InputPasswordToggle = ({ className }: InputIconProps) => {
       )}
     </button>
   );
-};
+}
 
 export { InputSearchIcon, InputPasswordToggle };
