@@ -1,4 +1,5 @@
-import { ModalCloseButton } from "./modal/ModalCloseButton";
+import ModalCloseButton from "./ModalCloseButton";
+
 interface ModalHeaderProps {
   children: string;
 }
@@ -12,4 +13,4 @@ function ModalHeader({ children }: ModalHeaderProps) {
   );
 }
 
-export { ModalHeader };
+export default ModalHeader;

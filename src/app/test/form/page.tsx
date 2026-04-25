@@ -6,7 +6,7 @@ import { Input } from "@/components/input/input";
 import { Label } from "@/components/label/label";
 import { Textarea } from "@/components/Textarea/Textarea";
 
-export default function FormTest() {
+function FormTest() {
   const [value, setValue] = useState("");
   const [textareaValue, setTextareaValue] = useState("");
   const [error, setError] = useState("");
@@ -84,3 +84,5 @@ export default function FormTest() {
     </div>
   );
 }
+
+export default FormTest;
