@@ -7,7 +7,8 @@ import colorchip from "./assets/ic-colorchips.svg";
 import { ColumnList } from "./components/ColumnList";
 import { DUMMY_COLUMNS } from "./mock";
 
-export function Dashboard() {
+// default 추가
+export default function Dashboard() {
   const data = DUMMY_COLUMNS;
   const [activeColumnId, setActiveColumnId] = useState(data[0]?.id);
   const activeColumn = data.find((col) => col.id === activeColumnId);
