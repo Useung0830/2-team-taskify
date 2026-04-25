@@ -4,7 +4,7 @@ import { useRef, useState } from "react";
 
 import icMore from "@/assets/ic-more.svg";
 import { PopDoverMenu } from "@/components/PopDoverMenu";
-import { useClickOutside } from "@/hooks/useClickOutsise";
+import { useClickOutside } from "@/hooks/useClickOutside";
 
 export function KebabButton() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
