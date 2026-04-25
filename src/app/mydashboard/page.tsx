@@ -36,7 +36,7 @@ export default function MyDashboard() {
     try {
       const lastInvitationId = invitaionList[invitaionList.length - 1]?.id;
       const { invitations } = await getMyInvitationList({
-        size: 10,
+        size: 2,
         cursorId: lastInvitationId,
       });
 
