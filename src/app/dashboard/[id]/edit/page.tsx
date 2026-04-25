@@ -8,6 +8,8 @@ import { DashboardColorChoiceList } from "@/components/DashboardColorChoiceList"
 import { Input } from "@/components/input/input";
 import { Label } from "@/components/label/label";
 
+import { EditSideButton } from "../components/EditSideButton";
+
 export default function Edit() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
@@ -21,14 +23,8 @@ export default function Edit() {
         {/* 모바일에서 닫기 버튼 (선택 사항: icX 재활용) */}
 
         <div className="flex w-full max-w-69 min-w-37.75 flex-col text-lg text-white">
-          <div className="group relative overflow-hidden rounded-2xl px-3.5 py-4">
-            <span className="relative z-10">대시보드 편집</span>
-            <div className="absolute inset-0 z-0 m-auto h-0 w-0 bg-[#2C2B30] opacity-0 transition-all duration-500 ease-out group-hover:h-[300%] group-hover:w-[300%] group-hover:opacity-100" />
-          </div>
-          <div className="group relative overflow-hidden rounded-2xl px-3.5 py-4">
-            <span className="relative z-10">맴버 관리</span>
-            <div className="absolute inset-0 z-0 m-auto h-0 w-0 bg-[#2C2B30] opacity-0 transition-all duration-500 ease-out group-hover:h-[300%] group-hover:w-[300%] group-hover:opacity-100" />
-          </div>
+          <EditSideButton>대시보드 편집</EditSideButton>
+          <EditSideButton>맴버 관리</EditSideButton>
           <div className="bg-modal-background mx-4 h-px" />
           <div className="group relative flex items-center justify-between overflow-hidden rounded-2xl px-3.5 py-4 hover:bg-[#2C2B30]">
             <span className="text-red relative z-10">대시보드 삭제하기</span>
