@@ -1,4 +1,4 @@
-import { cn } from "@/util/cn";
+import { cn } from "@/lib/cn";
 
 import { useInputContext } from "./input-context";
 
@@ -21,4 +21,4 @@ function InputError({ className }: InputErrorProps) {
   );
 }
 
-export default InputError;
+export { InputError };

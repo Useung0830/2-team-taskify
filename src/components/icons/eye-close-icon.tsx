@@ -1,6 +1,10 @@
-import { svgProps } from "@/types/svgProps";
+import { SvgProps } from "@/types/svgProps";
 
+<<<<<<< HEAD
 function EyeCloseIcon({ className, width, height }: svgProps) {
+=======
+function EyeCloseIcon({ className, width, height }: SvgProps) {
+>>>>>>> fc1a860a14599dd954b6541e01d6080ae49ca3fa
   return (
     <svg
       width={width}
@@ -14,4 +18,4 @@ function EyeCloseIcon({ className, width, height }: svgProps) {
   );
 }
 
-export default EyeCloseIcon;
+export { EyeCloseIcon };
