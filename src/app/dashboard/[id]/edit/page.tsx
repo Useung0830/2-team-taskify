@@ -3,15 +3,23 @@ import Image from "next/image";
 import { useState } from "react";
 
 import icSideMenu from "@/assets/ic-sidemenu.svg";
-import icX from "@/assets/ic-x.svg";
-import { DashboardColorChoiceList } from "@/components/DashboardColorChoiceList";
-import { Input } from "@/components/input/input";
-import { Label } from "@/components/label/label";
+import icTrash from "@/assets/ic-trash.svg";
 
-import { EditSideButton } from "../components/EditSideButton";
+import { DashboardEdit } from "../_components/DashboardEdit";
+import { DashboardEditHeader } from "../_components/DashboardEditHeader";
+import { EditSideButton } from "../_components/EditSideButton";
+import { MemberManagement } from "../_components/MemberManagement";
+
+type Section = "edit" | "members" | "invites";
 
 export default function Edit() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState<Section>("edit");
+
+  const handleSectionClick = (section: Section) => {
+    setActiveSection(section);
+    setIsSidebarOpen(false);
+  };
 
   return (
     // md 이상에서는 기존 그리드 유지, md 미만에서는 단일 컬럼
@@ -22,21 +30,27 @@ export default function Edit() {
       >
         {/* 모바일에서 닫기 버튼 (선택 사항: icX 재활용) */}
 
-        <div className="flex w-full max-w-69 min-w-37.75 flex-col text-lg text-white">
-          <EditSideButton>대시보드 편집</EditSideButton>
-          <EditSideButton>맴버 관리</EditSideButton>
-          <div className="bg-modal-background mx-4 h-px" />
-          <div className="group relative flex items-center justify-between overflow-hidden rounded-2xl px-3.5 py-4 hover:bg-[#2C2B30]">
-            <span className="text-red relative z-10">대시보드 삭제하기</span>
-            <Image
-              src={icX}
-              height={24}
-              width={24}
-              alt="삭제 아이콘"
-              className="z-10"
-            />
-            <div className="absolute inset-0 z-0 m-auto h-0 w-0 bg-[#2C2B30] opacity-0 transition-all duration-500 ease-out group-hover:h-[300%] group-hover:w-[300%] group-hover:opacity-100" />
-          </div>
+        <div className="flex w-full max-w-69 min-w-37.75 flex-col gap-2 text-lg text-white">
+          <EditSideButton
+            isActive={activeSection === "edit"}
+            handleClick={() => handleSectionClick("edit")}
+          >
+            대시보드 편집
+          </EditSideButton>
+
+          <EditSideButton
+            isActive={activeSection === "members"}
+            handleClick={() => handleSectionClick("members")}
+          >
+            멤버 관리
+          </EditSideButton>
+
+          <div className="bg-modal-background mx-4 my-1 h-px" />
+
+          {/* 삭제 버튼: icon과 isDelete 속성 추가 */}
+          <EditSideButton isDelete icon={icTrash}>
+            대시보드 삭제하기
+          </EditSideButton>
         </div>
       </aside>
 
@@ -52,19 +66,15 @@ export default function Edit() {
 
         {/* 구역 3: 메인 콘텐츠 */}
         <main className="flex-1 overflow-y-auto">
-          <div className="flex flex-col gap-7.5 px-12.5 text-zinc-400">
-            <h1 className="mt-7.5 mb-3.5 text-3xl font-bold text-gray-100">
-              대시보드 편집
-            </h1>
-            <Input>
-              <Label htmlFor="name">이름</Label>
-              <Input.Wrapper>
-                <Input.Field id="name" placeholder="이름을 입력해주세요" />
-              </Input.Wrapper>
-            </Input>
-            <div className="min-w-83.75">
-              <DashboardColorChoiceList size={"edit"} />
-            </div>
+          <div className="flex max-w-185 flex-col gap-7.5 px-12.5 text-zinc-400 max-md:px-5">
+            <DashboardEditHeader
+              title={activeSection === "edit" ? "대시보드 편집" : "멤버 관리"}
+            />
+            {activeSection === "edit" ? (
+              <DashboardEdit />
+            ) : (
+              <MemberManagement />
+            )}
           </div>
         </main>
       </div>

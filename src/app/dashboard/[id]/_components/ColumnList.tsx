@@ -1,4 +1,4 @@
-import userAddImg from "../assets/img-userAdd.png";
+import userAddImg from "../_assets/img-userAdd.png";
 
 import { ColumnCard } from "./ColumnCard";
 import { ColumnListHeader } from "./ColumnListHeader";

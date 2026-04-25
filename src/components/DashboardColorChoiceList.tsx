@@ -10,7 +10,7 @@ const sizeVariants = cva("flex gap-4 max-md:gap-3", {
       default: "h-15 w-135",
       sm: "h-10 w-73.75",
       lg: "h-22.5 w-185",
-      edit: "h-22.5 w-full max-lg:h-15 max-md:h-14.25",
+      edit: "h-22.5 w-full max-[1172px]:h-15 max-md:h-14.25",
     },
   },
 

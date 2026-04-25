@@ -1,8 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import { useMemo, useState, useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
+import { useMemo, useState, useEffect } from "react";
+
 import iconSettings from "@/assets/ic-setting.svg";
 import iconShare from "@/assets/ic-user-plus.svg";
 
@@ -33,7 +34,11 @@ export function DashboardHeader({ members, totalCount }: DashboardHeaderProps) {
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
-    setIsMounted(true);
+    const timer = setTimeout(() => {
+      setIsMounted(true);
+    }, 0);
+
+    return () => clearTimeout(timer);
   }, []);
 
   const dashboardId = params?.dashboardId;

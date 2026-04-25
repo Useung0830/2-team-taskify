@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import plusBtn from "../assets/ic-plus.svg";
+import plusBtn from "../assets/ic-plusbtn.svg";
 
 export function ColumnAdd() {
   return (
