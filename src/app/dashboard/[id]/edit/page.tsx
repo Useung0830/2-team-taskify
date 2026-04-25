@@ -1,9 +1,10 @@
+"use client";
 import Image from "next/image";
 
 import icX from "@/assets/ic-x.svg";
+import { DashboardColorChoiceList } from "@/components/DashboardColorChoiceList";
 import { Input } from "@/components/input/input";
 import { Label } from "@/components/label/label";
-
 export default function Edit() {
   return (
     <div className="grid h-screen grid-cols-[minmax(250px,540px)_1fr]">
@@ -44,6 +45,13 @@ export default function Edit() {
             <h1 className="mt-7.5 mb-3.5 text-3xl font-bold text-gray-100">
               대시보드 편집
             </h1>
+            <Input>
+              <Label htmlFor="name">이름</Label>
+              <Input.Wrapper>
+                <Input.Field id="name" placeholder="이름을 입력해주세요" />
+              </Input.Wrapper>
+            </Input>
+            <DashboardColorChoiceList size={"edit"} />
           </div>
         </main>
       </div>
