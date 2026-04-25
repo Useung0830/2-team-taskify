@@ -1,9 +1,10 @@
 "use client";
 import { useRouter } from "next/navigation";
 
-import { cn } from "@/lib/cn";
+// import { cn } from "@/lib/cn";
 
 import { Button } from "./Button";
+import { Modal } from "./Modal";
 interface DeleteAlertModaLProps {
   onCancel?: () => void;
   onDelete?: () => void;
@@ -33,36 +34,31 @@ export function DeleteAlertModal({
   };
 
   return (
-    <div
-      className={cn(
-        "flex flex-col items-center justify-center text-center",
-        "w-full gap-8 md:gap-10"
-      )}
-    >
+    <Modal>
       <div className="flex w-full flex-col items-center gap-2 md:gap-3">
         <h2 className="text-lg font-semibold text-gray-200 lg:text-xl">
           칼럼을 삭제하시겠습니까?
         </h2>
-        <p className="text-base font-semibold text-gray-400 lg:text-lg">
+        <p className="text-base font-semibold whitespace-nowrap text-gray-400 lg:text-lg">
           칼럼 내 모든 카드도 함께 삭제됩니다.
         </p>
       </div>
 
-      <div className="flex w-full items-center justify-center gap-3 md:gap-5">
+      <div className="mt-5 flex w-full items-center justify-center gap-3 md:gap-5">
         <Button
           colortype="secondary"
-          className="h-15 flex-1 text-base text-gray-100 lg:h-12.5 lg:text-lg"
+          className="h-12.5 flex-1 text-base text-gray-200 lg:h-14 lg:text-lg"
           onClick={() => handleCancel()}
         >
           취소
         </Button>
         <Button
-          className="bg-profile-rose h-15 flex-1 text-base text-white hover:bg-red-800 active:bg-red-900 lg:h-12.5 lg:text-lg"
+          className="bg-profile-rose h-12.5 flex-1 text-base text-white hover:bg-red-800 active:bg-red-900 lg:h-14 lg:text-lg"
           onClick={() => handleDelete()}
         >
           삭제
         </Button>
       </div>
-    </div>
+    </Modal>
   );
 }
