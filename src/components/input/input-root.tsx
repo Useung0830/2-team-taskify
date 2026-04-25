@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-import { cn } from "@/util/cn";
+import { cn } from "@/lib/cn";
 
 import { InputContext } from "./input-context";
 import { InputWrapperStylesProps } from "./input-style";
@@ -30,7 +30,7 @@ export function InputRoot({
   className,
 }: InputRootProps) {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-  const togglePassword = () => setIsPasswordVisible((prev) => !prev);
+  const handleTogglePassword = () => setIsPasswordVisible((prev) => !prev);
 
   return (
     <InputContext.Provider
@@ -39,7 +39,7 @@ export function InputRoot({
         errorMessage,
         isDisabled,
         isPasswordVisible,
-        togglePassword,
+        handleTogglePassword,
       }}
     >
       <div
