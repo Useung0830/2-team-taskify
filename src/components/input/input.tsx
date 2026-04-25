@@ -1,6 +1,6 @@
 "use client";
 
-import InputError from "./input-error";
+import { InputError } from "./input-error";
 import { InputField } from "./input-field";
 import { InputPasswordToggle, InputSearchIcon } from "./input-icons";
 import { InputRoot } from "./input-root";

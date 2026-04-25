@@ -24,7 +24,7 @@ export function InputField({ className, type, ...props }: InputFieldProps) {
   return (
     <input
       type={inputType}
-      isDisabled={isDisabled ?? props.isDisabled}
+      isDisabled={isDisabled ?? props.disabled}
       className={cn(
         "w-full bg-transparent text-gray-300 outline-none placeholder:text-gray-500 disabled:text-gray-400",
         { "cursor-not-allowed": isDisabled },
