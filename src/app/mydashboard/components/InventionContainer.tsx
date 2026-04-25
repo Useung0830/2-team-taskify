@@ -4,8 +4,9 @@ import { InventionRow } from "./InventionRow";
 export function InventionContainer() {
   return (
     <div>
-      <InventionHeader />
-      {/* api 연결 시 렌더링 하는 로직 수정 */}
+      <div className="hidden md:block">
+        <InventionHeader />
+      </div>
       {Array.from({ length: 10 }).map((_, i) => (
         <InventionRow key={i} />
       ))}

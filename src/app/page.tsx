@@ -1,5 +1,3 @@
-import { Dropdown } from "@/components/Dropdown";
-import { ImageUpload } from "@/components/ImageUpload";
 import { MainFooter } from "@/components/layout/MainFooter";
 import { MainHeader } from "@/components/layout/MainHeader";
 
@@ -14,7 +12,7 @@ export default function Home() {
   return (
     <div className="bg-background flex min-h-screen flex-col">
       <MainHeader isLoggedIn={isLoggedIn} firstDashboardId={firstDashboardId} />
-      <main className="flex-1 px-4 pt-[70px] md:pt-[100px]"></main>
+      <main className="flex-1"></main>
       <MainFooter />
     </div>
   );

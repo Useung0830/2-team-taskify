@@ -14,15 +14,15 @@ const buttonVariants = cva(
         primary:
           "rounded-full bg-[#00A200] text-white hover:bg-[#0B8A0B] active:bg-[#00A200] disabled:bg-[#10671F] disabled:text-[#00330D]",
         secondary:
-          "rounded-full bg-[#3C3C41] text-[#F8F7FA] hover:bg-[#333236] active:bg-[#3C3C41] disabled:bg-[#3C3C41] disabled:text-[#787486]",
-        ghost: "bg-transparent text-white disabled:text-[#787486]",
+          "hover:bg-black-600 rounded-full bg-[#3C3C41] text-[#F8F7FA] active:bg-[#3C3C41] disabled:bg-[#3C3C41] disabled:text-gray-500",
+        ghost: "bg-transparent text-white disabled:text-gray-500",
       },
       // [Size] 크기
       size: {
-        lg: "h-[60px] min-w-[200px] gap-[8px] px-[30px] py-[6px] text-[18px]",
-        md: "h-[50px] min-w-[200px] gap-[8px] px-[30px] py-[6px] text-[16px]",
-        sm: "h-[36px] min-w-[120px] gap-[4px] px-[20px] py-[6px] text-[16px]",
-        xs: "h-[29px] min-w-[91px] gap-[2px] px-[12px] py-[6px] text-[14px]",
+        lg: "h-15 min-w-50 gap-2 px-7.5 py-1.5 text-[18px]",
+        md: "h-12.5 min-w-50 gap-2 px-7.5 py-1.5 text-[16px]",
+        sm: "h-9 min-w-30 gap-1 px-5 py-1.5 text-[16px]",
+        xs: "h-7.25 min-w-22.75 gap-0.5 px-3 py-1.5 text-[14px]",
       },
     },
     defaultVariants: {
@@ -105,7 +105,7 @@ export function Button({
         !disabled &&
           colortype !== "ghost" && [
             isHovered &&
-              (colortype === "primary" ? "bg-[#0B8A0B]" : "bg-[#333236]"),
+              (colortype === "primary" ? "bg-[#0B8A0B]" : "bg-black-600"),
             isActive &&
               (colortype === "primary" ? "bg-[#00A200]" : "bg-[#3C3C41]"),
           ],
