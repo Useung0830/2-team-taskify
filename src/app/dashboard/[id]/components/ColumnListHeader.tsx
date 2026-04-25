@@ -6,11 +6,23 @@ import settingicon from "../assets/ic-setting.svg";
 interface ColumnListHeaderProp {
   title: string;
   contentCount: number;
+  /**
+   * 톱니바퀴 클릭 시 칼럼 수정/삭제 모달창이 뜨는 column edit으로 이동하는데 필요하여 옵셔널 속성 추가
+   **/
+  onSettingClick?: () => void;
 }
+
 export function ColumnListHeader({
   title,
   contentCount,
+  onSettingClick,
 }: ColumnListHeaderProp) {
+  const handleColumnEdit = () => {
+    if (onSettingClick) {
+      onSettingClick();
+    }
+  };
+
   return (
     <div className="flex items-center justify-between">
       <div className="flex items-baseline justify-center gap-2">
@@ -19,7 +31,7 @@ export function ColumnListHeader({
       </div>
       <div className="flex gap-5">
         <Image src={plusicon} alt="add" />
-        <Image src={settingicon} alt="setting" />
+        <Image src={settingicon} alt="setting" onClick={handleColumnEdit} />
       </div>
     </div>
   );

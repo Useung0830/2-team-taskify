@@ -1,8 +1,8 @@
-import { cn } from "@/util/cn";
+import { cn } from "@/lib/cn";
 
-import EyeCloseIcon from "../icons/eye-close-icon";
-import EyeOpenIcon from "../icons/eye-open-icon";
-import SearchIcon from "../icons/search-icon";
+import { EyeCloseIcon } from "../icons/eye-close-icon";
+import { EyeOpenIcon } from "../icons/eye-open-icon";
+import { SearchIcon } from "../icons/search-icon";
 
 import { useInputContext } from "./input-context";
 
