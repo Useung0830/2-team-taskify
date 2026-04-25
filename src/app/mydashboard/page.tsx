@@ -6,7 +6,7 @@ import { Input } from "@/components/input/input";
 import * as T from "@/types/api";
 
 import { Emptydashboard } from "./components/Emptydashboard";
-import { InventionContainer } from "./components/InventionContainer";
+import { InvitionContainer } from "./components/InvitionContainer";
 import { MydashContainer } from "./components/MydashContainer";
 
 export default function MyDashboard() {
@@ -17,6 +17,7 @@ export default function MyDashboard() {
 
   useEffect(() => {
     const setUp = async () => {
+      //임시 로그인
       await postLogin({ email: "email@mail.com", password: "12341234" });
       //데이터 불러오기
       const { invitations } = await getMyInvitationList({ size: 10 });
@@ -72,7 +73,7 @@ export default function MyDashboard() {
           </div>
         </div>
         {invitaionList.length !== 0 ? (
-          <InventionContainer invitedData={invitaionList} />
+          <InvitionContainer invitedData={invitaionList} />
         ) : (
           <Emptydashboard dashtype="invite" />
         )}

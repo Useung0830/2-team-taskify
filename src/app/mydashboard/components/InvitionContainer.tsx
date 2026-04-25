@@ -1,5 +1,5 @@
-import { InventionHeader } from "./InventionHeader";
-import { InventionRow } from "./InventionRow";
+import { InvitionHeader } from "./InvitionHeader";
+import { InvitionRow } from "./InvitionRow";
 
 export interface UserInfo {
   id: number;
@@ -22,22 +22,22 @@ export interface InvitedData {
   createdAt: string;
   updatedAt: string;
 }
-interface InventionContainerProps {
+interface InvitionContainerProps {
   invitedData: InvitedData[];
 }
-export function InventionContainer({ invitedData }: InventionContainerProps) {
+export function InvitionContainer({ invitedData }: InvitionContainerProps) {
   console.log(invitedData);
   // const { dashboard, inviter } = invitedData;
   return (
     <div>
       <div className="hidden md:block">
-        <InventionHeader />
+        <InvitionHeader />
       </div>
       {/* {Array.from({ length: 10 }).map((_, i) => (
         <InventionRow key={i} title={dashbard.title} />
       ))} */}
       {invitedData.map((item) => (
-        <InventionRow
+        <InvitionRow
           key={item.id}
           title={item.dashboard.title}
           inviter={item.inviter}

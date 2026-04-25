@@ -1,7 +1,7 @@
-import { UserInfo } from "./InventionContainer";
+import { UserInfo } from "./InvitionContainer";
 import { Profile } from "./Profile";
 
-export function InventionRow({
+export function InvitionRow({
   title,
   inviter,
 }: {
