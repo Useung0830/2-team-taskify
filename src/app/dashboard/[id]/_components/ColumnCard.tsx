@@ -2,7 +2,7 @@ import Image, { StaticImageData } from "next/image";
 
 import { Badge } from "@/components/Badge";
 
-import { Profile } from "./Profile";
+import { Profile } from "../../../../components/Profile";
 
 interface ColumnCardProps {
   cardTitle: string;
