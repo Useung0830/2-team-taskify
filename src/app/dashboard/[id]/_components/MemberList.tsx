@@ -1,12 +1,14 @@
 import { Button } from "@/components/button/Button";
 import { Profile } from "@/components/profile/Profile";
-
-// 타입 정의
 interface Member {
   id: number;
+  userId: number;
   nickname: string;
   email: string;
-  profileImageUrl?: string;
+  profileImageUrl?: string | null;
+  isOwner: boolean;
+  createdAt: string;
+  updatedAt: string;
 }
 
 interface Invitation {

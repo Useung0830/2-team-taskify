@@ -25,7 +25,7 @@ export function Profile({ name, type, imageUrl }: ProfileProps) {
           )}
         </div>
       )}
-      <span className="inline-block truncate text-lg max-md:max-w-[150px] max-md:text-base">
+      <span className="inline-block truncate text-lg max-md:max-w-37.5 max-md:text-base">
         {name}
       </span>
     </div>
