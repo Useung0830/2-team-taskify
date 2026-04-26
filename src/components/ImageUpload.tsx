@@ -50,22 +50,22 @@ export function ImageUpload({
   }, [previewUrl, initialImageUrl]);
 
   return (
-    <div className="flex w-full flex-col gap-[10px]">
+    <div className="flex w-full flex-col gap-2.5">
       <label className="font-pretendard text-[16px] font-semibold text-gray-400">
         이미지
       </label>
 
       <div
         onClick={handleClick}
-        className={`relative flex h-[147px] w-[335px] rounded-[12px] transition-all md:h-[171px] md:w-[540px] ${
+        className={`relative flex h-36.75 w-83.75 rounded-xl transition-all md:h-42.75 md:w-135 ${
           previewUrl
             ? "items-start justify-start p-2"
             : "bg-black-800 hover:bg-black-700 cursor-pointer items-center justify-center overflow-hidden border-2 border-dashed border-gray-600"
         } `}
       >
         {previewUrl ? (
-          <div className="relative ml-1 h-[140px] w-[231px] rounded-[14px] border-[1.5px] border-solid border-gray-700">
-            <div className="h-full w-full overflow-hidden rounded-[12px]">
+          <div className="relative ml-1 h-35 w-57.75 rounded-[14px] border-[1.5px] border-solid border-gray-700">
+            <div className="h-full w-full overflow-hidden rounded-xl">
               <Image
                 src={previewUrl}
                 alt="업로드 이미지"
@@ -83,7 +83,7 @@ export function ImageUpload({
             </button>
           </div>
         ) : (
-          <div className="flex flex-col items-center gap-[2px]">
+          <div className="flex flex-col items-center gap-0.5">
             <Image src={imageIcon} alt="이미지아이콘" width={32} height={32} />
             <span className="font-pretendard text-[16px] font-semibold text-gray-400">
               + image upload

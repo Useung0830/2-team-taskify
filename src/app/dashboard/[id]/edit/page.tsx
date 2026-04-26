@@ -20,7 +20,7 @@ export default function Edit() {
   const router = useRouter();
 
   const handleDelete = () => {
-    router.push(`/invite`);
+    router.push(`/dashboard-delete`);
   };
 
   const handleSectionClick = (section: Section) => {

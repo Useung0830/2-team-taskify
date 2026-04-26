@@ -42,10 +42,11 @@ export function MemberList({ type, data }: MemberListProps) {
           }
         />
       </div>
-
-      <Button colortype="secondary" size="xs">
-        {type === "member" ? "삭제" : "취소"}
-      </Button>
+      <div className="w-14">
+        <Button colortype="secondary" size="xs">
+          {type === "member" ? "삭제" : "취소"}
+        </Button>
+      </div>
     </div>
   );
 }
