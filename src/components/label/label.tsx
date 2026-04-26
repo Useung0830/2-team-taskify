@@ -16,6 +16,8 @@ const labelStyles = cva("font-pretendard font-semibold text-gray-300", {
 export interface LabelProps
   extends ComponentPropsWithRef<"label">, VariantProps<typeof labelStyles> {}
 
-export function Label({ className, labelSize, ...props }: LabelProps) {
+function Label({ className, labelSize, ...props }: LabelProps) {
   return <label className={labelStyles({ labelSize, className })} {...props} />;
 }
+
+export { Label };

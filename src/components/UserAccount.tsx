@@ -1,4 +1,5 @@
 import Image from "next/image";
+
 import icSetting from "../assets/ic-setting.svg";
 
 function UserAccount() {
@@ -17,4 +18,4 @@ function UserAccount() {
   );
 }
 
-export default UserAccount;
+export { UserAccount };

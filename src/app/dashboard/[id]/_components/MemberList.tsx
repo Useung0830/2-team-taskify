@@ -1,5 +1,6 @@
-import { Button } from "@/components/button/Button";
+import { Button } from "@/components/Button";
 import { Profile } from "@/components/profile/Profile";
+
 interface Member {
   id: number;
   userId: number;

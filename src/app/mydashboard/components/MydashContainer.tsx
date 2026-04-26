@@ -1,18 +1,67 @@
+"use client";
+
 import Image from "next/image";
+import { useState } from "react";
 
-import leftbtn from "../assets/leftBtn.svg";
-import rightbtn from "../assets/rightBtn.svg";
+import leftbtn from "../assets/ic_left_arrow.svg";
+import rightbtn from "../assets/ic_right_arrow.svg";
+import { useWindowSize } from "../hooks/usewindow-size";
 
+import { mockdata } from "./mock";
 import { MydashboardList } from "./MydashboardList";
 
 export function MydashContainer() {
+  const [currentPage, setCurrentPage] = useState(0);
+  const widthSize = useWindowSize();
+  const SHOW_FIRST_ITEM = widthSize >= 1024 ? 3 : 1;
+  const SHOW_ITEMS = widthSize >= 1024 ? 4 : 2;
+
+  const getDataSlicing = () => {
+    if (currentPage === 0) {
+      return mockdata.slice(0, SHOW_FIRST_ITEM);
+    }
+
+    const start = SHOW_FIRST_ITEM + SHOW_ITEMS * (currentPage - 1);
+    const end = start + SHOW_ITEMS;
+
+    return mockdata.slice(start, end);
+  };
+
+  const totalPages =
+    Math.ceil((mockdata.length - SHOW_FIRST_ITEM) / SHOW_ITEMS) + 1;
+
+  const handleNext = () => {
+    if (currentPage < totalPages - 1) setCurrentPage((p) => p + 1);
+  };
+
+  const handlePrev = () => {
+    if (currentPage > 0) setCurrentPage((p) => p - 1);
+  };
+
+  const pagedData = getDataSlicing();
+
   return (
     <div className="flex flex-col py-2.5">
-      <MydashboardList />
+      <MydashboardList data={pagedData} currentPage={currentPage} />
       <div className="ml-auto flex gap-5 pt-5">
-        <div> 1 of 3</div>
-        <Image src={leftbtn} alt="left" />
-        <Image src={rightbtn} alt="right" />
+        <div>
+          {" "}
+          {currentPage + 1} of {totalPages}
+        </div>
+        <button
+          className="disabled:opacity-30"
+          onClick={handlePrev}
+          disabled={currentPage === 0}
+        >
+          <Image src={leftbtn} alt="left" />
+        </button>
+        <button
+          className="disabled:opacity-30"
+          onClick={handleNext}
+          disabled={currentPage === totalPages - 1}
+        >
+          <Image src={rightbtn} alt="right" />
+        </button>
       </div>
     </div>
   );

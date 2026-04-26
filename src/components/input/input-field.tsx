@@ -1,6 +1,6 @@
 import { ComponentPropsWithRef } from "react";
 
-import { cn } from "@/util/cn";
+import { cn } from "@/lib/cn";
 
 import { useInputContext } from "./input-context";
 import { InputWrapperStylesProps } from "./input-style";
@@ -24,7 +24,7 @@ export function InputField({ className, type, ...props }: InputFieldProps) {
   return (
     <input
       type={inputType}
-      disabled={isDisabled ?? props.disabled}
+      isDisabled={isDisabled ?? props.disabled}
       className={cn(
         "w-full bg-transparent text-gray-300 outline-none placeholder:text-gray-500 disabled:text-gray-400",
         { "cursor-not-allowed": isDisabled },

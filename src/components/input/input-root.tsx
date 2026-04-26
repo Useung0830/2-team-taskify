@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-import { cn } from "@/util/cn";
+import { cn } from "@/lib/cn";
 
 import { InputContext } from "./input-context";
 import { InputWrapperStylesProps } from "./input-style";

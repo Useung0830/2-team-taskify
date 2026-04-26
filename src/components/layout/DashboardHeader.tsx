@@ -34,6 +34,7 @@ export function DashboardHeader({ members, totalCount }: DashboardHeaderProps) {
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
+    //eslint 임시방편으로 오류 방지
     const timer = setTimeout(() => {
       setIsMounted(true);
     }, 0);
@@ -61,25 +62,23 @@ export function DashboardHeader({ members, totalCount }: DashboardHeaderProps) {
 
   if (!isMounted) {
     return (
-      <header className="bg-black-900 border-black-800 fixed top-0 right-0 z-30 h-[50px] w-full border-b-2 md:h-[60px]" />
+      <header className="bg-black-900 border-black-800 fixed top-0 right-0 z-30 h-12.5 w-full border-b-2 md:h-15" />
     );
   }
 
   return (
     <header
-      className={`bg-black-900 font-pretendard border-black-800 fixed top-0 right-0 z-30 flex h-[50px] w-full items-center justify-between border-b-2 px-[12px] md:left-[220px] md:h-[60px] md:w-[calc(100%-220px)] md:justify-end md:px-[24px] lg:left-[340px] lg:w-[calc(100%-340px)]`}
+      className={`bg-black-900 font-pretendard border-black-800 fixed top-0 right-0 z-30 flex h-12.5 w-full items-center justify-between border-b-2 px-3 md:left-55 md:h-15 md:w-[calc(100%-220px)] md:justify-end md:px-6 lg:left-85 lg:w-[calc(100%-340px)]`}
     >
       <div className="flex-1 md:hidden" />
 
-      <div
-        className={`flex items-center gap-[30px] md:gap-[34px] lg:gap-[50px]`}
-      >
-        <div className="flex h-[24px] w-[79px] items-center md:h-[34px] md:w-auto">
+      <div className={`flex items-center gap-7.5 md:gap-8.5 lg:gap-12.5`}>
+        <div className="flex h-6 w-19.75 items-center md:h-8.5 md:w-auto">
           {membersWithColors.map((member, index) => (
             <div
               key={member.id}
               style={{ backgroundColor: `var(--color-${member.colorKey})` }}
-              className={`border-black-900 relative flex h-[24px] w-[24px] flex-shrink-0 items-center justify-center rounded-full border-2 transition-all ${index !== 0 ? "-ml-[8px]" : ""} md:h-[34px] md:w-[34px] md:${index !== 0 ? "-ml-[13px]" : ""} cursor-pointer hover:z-20 hover:-translate-y-1 hover:border-white`}
+              className={`border-black-900 relative flex h-6 w-6 shrink-0 items-center justify-center rounded-full border-2 transition-all ${index !== 0 ? "-ml-2" : ""} md:h-8.5 md:w-8.5 md:${index !== 0 ? "-ml-3.25" : ""} cursor-pointer hover:z-20 hover:-translate-y-1 hover:border-white`}
             >
               {member.profileImageUrl ? (
                 <Image
@@ -98,19 +97,19 @@ export function DashboardHeader({ members, totalCount }: DashboardHeaderProps) {
 
           {extraCount > 0 && (
             <div
-              className={`border-black-900 z-10 -ml-[8px] flex h-[24px] w-[24px] flex-shrink-0 items-center justify-center rounded-full border-2 bg-pink-100 text-[10px] font-bold text-pink-500 md:-ml-[13px] md:h-[34px] md:w-[34px] md:text-[12px]`}
+              className={`border-black-900 z-10 -ml-2 flex h-6 w-6 shrink-0 items-center justify-center rounded-full border-2 bg-pink-100 text-[10px] font-bold text-pink-500 md:-ml-3.25 md:h-8.5 md:w-8.5 md:text-[12px]`}
             >
               +{extraCount}
             </div>
           )}
         </div>
 
-        <div className="bg-black-700 h-6 w-[1px] flex-shrink-0" />
+        <div className="bg-black-700 h-6 w-px shrink-0" />
 
-        <div className="flex h-[30px] w-[70px] flex-shrink-0 items-center gap-[10px] md:h-auto md:w-auto md:gap-4">
+        <div className="flex h-7.5 w-17.5 shrink-0 items-center gap-2.5 md:h-auto md:w-auto md:gap-4">
           <button
             onClick={handleEditClick}
-            className="group flex h-[30px] w-[30px] flex-shrink-0 cursor-pointer items-center justify-center text-gray-300 transition hover:text-white md:h-auto md:w-auto md:gap-2 md:py-1.5"
+            className="group flex h-7.5 w-7.5 shrink-0 cursor-pointer items-center justify-center text-gray-300 transition hover:text-white md:h-auto md:w-auto md:gap-2 md:py-1.5"
           >
             <Image
               src={iconSettings}
@@ -122,7 +121,7 @@ export function DashboardHeader({ members, totalCount }: DashboardHeaderProps) {
             <span className="hidden text-sm font-medium md:inline">관리</span>
           </button>
 
-          <button className="group flex h-[30px] w-[30px] flex-shrink-0 cursor-pointer items-center justify-center text-gray-300 transition hover:text-white md:h-auto md:w-auto md:gap-2 md:py-1.5">
+          <button className="group flex h-7.5 w-7.5 shrink-0 cursor-pointer items-center justify-center text-gray-300 transition hover:text-white md:h-auto md:w-auto md:gap-2 md:py-1.5">
             <Image
               src={iconShare}
               alt="share"

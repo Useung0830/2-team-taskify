@@ -1,7 +1,7 @@
 import { DashboardAdd } from "./DashboardAdd";
-import SideButton from "./SideButton";
-import SideHomeButton from "./SideHomeButton";
-import UserAccount from "./UserAccount";
+import { SideButton } from "./SideButton";
+import { SideHomeButton } from "./SideHomeButton";
+import { UserAccount } from "./UserAccount";
 
 export function SideMenu() {
   return (

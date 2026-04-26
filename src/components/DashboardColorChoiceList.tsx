@@ -7,8 +7,7 @@ type DashboardColorChoiceListProp = VariantProps<typeof sizeVariants>;
 const sizeVariants = cva("flex gap-4 max-md:gap-3", {
   variants: {
     size: {
-      default: "h-15 w-135",
-      sm: "h-10 w-73.75",
+      default: "h-10 w-73.75 md:h-15 md:w-135",
       lg: "h-22.5 w-185",
       edit: "h-22.5 w-full max-[1172px]:h-15 max-md:h-14.25",
     },

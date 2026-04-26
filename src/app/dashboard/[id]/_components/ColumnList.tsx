@@ -1,3 +1,5 @@
+"use client";
+
 import userAddImg from "../_assets/img-userAdd.png";
 
 import { ColumnCard } from "./ColumnCard";
@@ -19,6 +21,7 @@ interface ColumnListProps {
 
 export function ColumnList({ column }: ColumnListProps) {
   const { title } = column;
+
   return (
     <div className="flex w-full flex-col gap-5 md:mx-10 lg:mx-0">
       <ColumnListHeader title={title} contentCount={3} />
