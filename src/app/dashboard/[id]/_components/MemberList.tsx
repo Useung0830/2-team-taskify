@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import { Button } from "@/components/Button";
 import { Profile } from "@/components/profile/Profile";
 
@@ -31,6 +33,8 @@ export function MemberList({ type, data }: MemberListProps) {
       ? (data as Member).nickname
       : (data as Invitation).invitee.email;
 
+  const targetHref = type === "member" ? "/member-delete" : "/invite-cancel";
+
   return (
     <div className="flex items-center justify-between border-b border-[#383A42] py-3.5 text-gray-100 max-md:py-3">
       <div className="flex items-center gap-3">
@@ -43,9 +47,11 @@ export function MemberList({ type, data }: MemberListProps) {
         />
       </div>
       <div className="w-14">
-        <Button colortype="secondary" size="xs">
-          {type === "member" ? "삭제" : "취소"}
-        </Button>
+        <Link href={targetHref}>
+          <Button colorType="secondary" size="xs">
+            {type === "member" ? "삭제" : "취소"}
+          </Button>
+        </Link>
       </div>
     </div>
   );

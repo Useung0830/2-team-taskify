@@ -1,6 +1,6 @@
 "use client";
 
-import { useParams } from "next/navigation";
+import { useParams, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 import { getMemberList, getInvitationList } from "@/api/data";
@@ -46,6 +46,7 @@ export function MemberManagement() {
   const [invitations, setInvitations] = useState<Invitation[]>([]);
 
   const params = useParams();
+  const searchParams = useSearchParams();
   const dashboardId = Number(params.id);
 
   useEffect(() => {
@@ -67,7 +68,7 @@ export function MemberManagement() {
     if (dashboardId) {
       fetchData();
     }
-  }, [dashboardId]);
+  }, [dashboardId, searchParams]);
 
   return (
     <div className="flex flex-col gap-6">
