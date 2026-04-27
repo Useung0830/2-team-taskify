@@ -1,7 +1,7 @@
 import Image from "next/image";
 
-import chartIcon from "../assets/chart.svg";
-import mailIcon from "../assets/MailIcon.svg";
+import chartIcon from "@/assets/mydashboard/chart.svg";
+import mailIcon from "@/assets/mydashboard/MailIcon.svg";
 
 interface DashboardProps {
   dashtype: "my" | "invite";
