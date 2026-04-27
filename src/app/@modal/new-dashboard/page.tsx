@@ -11,10 +11,10 @@ export default function NewDashboard() {
       />
       <DashboardColorChoiceList />
       <div className="flex gap-5">
-        <button className="rounded-25 h-15 w-full bg-gray-900 px-7.5 py-1.5">
+        <button className="h-15 w-full rounded-full bg-gray-900 px-7.5 py-1.5">
           취소
         </button>
-        <button className="rounded-25 h-15 w-full bg-green-500 px-7.5 py-1.5">
+        <button className="h-15 w-full rounded-full bg-green-500 px-7.5 py-1.5">
           생성
         </button>
       </div>

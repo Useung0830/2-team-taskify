@@ -15,10 +15,10 @@ export default function DashboardDelete() {
     <div className="flex w-full flex-col items-center gap-10">
       <div className="flex w-full flex-col items-center gap-2 md:gap-3">
         <h2 className="text-lg font-semibold text-gray-200 lg:text-xl">
-          칼럼을 삭제하시겠습니까?
+          대시보드를 삭제하시겠습니까?
         </h2>
         <p className="text-base font-semibold whitespace-nowrap text-gray-400 lg:text-lg">
-          칼럼 내 모든 카드도 함께 삭제됩니다.
+          대시보드 내 모든 내용이 함께 삭제됩니다.
         </p>
       </div>
 

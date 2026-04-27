@@ -4,12 +4,12 @@ import { DashboardColorItem } from "./DashboardColorItem";
 
 type DashboardColorChoiceListProp = VariantProps<typeof sizeVariants>;
 
-const sizeVariants = cva("flex gap-4 max-md:gap-3", {
+const sizeVariants = cva("flex gap-2", {
   variants: {
     size: {
       default: "h-10 w-73.75 md:h-15 md:w-135",
       lg: "h-22.5 w-185",
-      edit: "h-22.5 w-full max-[1172px]:h-15 max-md:h-14.25",
+      edit: "h-22.5 w-full gap-4 max-lg:h-15 max-md:h-14 max-md:gap-3",
     },
   },
 
@@ -23,7 +23,7 @@ export function DashboardColorChoiceList({
 }: DashboardColorChoiceListProp) {
   const colorList = ["red", "orange", "yellow", "green", "blue"] as const;
   return (
-    <div className="flex flex-col gap-3 max-md:gap-2.5">
+    <div className="flex flex-col gap-3">
       <div className="text-gray-300">색상</div>
       <div className={sizeVariants({ size })}>
         {colorList.map((color) => (
