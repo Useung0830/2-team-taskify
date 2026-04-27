@@ -2,10 +2,11 @@
 
 import { useMemo, useState } from "react";
 
+//import plusBtn from "@/assets/common/ic-plus.svg";
 import { Input } from "@/components/input/input";
 import { Label } from "@/components/label/label";
-import { Modal } from "@/components/Modal";
-import { ModalHeader } from "@/components/ModalHeader";
+import { Modal } from "@/components/modal/Modal";
+import { ModalHeader } from "@/components/modal/ModalHeader";
 import { cn } from "@/lib/cn";
 
 interface ColumnAddProps {
@@ -64,7 +65,7 @@ export function ColumnAdd({
 
   return (
     <Modal>
-      <ModalHeader onClose={handleCancel}>새 칼럼 생성</ModalHeader>
+      <ModalHeader>새 칼럼 생성</ModalHeader>
       <Input errorMessage={errMessage}>
         <Label htmlFor="columnname" className="mt-4 mb-3 md:mt-7">
           이름

@@ -14,7 +14,7 @@ interface InputIconProps {
  * @description 검색 아이콘
  * @param {string} className - 검색 아이콘의 클래스 이름
  */
-function InputSearchIcon({ className }: InputIconProps) {
+export function InputSearchIcon({ className }: InputIconProps) {
   const { inputSize } = useInputContext();
   const size = inputSize === "sm" ? 18 : 20;
   return (
@@ -39,7 +39,7 @@ function InputSearchIcon({ className }: InputIconProps) {
  * @description 비밀번호 토글 아이콘
  * @param {string} className - 비밀번호 토글 아이콘의 클래스 이름
  */
-function InputPasswordToggle({ className }: InputIconProps) {
+export function InputPasswordToggle({ className }: InputIconProps) {
   const { inputSize, isPasswordVisible, handleTogglePassword } =
     useInputContext();
   const size = inputSize === "sm" ? 18 : 20;
@@ -67,5 +67,3 @@ function InputPasswordToggle({ className }: InputIconProps) {
     </button>
   );
 }
-
-export { InputSearchIcon, InputPasswordToggle };

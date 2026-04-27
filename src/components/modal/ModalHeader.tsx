@@ -1,4 +1,5 @@
-import { ModalCloseButton } from "./modal/ModalCloseButton";
+import { ModalCloseButton } from "./ModalCloseButton";
+
 interface ModalHeaderProps {
   children: string;
 }

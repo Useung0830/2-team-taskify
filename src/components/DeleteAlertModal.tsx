@@ -3,8 +3,9 @@ import { useRouter } from "next/navigation";
 
 // import { cn } from "@/lib/cn";
 
+import { Modal } from "@/components/modal/Modal";
+
 import { Button } from "./Button";
-import { Modal } from "./Modal";
 interface DeleteAlertModaLProps {
   onCancel?: () => void;
   onDelete?: () => void;
