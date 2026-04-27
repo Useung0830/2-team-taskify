@@ -5,10 +5,14 @@ import { DialogLayout } from "./DialogLayout";
 interface DialogProps {
   description: string;
   isOpen: boolean;
-  handleClose: () => void;
+  onClose: () => void;
 }
 
-export function Dialog({ description, isOpen, handleClose }: DialogProps) {
+export function Dialog({
+  description,
+  isOpen,
+  onClose: handleClose,
+}: DialogProps) {
   if (!isOpen) return null;
 
   return (
