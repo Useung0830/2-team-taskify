@@ -91,7 +91,7 @@ export default function Dashboard({ params }) {
       <div className="pt-2.5 lg:hidden">
         <div className="flex w-full justify-center gap-1.5">
           {activeCol ? (
-            <ColumnList column={activeCol} />
+            <ColumnList key={activeCol.id} column={activeCol} />
           ) : (
             <div className="text-gray-400">컬럼 데이터가 없습니다.</div>
           )}
