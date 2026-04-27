@@ -1,4 +1,10 @@
-import { MainHeader } from "@/components/MainHeader";
+/**
+ * Dashboard 컴포넌트 주석 처리했으니 풀어서 테스트 해보시면 됩니다
+ **/
+
+// import { Dashboard } from "@/app/dashboard/[id]/page";
+import { MainFooter } from "@/components/layout/MainFooter";
+import { MainHeader } from "@/components/layout/MainHeader";
 
 export default function Home() {
   /**
@@ -9,9 +15,10 @@ export default function Home() {
   const firstDashboardId = 1;
 
   return (
-    <div className="bg-background min-h-screen">
+    <div className="bg-background flex min-h-screen flex-col">
       <MainHeader isLoggedIn={isLoggedIn} firstDashboardId={firstDashboardId} />
-      <main></main>
+      <main className="flex-1">{/* <Dashboard /> */}</main>
+      <MainFooter />
     </div>
   );
 }

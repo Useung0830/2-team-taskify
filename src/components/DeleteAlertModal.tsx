@@ -1,86 +1,67 @@
-import { cn } from "@/lib/cn";
+"use client";
+import { useRouter } from "next/navigation";
+
+// import { cn } from "@/lib/cn";
+
+import { Modal } from "@/components/modal/Modal";
 
 import { Button } from "./Button";
-
-interface DeleteAlertModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-  onDelete: () => void;
-  variant: "mobile" | "desktop";
+interface DeleteAlertModaLProps {
+  onCancel?: () => void;
+  onDelete?: () => void;
 }
 
 export function DeleteAlertModal({
-  isOpen,
-  onClose,
+  onCancel,
   onDelete,
-  variant,
-}: DeleteAlertModalProps) {
-  if (!isOpen) return null;
+}: DeleteAlertModaLProps) {
+  const router = useRouter();
 
-  const isDesktop = variant === "desktop";
+  // 취소 클릭 시
+  const handleCancel = () => {
+    console.warn("칼럼 취소 클릭");
+    onCancel?.();
+  };
 
-  const handleClose = () => onClose();
+  // 삭제 클릭 시
   const handleDelete = () => {
-    onDelete();
-    onClose();
+    try {
+      console.warn("칼럼 삭제 클릭");
+      onDelete?.();
+      router.refresh();
+    } catch (error) {
+      console.error("칼럼 삭제 실패 : ", error);
+    }
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4">
-      <div
-        className={cn(
-          "bg-modal-background relative flex flex-col items-center border border-white/10 shadow-2xl",
-          isDesktop
-            ? "w-150 gap-7.5 rounded-3xl p-[40px_30px_30px]"
-            : "w-83.75 gap-5 rounded-[20px] p-[30px_20px_24px]"
-        )}
-      >
-        <div
-          className={cn(
-            "flex flex-col items-center text-center",
-            isDesktop ? "w-71.25 gap-3" : "w-57 gap-2"
-          )}
-        >
-          <h2
-            className={cn(
-              "font-semibold whitespace-nowrap text-gray-200",
-              isDesktop ? "text-[24px]" : "text-[18px]"
-            )}
-          >
+    <Modal>
+      <div className="w-83.775 md:w-135">
+        <div className="flex w-full flex-col items-center gap-2 md:gap-3">
+          <h2 className="text-lg font-semibold text-gray-200 lg:text-xl">
             칼럼을 삭제하시겠습니까?
           </h2>
-          <p
-            className={cn(
-              "whitespace-nowrap text-gray-300",
-              isDesktop ? "text-[20px]" : "text-[16px]"
-            )}
-          >
+          <p className="text-base font-semibold whitespace-nowrap text-gray-400 lg:text-lg">
             칼럼 내 모든 카드도 함께 삭제됩니다.
           </p>
         </div>
 
-        <div className={cn("flex w-full", isDesktop ? "gap-5" : "gap-3")}>
+        <div className="mt-5 flex items-center justify-center gap-3 md:gap-5">
           <Button
             colortype="secondary"
-            className={cn(
-              "hover:bg-black-600! min-w-0! flex-1 bg-gray-900! text-gray-100!",
-              isDesktop ? "h-15 text-[18px]" : "h-12.5 text-[16px]"
-            )}
-            onClick={handleClose}
+            className="h-12.5 flex-1 text-base text-gray-200 lg:h-14 lg:text-lg"
+            onClick={() => handleCancel()}
           >
             취소
           </Button>
           <Button
-            className={cn(
-              "bg-red! hover:bg-rose! min-w-0! flex-1 text-gray-100!",
-              isDesktop ? "h-15 text-[18px]" : "h-12.5 text-[16px]"
-            )}
-            onClick={handleDelete}
+            className="bg-profile-rose h-12.5 flex-1 text-base text-white hover:bg-red-800 active:bg-red-900 lg:h-14 lg:text-lg"
+            onClick={() => handleDelete()}
           >
             삭제
           </Button>
         </div>
       </div>
-    </div>
+    </Modal>
   );
 }
