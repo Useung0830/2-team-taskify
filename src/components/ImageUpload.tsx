@@ -3,8 +3,8 @@
 import Image from "next/image";
 import { useState, useRef, ChangeEvent, MouseEvent, useEffect } from "react";
 
-import imageIcon from "@/assets/ic-image.svg";
-import iconX from "@/assets/ic-x-circle.svg";
+import imageIcon from "@/assets/common/ic-image.svg";
+import iconX from "@/assets/common/ic-x-circle.svg";
 
 interface ImageUploaderProps {
   onImageChange?: (file: File | null) => void;
@@ -20,7 +20,7 @@ export function ImageUpload({
   );
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const handleClick = (e: MouseEvent) => {
+  const handleClick = () => {
     if (!previewUrl) fileInputRef.current?.click();
   };
 

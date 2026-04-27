@@ -9,7 +9,7 @@ interface ColumnCardProps {
   creator?: string;
   imgSrc?: StaticImageData;
   tags?: string[];
-  descrip: string;
+  descrip?: string;
   onClick?: () => void; // 칼럼 카드 클릭 -> 칼럼 관리 -> 칼럼 수정/삭제 모달을 렌더링 하기 위해 추가
 }
 export function ColumnCard({

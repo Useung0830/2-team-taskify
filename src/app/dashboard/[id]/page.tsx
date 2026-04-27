@@ -3,9 +3,9 @@
 import { use, useEffect, useState } from "react";
 
 import { getColumnList, getDashboardDetail, postLogin } from "@/api/data";
+import { HashtagIcon } from "@/assets/dashboard/ic-colorchips";
 
 import { ColumnList } from "./_components/ColumnList";
-import { HashtagIcon } from "./assets/ic-colorchips";
 
 export interface ColumnList {
   id: number;
@@ -25,7 +25,11 @@ export interface Dashboard {
   userId: number;
 }
 
-export default function Dashboard({ params }) {
+interface DashboardPageProps {
+  params: Promise<{ id: number }>; // URL 파라미터는 무조건 string!
+}
+
+export default function Dashboard({ params }: DashboardPageProps) {
   const [columnList, setColumnList] = useState<ColumnList[]>();
   const [activeCol, setActiveCol] = useState(columnList?.[0]);
   const [dashboardDetail, setDashboardDetail] = useState<Dashboard>();
@@ -49,11 +53,10 @@ export default function Dashboard({ params }) {
     };
     setUp();
     fetchdashboardData();
-  }, []);
+  }, [id]);
 
   const handleTabSwitch = (col: ColumnList) => {
     setActiveCol(() => col);
-    console.log(activeCol);
   };
 
   if (!columnList || !dashboardDetail) {
@@ -101,11 +104,7 @@ export default function Dashboard({ params }) {
       {/* 데스크탑 전용 화면 */}
       <div className="hidden gap-15 lg:flex">
         {columnList?.map((column) => (
-          <ColumnList
-            key={column.id}
-            column={column}
-            colCount={columnList.length}
-          />
+          <ColumnList key={column.id} column={column} />
         ))}
       </div>
     </div>

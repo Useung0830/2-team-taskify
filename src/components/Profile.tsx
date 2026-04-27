@@ -1,7 +1,7 @@
 // 임시 컴포넌트
 
 interface ProfileProp {
-  name: string;
+  name: string | undefined;
 }
 export function Profile({ name }: ProfileProp) {
   return (

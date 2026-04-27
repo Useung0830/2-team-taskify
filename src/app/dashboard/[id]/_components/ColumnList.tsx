@@ -44,7 +44,7 @@ interface Params {
   cursorId?: number;
 }
 
-export function ColumnList({ column }: ColumnList) {
+export function ColumnList({ column }: { column: ColumnList }) {
   const { title, id } = column;
   const [cardList, setCardList] = useState<GetCardListResponse[]>([]);
   const cursorId = useRef<number | null>(null);
@@ -95,7 +95,8 @@ export function ColumnList({ column }: ColumnList) {
     };
 
     load();
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id]);
 
   useEffect(() => {
     const options = {
@@ -120,7 +121,8 @@ export function ColumnList({ column }: ColumnList) {
     }
 
     return () => observer.disconnect();
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isLoading, hasMore]);
 
   // 칼럼 삭제 모달 상태 관리
   const [isColumnEdit, setIsColumnEdit] = useState(false);
