@@ -5,12 +5,11 @@ import { getMyInvitationList, postLogin } from "@/api/data";
 import { Input } from "@/components/input/input";
 import * as T from "@/types/api";
 
-import { Emptydashboard } from "./components/Emptydashboard";
-import { InvitionContainer } from "./components/InvitionContainer";
-import { MydashContainer } from "./components/MydashContainer";
+import { Emptydashboard } from "./_components/Emptydashboard";
+import { InvitionContainer } from "./_components/InvitionContainer";
+import { MydashContainer } from "./_components/MydashContainer";
 
 export default function MyDashboard() {
-  // const [mydashboardList, setMydashboard] = useState();
   const [invitaionList, setInvitationList] = useState<T.Invitation[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
