@@ -1,10 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import iconEmail from "@/assets/ic-email.svg";
-import iconFacebook from "@/assets/ic-facebook.svg";
-import iconInstagram from "@/assets/ic-instagram.svg";
-import logoImg from "@/assets/logo.svg";
+import iconEmail from "@/assets/landing/ic-email.svg";
+import iconFacebook from "@/assets/landing/ic-facebook.svg";
+import iconInstagram from "@/assets/landing/ic-instagram.svg";
+import logoImg from "@/assets/common/logo.svg";
 
 export function MainFooter() {
   return (

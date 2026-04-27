@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 
-import tag from "../assets/colorchips.svg";
+import tag from "@/assets/mydashboard/colorchips.svg";
 
 import { MockdataType } from "./mock";
 import { MyDashboardItemContainer } from "./MyDashBoardItemContainer";

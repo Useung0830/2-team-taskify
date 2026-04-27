@@ -4,8 +4,8 @@ import Image from "next/image";
 import { useParams, useRouter } from "next/navigation";
 import { useMemo, useState, useEffect } from "react";
 
-import iconSettings from "@/assets/ic-setting.svg";
-import iconShare from "@/assets/ic-user-plus.svg";
+import iconSettings from "@/assets/common/ic-setting.svg";
+import iconShare from "@/assets/common/ic-user-plus.svg";
 
 const PROFILE_COLOR_KEYS = [
   "profile-green",

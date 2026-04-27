@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import icPlus from "../assets/ic-plus.svg";
+import icPlus from "@/assets/common/ic-plus.svg";
 
 export function DashboardAdd() {
   return (
