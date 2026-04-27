@@ -5,7 +5,15 @@ import { useState } from "react";
 
 import { deleteInvitation } from "@/api/data";
 import { Button } from "@/components/Button";
-import { refreshDashboardData } from "@/util/dashboard"; // revalidatePath 서버액션
+import { refreshDashboardData } from "@/util/dashboard";
+
+interface AxiosErrorLike {
+  response?: {
+    data?: {
+      message?: string;
+    };
+  };
+}
 
 export default function InviteCancel() {
   const router = useRouter();
@@ -13,7 +21,6 @@ export default function InviteCancel() {
   const searchParams = useSearchParams();
   const [isLoading, setIsLoading] = useState(false);
 
-  // URL에서 ID 추출
   const dashboardId = Number(params.id);
   const invitationId = Number(searchParams.get("invitationId"));
 
@@ -29,21 +36,22 @@ export default function InviteCancel() {
 
     try {
       setIsLoading(true);
-
-      // 1. 초대 취소 API 호출
       await deleteInvitation(dashboardId, invitationId);
-
-      // 2. 서버 캐시 무효화 (revalidatePath)
       await refreshDashboardData(dashboardId);
 
       alert("초대가 취소되었습니다.");
 
-      // 3. 모달 닫기 및 부모 컴포넌트 useEffect 트리거를 위한 쿼리 파라미터 이동
       router.back();
       setTimeout(() => {
         router.replace(`/dashboard/${dashboardId}/edit?refetch=${Date.now()}`);
         router.refresh();
       }, 100);
+    } catch (error) {
+      // 2. any 대신 미리 만든 인터페이스로 타입을 정의합니다.
+      const err = error as AxiosErrorLike;
+      const errorMessage =
+        err.response?.data?.message || "초대 취소에 실패했습니다.";
+      alert(errorMessage);
     } finally {
       setIsLoading(false);
     }

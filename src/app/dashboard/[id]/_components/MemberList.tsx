@@ -33,7 +33,10 @@ export function MemberList({ type, data }: MemberListProps) {
       ? (data as Member).nickname
       : (data as Invitation).invitee.email;
 
-  const targetHref = type === "member" ? "/member-delete" : "/invite-cancel";
+  const targetHref =
+    type === "member"
+      ? `/member-delete?memberId=${data.id}`
+      : `/invite-cancel?invitationId=${data.id}`;
 
   return (
     <div className="flex items-center justify-between border-b border-[#383A42] py-3.5 text-gray-100 max-md:py-3">
