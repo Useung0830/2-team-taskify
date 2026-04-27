@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
-import icX from "@/assets/ic-x.svg";
+import icX from "@/assets/common/ic-x.svg";
 
 export function ModalCloseButton() {
   const router = useRouter();

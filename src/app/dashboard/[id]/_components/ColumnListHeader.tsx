@@ -1,7 +1,7 @@
 import Image from "next/image";
 
-import plusicon from "../_assets/ic-plusbtn.svg";
-import settingicon from "../_assets/ic-setting.svg";
+import plusicon from "../assets/dashboard/ic-plusbtn.svg";
+import settingicon from "../assets/dashboard/ic-setting.svg";
 interface ColumnListHeaderProp {
   title: string;
   contentCount: number;

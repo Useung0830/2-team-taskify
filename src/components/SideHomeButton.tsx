@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import icHome from "../assets/ic-home.svg";
+import icHome from "../assets/common/ic-home.svg";
 
 function SideHomeButton() {
   return (

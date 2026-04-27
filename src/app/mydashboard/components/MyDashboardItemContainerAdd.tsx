@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import addBtn from "../assets/mydashboardAddBtn.svg";
+import addBtn from "@/assets/mydashboard/mydashboardAddBtn.svg";
 
 export function MyDashboardItemContainerAdd() {
   return (
