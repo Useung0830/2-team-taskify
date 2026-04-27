@@ -1,6 +1,6 @@
 "use client";
 
-import userAddImg from "../_assets/img-userAdd.png";
+import userAddImg from "@/assets/dashboard/img-userAdd.png";
 
 import { ColumnCard } from "./ColumnCard";
 import { ColumnListHeader } from "./ColumnListHeader";

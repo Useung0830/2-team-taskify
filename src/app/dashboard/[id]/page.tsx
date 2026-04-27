@@ -3,8 +3,9 @@
 import Image from "next/image";
 import { useState } from "react";
 
+import colorChip from "@/assets/dashboard/ic-colorchips.svg";
+
 import { ColumnList } from "./_components/ColumnList";
-import colorChip from "./assets/dashboard/ic-colorchips.svg";
 import { DUMMY_COLUMNS } from "./mock";
 
 export default function Dashboard() {

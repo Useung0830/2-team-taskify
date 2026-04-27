@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { useParams, useRouter } from "next/navigation";
 
-import icX from "@/assets/ic-x.svg";
+import icX from "@/assets/common/ic-x.svg";
 
 interface DashboardEditHeaderProps {
   title: string;
