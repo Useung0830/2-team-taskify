@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useState } from "react";
 
-import colorchip from "./assets/ic-colorchips.svg";
+import colorchip from "@/assets/dashboard/ic-colorchips.svg";
 import { ColumnList } from "./components/ColumnList";
 import { DUMMY_COLUMNS } from "./mock";
 
