@@ -2,11 +2,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { ComponentPropsWithRef } from "react";
 
-import Logo from "@/assets/logo.svg";
+import Logo from "@/assets/common/logo.svg";
+import { AUTH_CONTENT } from "@/constants/Auth";
 
 import { Button } from "../Button";
 
-import { AUTH_CONTENT } from "./AuthConst";
 import { AuthFooter, type AuthContentProps } from "./AuthFooter";
 
 interface AuthFormProps

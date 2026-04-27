@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { AUTH_CONTENT } from "./AuthConst";
+import { AUTH_CONTENT } from "../../constants/Auth";
 
 export interface AuthContentProps {
   type: keyof typeof AUTH_CONTENT;
