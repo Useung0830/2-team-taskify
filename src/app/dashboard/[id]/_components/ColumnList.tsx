@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { getCardList } from "@/api/data";
 import { DeleteAlertModal } from "@/components/DeleteAlertModal";
@@ -16,7 +16,6 @@ interface ColumnList {
   createdAt: string;
   updatedAt: string;
   teamId: string;
-  tags: string[];
 }
 
 interface Assignee {
@@ -39,27 +38,89 @@ interface GetCardListResponse {
   updatedAt: string;
 }
 
-export function ColumnList({ column }: { column: ColumnList }) {
-  const { title, id, tags } = column;
+interface Params {
+  columnId: number;
+  size: number;
+  cursorId?: number;
+}
+
+export function ColumnList({ column }: ColumnList) {
+  const { title, id } = column;
   const [cardList, setCardList] = useState<GetCardListResponse[]>([]);
+  const cursorId = useRef<number | null>(null);
+  const [hasMore, setHasMore] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
+  const observerTarget = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    //전송할 객체 생성
-    const params = {
-      columnId: id,
-      size: 1,
-    };
+  const fetchCardList = async () => {
+    //로딩 중이거나 불러올 데이터가 없다면 그대로 리턴
+    if (isLoading || !hasMore) return;
 
-    //초기 카드리스트 불러오는 함수, 데이터를 불러오고 cardList state에 초기값 세팅
-    const fetchCardList = async () => {
-      //coldata안에 cursorId랑 total 있음
+    //처음에 로딩 중으로 세팅
+    setIsLoading(true);
+
+    try {
+      const params: Params = {
+        columnId: id,
+        // @TODO size 변경 필요
+        size: 1,
+        ...(cursorId.current && { cursorId: cursorId.current }),
+      };
+
       const coldata = await getCardList(params);
       if (coldata && coldata.cards) {
-        setCardList(coldata.cards);
+        setCardList((prev) => {
+          const updated = [...prev, ...coldata.cards];
+          if (updated.length === coldata.totalCount) {
+            setHasMore(false);
+          }
+          return updated;
+        });
+
+        if (coldata.cursorId) {
+          cursorId.current = coldata.cursorId;
+        }
       }
+    } catch (e) {
+      console.error("데이터 페칭에러: ", e);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  //초기데이터를 넣어주는 useEffect
+  useEffect(() => {
+    const load = async () => {
+      fetchCardList();
     };
-    fetchCardList();
-  }, [id]);
+
+    load();
+  }, []);
+
+  useEffect(() => {
+    const options = {
+      threshold: 0.5,
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(async (entry) => {
+        if (
+          entry.isIntersecting &&
+          !isLoading &&
+          hasMore &&
+          cursorId.current != null
+        ) {
+          await fetchCardList();
+        }
+      });
+    }, options);
+
+    if (observerTarget.current) {
+      observer.observe(observerTarget.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
 
   // 칼럼 삭제 모달 상태 관리
   const [isColumnEdit, setIsColumnEdit] = useState(false);
@@ -84,14 +145,14 @@ export function ColumnList({ column }: { column: ColumnList }) {
         <ColumnCard
           key={colCard.id}
           cardTitle={colCard.title}
-          tags={tags}
+          // tags={tags}
           // creator={colCard.assignee.nickname}
           // imgSrc={colCard.imageUrl}
           onClick={handleOpenEdit}
         />
       ))}
       {/* observer */}
-      <div></div>
+      <div ref={observerTarget}></div>
       {/* 관리 버튼 클릭 -> /dashboard/{dashboardid}/edit 이동 -> 수정/삭제하기 버튼 선택에 따른 상태 관리 */}
       {isColumnEdit && (
         <ColumnEdit

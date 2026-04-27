@@ -42,6 +42,7 @@ export default function Dashboard({ params }) {
       setColumnList(columnData.data);
       setDashboardDetail(dashboardData);
 
+      //columndata가 불러와졌고, 유효할 때 activeCol을 0번 인덱스로 초기화
       if (columnData.data && columnData.data.length > 0) {
         setActiveCol(columnData.data[0]);
       }
@@ -51,7 +52,8 @@ export default function Dashboard({ params }) {
   }, []);
 
   const handleTabSwitch = (col: ColumnList) => {
-    setActiveCol(col);
+    setActiveCol(() => col);
+    console.log(activeCol);
   };
 
   if (!columnList || !dashboardDetail) {
@@ -62,12 +64,14 @@ export default function Dashboard({ params }) {
   return (
     <div className="px-5 text-gray-100 lg:px-12.5">
       <div className="flex items-center gap-1 pt-6 pb-3.5 md:mx-10 lg:mx-0">
+        {/* @TODO 컬러도 prop으로 바꿔서 데이터에 따라 바뀌도록 구현 */}
         <HashtagIcon />
         <h1 className="text-2xl font-bold">{dashboardDetail?.title}</h1>
       </div>
 
       {/* 모바일과 태블릿 환경 전용 UI */}
       <div className="flex w-full gap-4 py-6 md:mx-10 lg:hidden">
+        {/* 버튼 리스트 */}
         {columnList?.map((column) => (
           <button
             key={column.id}
@@ -83,10 +87,11 @@ export default function Dashboard({ params }) {
           </button>
         ))}
       </div>
+      {/* 실제 컬럼 리스트 */}
       <div className="pt-2.5 lg:hidden">
         <div className="flex w-full justify-center gap-1.5">
           {activeCol ? (
-            <ColumnList column={activeCol} colCount={columnList.length} />
+            <ColumnList column={activeCol} />
           ) : (
             <div className="text-gray-400">컬럼 데이터가 없습니다.</div>
           )}
