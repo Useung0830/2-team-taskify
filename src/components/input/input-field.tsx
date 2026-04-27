@@ -15,7 +15,7 @@ interface InputFieldProps
  * @param {string} className - Input.Field의 클래스 이름
  * @returns {JSX.Element} Input.Field 컴포넌트
  */
-function InputField({ className, type, ...props }: InputFieldProps) {
+export function InputField({ className, type, ...props }: InputFieldProps) {
   const { isPasswordVisible, isDisabled } = useInputContext();
 
   // 비밀번호 타입일 경우 토글 상태에 따라 실제 type 결정
@@ -24,14 +24,13 @@ function InputField({ className, type, ...props }: InputFieldProps) {
   return (
     <input
       type={inputType}
-      disabled={isDisabled ?? props.disabled}
+      isDisabled={isDisabled ?? props.disabled}
       className={cn(
-        "w-full bg-transparent text-gray-300 outline-none placeholder:text-gray-500 disabled:cursor-not-allowed disabled:text-gray-400",
+        "w-full bg-transparent text-gray-300 outline-none placeholder:text-gray-500 disabled:text-gray-400",
+        { "cursor-not-allowed": isDisabled },
         className
       )}
       {...props}
     />
   );
 }
-
-export { InputField };

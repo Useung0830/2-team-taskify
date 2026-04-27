@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import logoImg from "@/assets/logo.svg";
+import logoImg from "@/assets/common/logo.svg";
 
 interface MainHeaderProps {
   isLoggedIn?: boolean;
