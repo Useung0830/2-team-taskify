@@ -52,7 +52,6 @@ export function MemberManagement() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // 병렬로 두 데이터를 모두 가져옵니다.
         const [memberRes, inviteRes] = await Promise.all([
           getMemberList({ dashboardId, page: 1, size: 6 }),
           getInvitationList(dashboardId, { page: 1, size: 6 }),

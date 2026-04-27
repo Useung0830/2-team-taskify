@@ -6,9 +6,9 @@ import { ReactNode } from "react";
 interface EditSideButtonProps {
   children: ReactNode;
   handleClick?: () => void;
-  icon?: string; // 아이콘 경로 (선택 사항)
-  isDelete?: boolean; // 삭제 버튼 여부 (빨간색 텍스트용)
-  isActive?: boolean; // 현재 선택된 메뉴인지 여부
+  icon?: string;
+  isDelete?: boolean;
+  isActive?: boolean;
 }
 
 export function EditSideButton({

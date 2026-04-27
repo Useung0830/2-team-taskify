@@ -47,7 +47,6 @@ export default function InviteCancel() {
         router.refresh();
       }, 100);
     } catch (error) {
-      // 2. any 대신 미리 만든 인터페이스로 타입을 정의합니다.
       const err = error as AxiosErrorLike;
       const errorMessage =
         err.response?.data?.message || "초대 취소에 실패했습니다.";
