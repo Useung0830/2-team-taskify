@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useState } from "react";
 
-import iconChevronDown from "@/assets/ic-chevron-down.svg";
+import iconChevronDown from "@/assets/common/ic-chevron-down.svg";
 
 export function Dropdown({
   options,

@@ -2,7 +2,7 @@
 import Image from "next/image";
 import { useRef, useState } from "react";
 
-import icMore from "@/assets/ic-more.svg";
+import icMore from "@/assets/common/ic-more.svg";
 import { PopDoverMenu } from "@/components/PopDoverMenu";
 import { useClickOutside } from "@/hooks/useClickOutside";
 

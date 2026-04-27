@@ -4,7 +4,7 @@ import { useState } from "react";
 
 import { DeleteAlertModal } from "@/components/DeleteAlertModal";
 
-import userAddImg from "../assets/img-userAdd.png";
+import userAddImg from "@/assets/dashboard/img-userAdd.png";
 import ColumnEdit from "../edit/page";
 
 import { ColumnCard } from "./ColumnCard";
