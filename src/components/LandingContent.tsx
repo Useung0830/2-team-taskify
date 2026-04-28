@@ -92,7 +92,7 @@ export function LandingContent() {
       </section>
 
       {/* Point 1 */}
-      <section className="mx-auto flex max-w-[1212px] flex-col items-start gap-10 px-6 py-12 md:py-16 lg:flex-row lg:items-center lg:justify-between lg:py-24">
+      <section className="mx-auto flex max-w-[1212px] flex-col items-start gap-10 px-6 py-12 md:px-0 md:py-16 lg:flex-row lg:items-center lg:justify-between lg:py-24">
         <div className="relative h-[250px] w-full overflow-hidden md:h-[450px] lg:h-[682px] lg:w-[650px]">
           <Image
             src={imgSection2}
@@ -102,11 +102,12 @@ export function LandingContent() {
           />
         </div>
 
-        <div className="mx-auto w-[315px] space-y-4 text-left md:w-[502px] lg:mx-0 lg:w-full lg:max-w-[550px]">
+        {/* md:mx-0 md:pl-24를 추가하여 정렬 통일 */}
+        <div className="mx-auto w-[315px] space-y-4 text-left md:mx-0 md:w-full md:max-w-[535px] md:pl-24 lg:mx-0 lg:w-full lg:max-w-[520px] lg:pl-0">
           <p className="text-brand-500 text-sm font-bold md:text-lg">Point 1</p>
           <h2 className="text-[24px] leading-tight font-bold md:text-[32px] lg:text-[50px]">
             내가 등록한 사진으로
-            <br className="md:hidden" /> 더 기억에 남는 할 일 리스트
+            <br className="lg:hidden" /> 더 기억에 남는 할 일 리스트
           </h2>
           <p className="text-sm text-zinc-400 md:text-lg">
             카드 내 추가한 이미지를 상단 썸네일로 노출하여
@@ -116,24 +117,25 @@ export function LandingContent() {
         </div>
       </section>
 
-      {/* Point 2 */}
+      {/* Point 2 Section */}
       <section className="mx-auto flex w-full max-w-[1920px] flex-col items-start overflow-hidden lg:flex-row lg:items-center lg:py-24">
-        <div className="z-10 order-2 mx-auto flex w-[315px] flex-col justify-center py-12 text-left md:w-[502px] md:py-16 lg:order-1 lg:mx-0 lg:w-auto lg:px-0 lg:py-0 lg:pl-[clamp(40px,12vw,240px)]">
+        {/* md:pl-24로 통일 */}
+        <div className="z-10 order-2 mx-auto flex w-[315px] flex-col justify-center py-12 text-left md:mx-0 md:w-full md:max-w-[502px] md:py-16 md:pl-24 lg:order-1 lg:mx-0 lg:w-auto lg:py-0 lg:pl-[clamp(40px,12vw,240px)]">
           <p className="text-brand-500 text-sm font-bold md:text-lg">Point 2</p>
-          <h2 className="mt-4 text-[24px] leading-tight font-bold md:text-[32px] lg:text-[45px] lg:whitespace-nowrap">
+          <h2 className="mt-4 text-[24px] leading-tight font-bold md:text-[32px] lg:text-[45px]">
             자세한 정보는 명확하게,
             <br />팀 논의는 빠르게 확인하세요
           </h2>
           <p className="mt-4 text-sm text-zinc-400 md:text-lg">
             작업에 필요한 세부 내용을 손쉽게 정리하고,
-            <br className="lg:hidden" />
+            <br />
             댓글을 통해 팀원들과 빠르게 소통해보세요
           </p>
         </div>
 
         <div className="relative order-1 flex w-full justify-center px-6 pt-10 md:pt-16 lg:order-2 lg:ml-[150px] lg:flex-1 lg:justify-start lg:px-0 lg:pt-0 lg:pr-[100px]">
           <div className="relative aspect-[315/640] w-full max-w-[315px] overflow-hidden md:aspect-[709/714] md:max-w-[709px]">
-            <div className="from-background absolute inset-x-0 bottom-0 z-20 h-32 bg-gradient-to-t to-transparent lg:hidden" />
+            <div className="absolute inset-x-0 bottom-0 z-20 h-32 bg-gradient-to-t from-[#161519] to-transparent lg:hidden" />
             <Image
               src={imgSection3_mobile}
               alt="상세 정보"
@@ -159,7 +161,8 @@ export function LandingContent() {
       {/* Point 3 */}
       <section className="relative w-full py-12 md:py-24">
         <div className="mx-auto w-full max-w-[1920px] lg:pr-[240px] lg:pl-[clamp(40px,12vw,240px)]">
-          <div className="mx-auto w-[320px] text-left md:w-[502px] lg:mx-0 lg:w-auto lg:px-0">
+          {/* md:pl-24로 통일 */}
+          <div className="mx-auto w-[320px] text-left md:mx-0 md:w-full md:max-w-[502px] md:pl-24 lg:mx-0 lg:w-auto lg:py-6 lg:pl-0">
             <p className="text-brand-500 mb-2 text-base font-bold lg:text-lg">
               Point 3
             </p>
@@ -176,7 +179,7 @@ export function LandingContent() {
             </p>
           </div>
 
-          <div className="mt-8 flex w-full flex-col gap-0 px-6 md:mt-10 md:gap-[30px] md:px-12 lg:mt-0 lg:flex-row lg:gap-[30px] lg:px-0">
+          <div className="mt-8 flex w-full flex-col gap-0 px-6 md:mt-10 md:gap-[30px] md:px-24 lg:mt-0 lg:flex-row lg:gap-[30px] lg:px-0">
             {section3Cards.map((item, idx) => (
               <div
                 key={idx}
@@ -202,7 +205,7 @@ export function LandingContent() {
                     className="hidden object-fill lg:block"
                   />
                 </div>
-                <div className="mx-auto mt-[20px] flex w-full max-w-[315px] flex-col items-start gap-2 pb-[10px] md:mx-0 md:mt-[0px] md:max-w-none md:pb-0 lg:mt-[28px]">
+                <div className="mx-auto mt-[20px] flex w-full max-w-[315px] flex-col items-start gap-2 pb-[10px] md:mx-0 md:mt-[40px] md:max-w-none md:pb-0 lg:mx-0 lg:mt-[28px] lg:ml-[30px]">
                   <h3 className="text-left text-xl font-bold lg:text-[18px]">
                     {item.title}
                   </h3>
