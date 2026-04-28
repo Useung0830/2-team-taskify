@@ -51,50 +51,54 @@ export function ColumnModify({
 
   return (
     <Modal>
-      {/* Modal Title */}
-      <ModalHeader>칼럼 관리</ModalHeader>
-      <Input errorMessage={errMessage}>
-        {/* Input Field to modify(edit) column name */}
-        <Label htmlFor="columnmodify-label" className="mt-4 mb-3 md:mt-7">
-          이름
-        </Label>
-        <Input.Wrapper>
-          <Input.Field
-            id="columnmodify-input"
-            placeholder="수정할 칼럼명을 입력해주세요"
-            value={newColumnName}
-            onChange={handleChange}
-          />
-        </Input.Wrapper>
-        <Input.Error />
-      </Input>
-      <div
-        className={cn(
-          "mt-4 flex items-center justify-center gap-3 text-center md:mt-7.5 md:gap-5"
-        )}
-      >
-        <button
-          type="button"
-          onClick={handleCancel}
+      {/* Added for responsive(Desktop | Tablet | Mobile) modal width */}
+      <div className="w-full max-w-83.75 min-w-83.75 md:max-w-150 md:min-w-150">
+        {/* Modal Title */}
+        <ModalHeader>칼럼 관리</ModalHeader>
+        <Input errorMessage={errMessage}>
+          {/* Input Field to modify(edit) ColumnName */}
+          <Label htmlFor="columnmodify-label" className="mt-4 mb-3 md:mt-7">
+            이름
+          </Label>
+          <Input.Wrapper>
+            <Input.Field
+              id="columnmodify-input"
+              placeholder="수정할 칼럼명을 입력해주세요"
+              value={newColumnName}
+              onChange={handleChange}
+            />
+          </Input.Wrapper>
+          <Input.Error />
+        </Input>
+        {/* Button Section */}
+        <div
           className={cn(
-            "flex h-12.5 flex-1 cursor-pointer items-center justify-center rounded-full bg-gray-900 px-7.5 py-1.5 text-gray-100 md:h-15"
+            "mt-4 flex items-center justify-center gap-3 text-center md:mt-7.5 md:gap-5"
           )}
         >
-          취소
-        </button>
-        <button
-          type="button"
-          onClick={handleModify}
-          disabled={isInputDisabled}
-          className={cn(
-            "bg-brand-500 flex h-12.5 flex-1 cursor-pointer items-center justify-center rounded-full px-7.5 py-1.5 text-white md:h-15",
-            isInputDisabled
-              ? "bg-brand-500 cursor-not-allowed"
-              : "bg-brand-500 cursor-pointer"
-          )}
-        >
-          변경
-        </button>
+          <button
+            type="button"
+            onClick={handleCancel}
+            className={cn(
+              "flex h-12.5 flex-1 cursor-pointer items-center justify-center rounded-full bg-gray-900 px-7.5 py-1.5 text-gray-100 md:h-15"
+            )}
+          >
+            취소
+          </button>
+          <button
+            type="button"
+            onClick={handleModify}
+            disabled={isInputDisabled}
+            className={cn(
+              "bg-brand-500 flex h-12.5 flex-1 cursor-pointer items-center justify-center rounded-full px-7.5 py-1.5 text-white md:h-15",
+              isInputDisabled
+                ? "bg-brand-500 cursor-not-allowed"
+                : "bg-brand-500 cursor-pointer"
+            )}
+          >
+            변경
+          </button>
+        </div>
       </div>
     </Modal>
   );
