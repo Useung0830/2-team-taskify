@@ -1,3 +1,7 @@
+"use client";
+
+import { putInvitationAnswer } from "@/api/data";
+
 import { InvitionHeader } from "./InvitionHeader";
 import { InvitionRow } from "./InvitionRow";
 
@@ -26,6 +30,14 @@ interface InvitionContainerProps {
   invitedData: InvitedData[];
 }
 export function InvitionContainer({ invitedData }: InvitionContainerProps) {
+  const onClickDismiss = async (id: number) => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const result = await putInvitationAnswer(id, { inviteAccepted: false });
+  };
+  const onClickAccept = async (id: number) => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const result = await putInvitationAnswer(id, { inviteAccepted: true });
+  };
   return (
     <div>
       <div className="pd-3.5 hidden md:block">
@@ -36,6 +48,9 @@ export function InvitionContainer({ invitedData }: InvitionContainerProps) {
           key={item.id}
           title={item.dashboard.title}
           inviter={item.inviter}
+          id={item.id}
+          handleDismiss={onClickDismiss}
+          handleAccept={onClickAccept}
         />
       ))}
     </div>
