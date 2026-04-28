@@ -1,3 +1,5 @@
+import { Button } from "@/components/Button";
+
 import { UserInfo } from "./InvitionContainer";
 import { Profile } from "./Profile";
 
@@ -16,13 +18,11 @@ export function InvitionRow({
           {/* 임시 컴포넌트 @TODO 교체 필요*/}
           <Profile name={inviter.nickname} />
         </div>
-        <div className="flex gap-3">
-          <button className="rounded-[100px] bg-gray-900 px-3.5 py-1.5">
+        <div className="flex w-[130px] gap-3">
+          <Button size={"sm"} colorType={"secondary"}>
             거절
-          </button>
-          <button className="rounded-[100px] bg-green-500 px-3.5 py-1.5">
-            수락
-          </button>
+          </Button>
+          <Button size={"sm"}>수락</Button>
         </div>
       </div>
     </div>
