@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 
-import { getDashboardList, getMyInvitationList, postLogin } from "@/api/data";
+import { getDashboardList, getMyInvitationList } from "@/api/data";
 import { Input } from "@/components/input/input";
 import * as T from "@/types/api";
 
@@ -31,15 +31,6 @@ export default function MyDashboard() {
 
   const [total, setTotal] = useState<number>(0);
   const [loadPage, setLoadPage] = useState<number>(1);
-
-  //1. 마운트 되면 임시 로그인
-  useEffect(() => {
-    const setUp = async () => {
-      //임시 로그인
-      await postLogin({ email: "email@mail.com", password: "12341234" });
-    };
-    setUp();
-  }, []);
 
   //데이터를 불러오는 함수
   const onNeedsMoreData = async () => {
