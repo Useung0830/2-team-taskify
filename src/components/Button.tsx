@@ -1,7 +1,3 @@
-/**
- * DeleteAlertModal 코멘트 모두 resolve conversation 해서 올리는 2차 PR
- */
-
 import { cva, VariantProps } from "class-variance-authority";
 
 import { cn } from "@/lib/cn";
@@ -34,7 +30,6 @@ interface ButtonProps
   extends
     React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {}
-
 export function Button({
   className,
   colortype,

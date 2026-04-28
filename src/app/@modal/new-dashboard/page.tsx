@@ -1,5 +1,5 @@
 import { DashboardColorChoiceList } from "@/components/DashboardColorChoiceList";
-import { ModalHeader } from "@/components/ModalHeader";
+import { ModalHeader } from "@/components/modal/ModalHeader";
 
 export default function NewDashboard() {
   return (
