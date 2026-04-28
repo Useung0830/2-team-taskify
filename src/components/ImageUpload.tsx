@@ -20,7 +20,7 @@ export function ImageUpload({
   );
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const handleClick = () => {
+  const handleClick = (_e: MouseEvent) => {
     if (!previewUrl) fileInputRef.current?.click();
   };
 

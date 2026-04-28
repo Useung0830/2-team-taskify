@@ -29,6 +29,10 @@ export function CommentForm() {
     }
 
     try {
+      // 여기에 실제 API 호출 로직이 들어갑니다.
+      console.warn("전송할 데이터:", { content });
+
+      // 성공 가정 시 로직
       alert("댓글이 등록되었습니다.");
       handleCancel();
     } catch (error) {
