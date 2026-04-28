@@ -3,7 +3,11 @@
 
 import { revalidatePath } from "next/cache";
 
-import { putMyInfoUpdate, postProfileImage } from "@/api/data";
+import {
+  putMyInfoUpdate,
+  postProfileImage,
+  putPasswordUpdate,
+} from "@/api/data";
 import * as T from "@/types/api";
 
 export async function updateUserInfoAction(data: T.UpdateUserRequest) {
@@ -43,6 +47,20 @@ export async function uploadImageAction(formData: FormData) {
     return {
       success: false,
       message: errorMessage || "이미지 업로드 중 오류 발생",
+    };
+  }
+}
+
+export async function updatePasswordAction(data: T.PasswordUpdateRequest) {
+  try {
+    await putPasswordUpdate(data);
+    return { success: true };
+  } catch (error) {
+    const apiError = error as T.ApiError;
+    console.error("수정 프로세스 에러:", apiError);
+    return {
+      success: false,
+      message: apiError || "비밀번호 변경 중 오류가 발생했습니다.",
     };
   }
 }
