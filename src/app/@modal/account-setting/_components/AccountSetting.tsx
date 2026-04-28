@@ -9,7 +9,10 @@ import { Input } from "@/components/input/input";
 import { Label } from "@/components/label/label";
 import { ModalHeader } from "@/components/modal/ModalHeader";
 import { ProfileChange } from "@/components/ProfileChange";
+import { cn } from "@/lib/cn";
 import * as T from "@/types/api";
+
+import { PasswordChange } from "./PasswordChange";
 
 interface Props {
   initialData: T.User;
@@ -24,6 +27,10 @@ export function AccountSetting({ initialData }: Props) {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [isPending, setIsPending] = useState(false);
   const [error, setError] = useState("");
+  const [view, setView] = useState<"profile" | "password">("profile");
+
+  const handleShowPasswordView = () => setView("password");
+  const handleShowProfileView = () => setView("profile");
 
   const handleImageChange = (file: File) => {
     const previewUrl = URL.createObjectURL(file);
@@ -100,63 +107,94 @@ export function AccountSetting({ initialData }: Props) {
   };
 
   return (
-    <div className="flex flex-col gap-7.5 max-md:gap-6">
-      <ModalHeader>내 정보 수정</ModalHeader>
-      <div className="flex flex-col gap-7.5 max-md:gap-6">
-        <ProfileChange
-          currentImageUrl={imageUrl}
-          onImageChange={handleImageChange}
-          onImageDelete={handleImageDelete}
-        />
-
-        <Input isDisabled className="max-md:gap-2.5">
-          <Label htmlFor="email">이메일</Label>
-          <Input.Wrapper>
-            <Input.Field
-              id="email"
-              type="email"
-              defaultValue={initialData.email}
+    <div className="max-md:bg-modal-background -m-7.5 flex h-full flex-col gap-7.5 p-7.5 max-lg:flex-col max-lg:gap-7.5 max-md:fixed max-md:top-0 max-md:left-0 max-md:z-55 max-md:m-0 max-md:mt-12.5 max-md:w-full max-md:gap-6 max-md:p-7.5 max-md:pt-6">
+      <ModalHeader
+        isPasswordView={view === "password"}
+        onBack={handleShowProfileView}
+      >
+        {view === "profile" ? "내 정보 수정" : "비밀번호 변경"}
+      </ModalHeader>
+      {view === "profile" ? (
+        <div className="flex flex-col gap-7.5 max-md:gap-6">
+          <div className="flex flex-col gap-7.5 max-md:gap-6">
+            <ProfileChange
+              currentImageUrl={imageUrl}
+              onImageChange={handleImageChange}
+              onImageDelete={handleImageDelete}
             />
-          </Input.Wrapper>
-        </Input>
 
-        <Input errorMessage={error} className="max-md:gap-2.5">
-          <Label htmlFor="nickname">닉네임</Label>
-          <Input.Wrapper>
-            <Input.Field
-              id="nickname"
-              value={nickname}
-              onChange={(e) => {
-                const newValue = e.target.value;
-                setNickname(newValue);
-                handleName(newValue);
-              }}
-            />
-          </Input.Wrapper>
-          <Input.Error />
-        </Input>
-      </div>
+            <Input isDisabled className="max-md:gap-2.5">
+              <Label htmlFor="email">이메일</Label>
+              <Input.Wrapper>
+                <Input.Field
+                  id="email"
+                  type="email"
+                  defaultValue={initialData.email}
+                />
+              </Input.Wrapper>
+            </Input>
 
-      <div className="flex w-full items-center justify-center gap-5 max-md:gap-3">
-        <Button
-          onClick={handleCancel} // 4. 취소 버튼에 핸들러 연결
-          size="lg"
-          className="font-semibold text-gray-100"
-          colorType="secondary"
-          disabled={isPending}
-        >
-          취소
-        </Button>
-        <Button
-          onClick={handleUpdate}
-          size="lg"
-          className="font-semibold text-gray-100"
-          colorType="primary"
-          disabled={isPending}
-        >
-          {isPending ? "저장 중..." : "변경"}
-        </Button>
-      </div>
+            <Input errorMessage={error} className="max-md:gap-2.5">
+              <Label htmlFor="nickname">닉네임</Label>
+              <Input.Wrapper>
+                <Input.Field
+                  id="nickname"
+                  value={nickname}
+                  onChange={(e) => {
+                    const newValue = e.target.value;
+                    setNickname(newValue);
+                    handleName(newValue);
+                  }}
+                />
+              </Input.Wrapper>
+              <Input.Error />
+            </Input>
+          </div>
+
+          <div className="flex flex-col gap-3 max-md:gap-2.5">
+            <span className="text-gray-300">비밀번호</span>
+
+            <Button
+              size="sm"
+              className="w-29.5 font-semibold text-gray-100"
+              colorType="secondary"
+              onClick={handleShowPasswordView}
+            >
+              비밀번호 변경
+            </Button>
+          </div>
+
+          <div
+            className={cn(
+              "flex w-135 items-center justify-center gap-5",
+              "max-md:fixed max-md:bottom-0 max-md:left-0 max-md:w-full",
+              "max-md:bg-modal-background max-md:gap-3 max-md:px-3.5 max-md:pb-9"
+            )}
+          >
+            <Button
+              onClick={handleCancel}
+              size="lg"
+              className="font-semibold text-gray-100 max-md:h-12.5 max-md:text-base"
+              colorType="secondary"
+              disabled={isPending}
+            >
+              취소
+            </Button>
+            <Button
+              onClick={handleUpdate}
+              size="lg"
+              className="font-semibold text-gray-100 max-md:h-12.5 max-md:text-base"
+              colorType="primary"
+              disabled={isPending}
+            >
+              {isPending ? "저장 중..." : "변경"}
+            </Button>
+          </div>
+        </div>
+      ) : (
+        // 2. 비밀번호 변경 뷰 호출
+        <PasswordChange onBack={handleShowProfileView} />
+      )}
     </div>
   );
 }

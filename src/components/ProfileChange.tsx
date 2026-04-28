@@ -42,7 +42,7 @@ export function ProfileChange({
     <div className="flex items-center gap-5">
       <div
         className={cn(
-          "h-30 w-30 shrink-0 overflow-hidden rounded-full bg-cover bg-center bg-no-repeat max-md:h-27.5 max-md:w-27.5",
+          "h-30 w-30 shrink-0 overflow-hidden rounded-full bg-cover bg-center bg-no-repeat max-md:max-h-27.5 max-md:max-w-27.5",
           !currentImageUrl && "border-none"
         )}
         style={{
@@ -55,7 +55,7 @@ export function ProfileChange({
       <div className="flex items-center gap-3">
         <input
           type="file"
-          name="profileImageUrl"
+          name=""
           ref={fileInputRef}
           className="hidden"
           accept="image/*"
