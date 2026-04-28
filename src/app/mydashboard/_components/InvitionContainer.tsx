@@ -1,7 +1,3 @@
-// "use client";
-
-// import { useEffect, useRef } from "react";
-
 import { InvitionHeader } from "./InvitionHeader";
 import { InvitionRow } from "./InvitionRow";
 
