@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 import { uploadImageAction, updateUserInfoAction } from "@/actions/setting";
@@ -15,12 +16,14 @@ interface Props {
 }
 
 export function AccountSetting({ initialData }: Props) {
+  const router = useRouter(); // 2. 라우터 인스턴스 생성
   const [nickname, setNickname] = useState(initialData?.nickname || "");
   const [imageUrl, setImageUrl] = useState<string>(
     initialData.profileImageUrl || ""
   );
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [isPending, setIsPending] = useState(false);
+  const [error, setError] = useState("");
 
   const handleImageChange = (file: File) => {
     const previewUrl = URL.createObjectURL(file);
@@ -33,8 +36,20 @@ export function AccountSetting({ initialData }: Props) {
     setSelectedFile(null);
   };
 
+  // 취소 버튼 핸들러
+  const handleCancel = () => {
+    router.back(); // 이전 페이지로 이동
+  };
+
+  const handleName = (value: string) => {
+    if (value.length > 10) {
+      setError("닉네임은 10자 이하로 작성해주세요.");
+    } else {
+      setError("");
+    }
+  };
+
   const handleUpdate = async () => {
-    // 1. 유효성 검사
     if (!nickname.trim()) {
       alert("닉네임을 입력해주세요.");
       return;
@@ -52,11 +67,8 @@ export function AccountSetting({ initialData }: Props) {
         const uploadResult = await uploadImageAction(formData);
 
         if (!uploadResult.success) {
-          throw new Error(
-            uploadResult.message || "이미지 업로드에 실패했습니다."
-          );
+          throw new Error(uploadResult.message || "이미지 업로드 실패");
         }
-
         finalImageUrl = uploadResult.profileImageUrl!;
       }
 
@@ -69,16 +81,17 @@ export function AccountSetting({ initialData }: Props) {
 
       if (updateResult.success) {
         alert("정보가 성공적으로 수정되었습니다.");
-        setSelectedFile(null);
+        router.back();
       } else {
-        throw new Error(updateResult.message || "정보 수정에 실패했습니다.");
+        throw new Error(updateResult.message || "정보 수정 실패");
       }
     } catch (error) {
       const apiError = error as T.ApiError;
       console.error("수정 프로세스 에러:", apiError);
 
       const errorMessage =
-        apiError.response?.data?.message || "오류가 발생했습니다.";
+        apiError.response?.data?.message ||
+        (error instanceof Error ? error.message : "오류가 발생했습니다.");
 
       alert(errorMessage);
     } finally {
@@ -96,7 +109,6 @@ export function AccountSetting({ initialData }: Props) {
           onImageDelete={handleImageDelete}
         />
 
-        {/* 이메일 (읽기 전용) */}
         <Input isDisabled className="max-md:gap-2.5">
           <Label htmlFor="email">이메일</Label>
           <Input.Wrapper>
@@ -108,21 +120,26 @@ export function AccountSetting({ initialData }: Props) {
           </Input.Wrapper>
         </Input>
 
-        {/* 닉네임 수정 */}
-        <Input className="max-md:gap-2.5">
+        <Input errorMessage={error} className="max-md:gap-2.5">
           <Label htmlFor="nickname">닉네임</Label>
           <Input.Wrapper>
             <Input.Field
               id="nickname"
               value={nickname}
-              onChange={(e) => setNickname(e.target.value)}
+              onChange={(e) => {
+                const newValue = e.target.value;
+                setNickname(newValue);
+                handleName(newValue);
+              }}
             />
           </Input.Wrapper>
+          <Input.Error />
         </Input>
       </div>
 
       <div className="flex w-full items-center justify-center gap-5 max-md:gap-3">
         <Button
+          onClick={handleCancel} // 4. 취소 버튼에 핸들러 연결
           size="lg"
           className="font-semibold text-gray-100"
           colorType="secondary"
