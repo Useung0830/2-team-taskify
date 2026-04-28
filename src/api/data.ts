@@ -1,3 +1,5 @@
+"use server";
+
 import * as T from "@/types/api";
 
 import { get, post, put, del } from "./fetch";
@@ -13,10 +15,6 @@ export async function postLogin(
     "/auth/login",
     data
   );
-
-  if (response.accessToken) {
-    sessionStorage.setItem("accessToken", response.accessToken);
-  }
 
   return response;
 }

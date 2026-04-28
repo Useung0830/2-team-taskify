@@ -1,8 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
 
-// import { cn } from "@/lib/cn";
-
 import { Modal } from "@/components/modal/Modal";
 
 import { Button } from "./Button";
@@ -17,13 +15,11 @@ export function DeleteAlertModal({
 }: DeleteAlertModaLProps) {
   const router = useRouter();
 
-  // 취소 클릭 시
   const handleCancel = () => {
     console.warn("칼럼 취소 클릭");
     onCancel?.();
   };
 
-  // 삭제 클릭 시
   const handleDelete = () => {
     try {
       console.warn("칼럼 삭제 클릭");
@@ -48,7 +44,7 @@ export function DeleteAlertModal({
 
         <div className="mt-5 flex items-center justify-center gap-3 md:gap-5">
           <Button
-            colortype="secondary"
+            colorType="secondary"
             className="h-12.5 flex-1 text-base text-gray-200 lg:h-14 lg:text-lg"
             onClick={() => handleCancel()}
           >
