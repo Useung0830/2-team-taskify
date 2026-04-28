@@ -1,9 +1,9 @@
-import SideButton from "./SideButton";
-import SideHomeButton from "./SideHomeButton";
-import DashboardAdd from "./DashboardAdd";
-import UserAccount from "./UserAccount";
+import { DashboardAdd } from "./DashboardAdd";
+import { SideButton } from "./SideButton";
+import { SideHomeButton } from "./SideHomeButton";
+import { UserAccount } from "./UserAccount";
 
-function SideMenu() {
+export function SideMenu() {
   return (
     <div className="bg-black-900 flex h-screen w-85 flex-col pt-2.5">
       <div className="flex h-11 items-start px-4 text-2xl text-gray-100">
@@ -26,5 +26,3 @@ function SideMenu() {
     </div>
   );
 }
-
-export default SideMenu;

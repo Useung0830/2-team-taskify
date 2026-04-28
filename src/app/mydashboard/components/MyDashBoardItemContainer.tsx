@@ -1,10 +1,9 @@
 import Image from "next/image";
-import { ReactNode } from "react";
 
-import rightbtn from "../assets/rightBtn.svg";
+import rightbtn from "@/assets/mydashboard/rightBtn.svg";
 
 interface MyDashboardCardProps {
-  children: ReactNode;
+  children: React.ReactNode;
 }
 
 export function MyDashboardItemContainer({ children }: MyDashboardCardProps) {

@@ -1,10 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import { useMemo, useState, useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
-import iconSettings from "@/assets/ic-setting.svg";
-import iconShare from "@/assets/ic-user-plus.svg";
+import { useMemo, useState, useEffect } from "react";
+
+import iconSettings from "@/assets/common/ic-setting.svg";
+import iconShare from "@/assets/common/ic-user-plus.svg";
 
 const PROFILE_COLOR_KEYS = [
   "profile-green",
@@ -33,14 +34,20 @@ export function DashboardHeader({ members, totalCount }: DashboardHeaderProps) {
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
-    setIsMounted(true);
+    //eslint 임시방편으로 오류 방지
+    const timer = setTimeout(() => {
+      setIsMounted(true);
+    }, 0);
+
+    return () => clearTimeout(timer);
   }, []);
 
   const dashboardId = params?.dashboardId;
 
   const MAX_VISIBLE_MEMBERS = 6;
   const visibleMembers = members.slice(0, MAX_VISIBLE_MEMBERS);
-  const extraCount = totalCount > MAX_VISIBLE_MEMBERS ? totalCount - MAX_VISIBLE_MEMBERS : 0;
+  const extraCount =
+    totalCount > MAX_VISIBLE_MEMBERS ? totalCount - MAX_VISIBLE_MEMBERS : 0;
 
   const membersWithColors = useMemo(() => {
     return visibleMembers.map((member) => ({
@@ -54,38 +61,34 @@ export function DashboardHeader({ members, totalCount }: DashboardHeaderProps) {
   };
 
   if (!isMounted) {
-    return <header className="fixed top-0 right-0 z-30 w-full h-[50px] md:h-[60px] bg-black-900 border-b-2 border-black-800" />;
+    return (
+      <header className="bg-black-900 border-black-800 fixed top-0 right-0 z-30 h-12.5 w-full border-b-2 md:h-15" />
+    );
   }
 
   return (
     <header
-      className={`
-        fixed top-0 right-0 z-30 flex items-center bg-black-900 font-pretendard border-black-800 border-b-2
-        w-full h-[50px] px-[12px] justify-between
-        md:left-[220px] md:w-[calc(100%-220px)] md:h-[60px] md:px-[24px] md:justify-end
-        lg:left-[340px] lg:w-[calc(100%-340px)]
-      `}
+      className={`bg-black-900 font-pretendard border-black-800 fixed top-0 right-0 z-30 flex h-12.5 w-full items-center justify-between border-b-2 px-3 md:left-55 md:h-15 md:w-[calc(100%-220px)] md:justify-end md:px-6 lg:left-85 lg:w-[calc(100%-340px)]`}
     >
-      <div className="md:hidden flex-1" />
+      <div className="flex-1 md:hidden" />
 
-      <div className={`flex items-center gap-[30px] md:gap-[34px] lg:gap-[50px]`}>
-        
-        <div className="flex items-center w-[79px] md:w-auto h-[24px] md:h-[34px]">
+      <div className={`flex items-center gap-7.5 md:gap-8.5 lg:gap-12.5`}>
+        <div className="flex h-6 w-19.75 items-center md:h-8.5 md:w-auto">
           {membersWithColors.map((member, index) => (
             <div
               key={member.id}
               style={{ backgroundColor: `var(--color-${member.colorKey})` }}
-              className={`
-                relative flex items-center justify-center rounded-full border-2 border-black-900 flex-shrink-0 transition-all
-                h-[24px] w-[24px] ${index !== 0 ? "-ml-[8px]" : ""}
-                md:h-[34px] md:w-[34px] md:${index !== 0 ? "-ml-[13px]" : ""}
-                hover:-translate-y-1 hover:z-20 hover:border-white cursor-pointer
-              `}
+              className={`border-black-900 relative flex h-6 w-6 shrink-0 items-center justify-center rounded-full border-2 transition-all ${index !== 0 ? "-ml-2" : ""} md:h-8.5 md:w-8.5 md:${index !== 0 ? "-ml-3.25" : ""} cursor-pointer hover:z-20 hover:-translate-y-1 hover:border-white`}
             >
               {member.profileImageUrl ? (
-                <Image src={member.profileImageUrl} alt="p" fill className="rounded-full object-cover" />
+                <Image
+                  src={member.profileImageUrl}
+                  alt="p"
+                  fill
+                  className="rounded-full object-cover"
+                />
               ) : (
-                <span className="text-[8px] md:text-[11px] font-medium text-white">
+                <span className="text-[8px] font-medium text-white md:text-[11px]">
                   {member.nickname.slice(0, 2)}
                 </span>
               )}
@@ -93,31 +96,40 @@ export function DashboardHeader({ members, totalCount }: DashboardHeaderProps) {
           ))}
 
           {extraCount > 0 && (
-            <div className={`
-              -ml-[8px] md:-ml-[13px] flex items-center justify-center rounded-full border-2 border-black-900 bg-pink-100 font-bold text-pink-500 z-10
-              flex-shrink-0
-              h-[24px] w-[24px] text-[10px] 
-              md:h-[34px] md:w-[34px] md:text-[12px]
-            `}>
+            <div
+              className={`border-black-900 z-10 -ml-2 flex h-6 w-6 shrink-0 items-center justify-center rounded-full border-2 bg-pink-100 text-[10px] font-bold text-pink-500 md:-ml-3.25 md:h-8.5 md:w-8.5 md:text-[12px]`}
+            >
               +{extraCount}
             </div>
           )}
         </div>
 
-        <div className="h-6 w-[1px] bg-black-700 flex-shrink-0" />
+        <div className="bg-black-700 h-6 w-px shrink-0" />
 
-        <div className="flex items-center w-[70px] h-[30px] gap-[10px] md:w-auto md:h-auto md:gap-4 flex-shrink-0">
-          <button 
+        <div className="flex h-7.5 w-17.5 shrink-0 items-center gap-2.5 md:h-auto md:w-auto md:gap-4">
+          <button
             onClick={handleEditClick}
-            className="group flex items-center justify-center cursor-pointer transition text-gray-300 hover:text-white w-[30px] h-[30px] md:w-auto md:h-auto md:py-1.5 md:gap-2 flex-shrink-0"
+            className="group flex h-7.5 w-7.5 shrink-0 cursor-pointer items-center justify-center text-gray-300 transition hover:text-white md:h-auto md:w-auto md:gap-2 md:py-1.5"
           >
-            <Image src={iconSettings} alt="setting" width={16} height={16} className="opacity-70 group-hover:opacity-100" />
-            <span className="hidden md:inline text-sm font-medium">관리</span>
+            <Image
+              src={iconSettings}
+              alt="setting"
+              width={16}
+              height={16}
+              className="opacity-70 group-hover:opacity-100"
+            />
+            <span className="hidden text-sm font-medium md:inline">관리</span>
           </button>
-          
-          <button className="group flex items-center justify-center cursor-pointer transition text-gray-300 hover:text-white w-[30px] h-[30px] md:w-auto md:h-auto md:py-1.5 md:gap-2 flex-shrink-0">
-            <Image src={iconShare} alt="share" width={16} height={16} className="opacity-70 group-hover:opacity-100" />
-            <span className="hidden md:inline text-sm font-medium">공유</span>
+
+          <button className="group flex h-7.5 w-7.5 shrink-0 cursor-pointer items-center justify-center text-gray-300 transition hover:text-white md:h-auto md:w-auto md:gap-2 md:py-1.5">
+            <Image
+              src={iconShare}
+              alt="share"
+              width={16}
+              height={16}
+              className="opacity-70 group-hover:opacity-100"
+            />
+            <span className="hidden text-sm font-medium md:inline">공유</span>
           </button>
         </div>
       </div>
