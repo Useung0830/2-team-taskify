@@ -39,10 +39,10 @@ export function ProfileChange({
   };
 
   return (
-    <div className="mb-10 flex items-center gap-5">
+    <div className="flex items-center gap-5">
       <div
         className={cn(
-          "h-27.5 w-27.5 shrink-0 overflow-hidden rounded-full bg-cover bg-center bg-no-repeat md:h-30 md:w-30",
+          "h-30 w-30 shrink-0 overflow-hidden rounded-full bg-cover bg-center bg-no-repeat max-md:h-27.5 max-md:w-27.5",
           !currentImageUrl && "border-none"
         )}
         style={{
@@ -55,6 +55,7 @@ export function ProfileChange({
       <div className="flex items-center gap-3">
         <input
           type="file"
+          name="profileImageUrl"
           ref={fileInputRef}
           className="hidden"
           accept="image/*"
@@ -64,7 +65,7 @@ export function ProfileChange({
         <button
           type="button"
           onClick={handleEdit}
-          className="gap font-Pretendard flex h-9 w-full items-center justify-center overflow-hidden rounded-full border-none bg-gray-900 px-3 py-1.5 text-sm font-semibold whitespace-nowrap text-gray-100 md:min-w-22.75 md:px-4 md:py-1.5 md:text-base"
+          className="gap font-Pretendard flex h-9 w-full items-center justify-center overflow-hidden rounded-full border-none bg-gray-900 px-4 py-1.5 text-sm font-semibold whitespace-nowrap text-gray-100 max-md:px-3 max-md:text-base md:min-w-22.75"
         >
           사진 변경
         </button>

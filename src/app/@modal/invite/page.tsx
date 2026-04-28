@@ -8,7 +8,7 @@ import { Button } from "@/components/Button";
 import { Input } from "@/components/input/input";
 import { Label } from "@/components/label/label";
 import { ModalHeader } from "@/components/ModalHeader";
-import { refreshDashboardData } from "@/util/dashboard";
+import { refreshDashboardData } from "@/utils/dashboard";
 
 export interface ApiError {
   response?: {
