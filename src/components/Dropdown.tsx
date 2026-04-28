@@ -48,7 +48,7 @@ export function Dropdown({
                 setSelected(option);
                 setIsOpen(false);
               }}
-              className="font-pretendard hover:bg-black-700 cursor-pointer px-4 py-3 text-[16px] text-gray-100 transition-colors"
+              className="hover:bg-black-700 cursor-pointer px-4 py-3 text-[16px] text-gray-100 transition-colors"
             >
               {option}
             </li>
