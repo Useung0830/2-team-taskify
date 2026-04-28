@@ -2,7 +2,6 @@ import Image from "next/image";
 
 import plusicon from "@/assets/dashboard/ic-plusbtn.svg";
 import settingicon from "@/assets/dashboard/ic-setting.svg";
-
 interface ColumnListHeaderProp {
   title: string;
   contentCount: number;
