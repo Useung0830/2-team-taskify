@@ -2,7 +2,7 @@
 
 import React, { useRef } from "react";
 
-import defaultProfile from "@/assets/ic-profile.svg";
+import imageIcon from "@/assets/common/ic-image.svg";
 import { cn } from "@/lib/cn";
 
 interface ProfileChangeProps {
@@ -49,7 +49,7 @@ export function ProfileChange({
           backgroundImage:
             currentImageUrl && currentImageUrl !== ""
               ? `url('${currentImageUrl}')`
-              : `url('${defaultProfile.src}')`,
+              : `url('${imageIcon.src}')`,
         }}
       />
       <div className="flex items-center gap-3">
