@@ -21,32 +21,44 @@ export function ColumnModify({
 }: ColumnModifyProps) {
   const [newColumnName, setNewColumnName] = useState("");
   const [errMessage, setErrMessage] = useState("");
-  const [isInputDisabled, setIsInputDisabled] = useState(false);
+  const trimNewColumnName = newColumnName.trim();
 
-  // 취소 핸들러
+  // isInputDisabled -> 인풋에 아무것도 입력되지 않은 상태
+  const isInputDisabled = trimNewColumnName.length === 0;
+  // isInputDuplicated -> 인풋에 칼럼명이 중복 입력된 상태
+  const isInputDuplicated = currentColumnsNameList.includes(trimNewColumnName);
+
+  // 취소 버튼 핸들러
   const handleCancel = () => {
     onCancel?.();
   };
 
-  // 변경 핸들러
+  // 변경 버튼 핸들러
   const handleModify = () => {
-    const trimNewColumnName = newColumnName.trim();
-    setIsInputDisabled(trimNewColumnName.length === 0);
-
-    if (trimNewColumnName.length === 0) {
-      setErrMessage("수정할 칼럼명을 먼저 입력하고 변경 버튼을 누르세요!");
-    } else if (currentColumnsNameList.includes(trimNewColumnName)) {
-      setErrMessage("기존 칼럼 이름과 동일합니다..!");
-    } else {
-      setErrMessage("");
-      onModify?.(trimNewColumnName);
+    if (isInputDisabled) {
+      setErrMessage(
+        "수정할 칼럼명을 먼저 입력한 후, 변경 버튼을 클릭해 주세요!"
+      );
+      return;
     }
+
+    if (isInputDuplicated) {
+      setErrMessage(
+        "앗, 기존 칼럼명과 일치합니다! 다른 이름을 입력해 주세요😇"
+      );
+      return;
+    }
+
+    setErrMessage("");
+    onModify?.(trimNewColumnName);
   };
 
   // 인풋 핸들러
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNewColumnName(e.target.value);
-    if (errMessage) setErrMessage("");
+    if (errMessage) {
+      setErrMessage("");
+    }
   };
 
   return (
@@ -65,10 +77,10 @@ export function ColumnModify({
               id="columnmodify-input"
               placeholder="수정할 칼럼명을 입력해주세요"
               value={newColumnName}
-              onChange={handleChange}
+              onChange={handleInputChange}
             />
           </Input.Wrapper>
-          <Input.Error />
+          <Input.Error className="min-w-max whitespace-nowrap md:text-base" />
         </Input>
         {/* Button Section */}
         <div
@@ -88,7 +100,6 @@ export function ColumnModify({
           <button
             type="button"
             onClick={handleModify}
-            disabled={isInputDisabled}
             className={cn(
               "bg-brand-500 flex h-12.5 flex-1 cursor-pointer items-center justify-center rounded-full px-7.5 py-1.5 text-white md:h-15",
               isInputDisabled
