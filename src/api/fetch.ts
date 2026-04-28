@@ -1,14 +1,14 @@
+import { cookies } from "next/headers";
+
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
 export const fetchInstance = async (
   endpoint: string,
   options: RequestInit = {}
 ) => {
-  // localStorage에서 토큰 가져오기
-  const token =
-    typeof window !== "undefined"
-      ? sessionStorage.getItem("accessToken")
-      : null;
+  // cookie에서 토큰 가져오기
+  const cookieStore = await cookies();
+  const token = cookieStore.get("accessToken")?.value;
 
   // 기본 헤더 설정
   const defaultHeaders: HeadersInit = {
