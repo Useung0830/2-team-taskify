@@ -50,6 +50,7 @@ export function ColumnList({ column }: { column: ColumnList }) {
   const cursorId = useRef<number | null>(null);
   const [hasMore, setHasMore] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
+  const [totalCount, setTotalCount] = useState<number>(0);
   const observerTarget = useRef<HTMLDivElement>(null);
 
   const fetchCardList = async () => {
@@ -69,6 +70,7 @@ export function ColumnList({ column }: { column: ColumnList }) {
 
       const coldata = await getCardList(params);
       if (coldata && coldata.cards) {
+        setTotalCount(coldata.totalCount);
         setCardList((prev) => {
           const updated = [...prev, ...coldata.cards];
           if (updated.length === coldata.totalCount) {
@@ -137,7 +139,7 @@ export function ColumnList({ column }: { column: ColumnList }) {
     <div className="flex w-full flex-col gap-5 md:mx-10 lg:mx-0">
       <ColumnListHeader
         title={title}
-        contentCount={cardList.length}
+        contentCount={totalCount}
         /**
          * 톱니바퀴 누르면 칼럼 관리로 -> 수정하기/삭제하기 버튼 선택 가능 -> 칼럼 수정/삭제 모달 띄우기
          **/
