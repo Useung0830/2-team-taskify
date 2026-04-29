@@ -5,7 +5,7 @@ import { useState } from "react";
 
 import { deleteInvitation } from "@/api/data";
 import { Button } from "@/components/Button";
-import { refreshDashboardData } from "@/utils/dashboard";
+import { refreshDashboardData } from "@/util/dashboard";
 
 interface AxiosErrorLike {
   response?: {
