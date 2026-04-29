@@ -6,7 +6,7 @@ import { useState } from "react";
 import { deleteMember } from "@/api/data";
 import { Button } from "@/components/Button";
 import { Modal } from "@/components/modal/Modal";
-import { refreshDashboardData } from "@/util/dashboard";
+import { refreshDashboardData } from "@/utils/dashboard";
 
 interface ApiError {
   response?: {

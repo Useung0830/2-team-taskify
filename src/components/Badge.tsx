@@ -1,20 +1,20 @@
-interface Prop {
-  children?: string;
-  color: "blue" | "violet" | "green";
+interface BadgeProps {
+  index: number;
+  content: string;
 }
 
-export function Badge({ children = "", color }: Prop) {
-  const bgColor = {
-    green: "bg-profile-green text-[#BAF3DB]",
-    violet: "bg-profile-violet text-[#EED7FC]",
-    blue: "bg-profile-cobalt text-[#CFE1FD]",
-  };
+export function Badge({ index, content }: BadgeProps) {
+  const bgColor = [
+    "bg-profile-green text-[#BAF3DB]",
+    "bg-profile-violet text-[#EED7FC]",
+    "bg-profile-cobalt text-[#CFE1FD]",
+  ];
+
+  const color = bgColor[index % bgColor.length];
 
   return (
-    <div
-      className={`${bgColor[color]} inline-flex rounded-md px-1.5 py-1 text-sm`}
-    >
-      {children}
+    <div className={`${color} inline-flex rounded-md px-1.5 py-1 text-sm`}>
+      {content}
     </div>
   );
 }
