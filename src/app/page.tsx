@@ -10,7 +10,7 @@ export default async function Home() {
   const token = cookieStore.get("accessToken")?.value;
   const isLoggedIn = !!token;
 
-  let firstDashboardId = null; // 리다이렉트할 ID를 저장할 변수
+  let firstDashboardId = null;
 
   if (isLoggedIn) {
     try {
