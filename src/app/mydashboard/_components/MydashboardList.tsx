@@ -16,7 +16,7 @@ interface MydashboardListProp {
 export function MydashboardList({ data, currentPage }: MydashboardListProp) {
   return (
     <div className="flex flex-col gap-5 md:flex-row">
-      {currentPage === 0 && <MyDashboardItemContainerAdd />}
+      {currentPage === 1 && <MyDashboardItemContainerAdd />}
       {data.map((item: MockdataType) => (
         <MyDashboardItemContainer key={item.id}>
           <Image src={tag} alt="tag" />
