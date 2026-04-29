@@ -184,41 +184,50 @@ export function LandingContent() {
           </div>
 
           <div className="mt-8 flex w-full flex-col gap-0 px-6 md:mt-10 md:gap-[30px] md:px-24 lg:mt-0 lg:flex-row lg:gap-[30px] lg:px-0">
-            {section3Cards.map((item, idx) => (
-              <div
-                key={idx}
-                className="flex flex-col items-start lg:max-w-[462px] lg:flex-1"
-              >
-                <div className="relative mx-auto aspect-[315/195] w-full max-w-[315px] overflow-hidden md:mx-0 md:aspect-[462/251] md:max-w-none lg:max-h-[251px] lg:max-w-[462px]">
-                  <Image
-                    src={item.mobile}
-                    alt={item.title}
-                    fill
-                    className="object-fill md:hidden"
-                  />
-                  <Image
-                    src={item.tablet}
-                    alt={item.title}
-                    fill
-                    className="hidden object-fill md:block lg:hidden"
-                  />
-                  <Image
-                    src={item.pc}
-                    alt={item.title}
-                    fill
-                    className="hidden object-fill lg:block"
-                  />
+            {section3Cards.map((item, idx) => {
+              const isLastItem = idx === section3Cards.length - 1;
+
+              return (
+                <div
+                  key={idx}
+                  className="flex flex-col items-start lg:max-w-[462px] lg:flex-1"
+                >
+                  <div
+                    className={`relative mx-auto mt-[10px] w-full max-w-[315px] overflow-hidden md:mx-0 md:mt-0 md:aspect-[462/251] md:max-w-none lg:max-h-[251px] lg:max-w-[462px] ${
+                      isLastItem ? "h-[144px] md:h-auto" : "aspect-[315/195]"
+                    }`}
+                  >
+                    <Image
+                      src={item.mobile}
+                      alt={item.title}
+                      fill
+                      className="object-fill md:hidden"
+                    />
+                    <Image
+                      src={item.tablet}
+                      alt={item.title}
+                      fill
+                      className="hidden object-fill md:block lg:hidden"
+                    />
+                    <Image
+                      src={item.pc}
+                      alt={item.title}
+                      fill
+                      className="hidden object-fill lg:block"
+                    />
+                  </div>
+
+                  <div className="mx-auto mt-[20px] flex w-full max-w-[315px] flex-col items-start gap-2 pb-[40px] md:mx-0 md:mt-[40px] md:max-w-none md:pb-0 lg:mx-0 lg:mt-[28px] lg:ml-[30px]">
+                    <h3 className="text-left text-xl font-bold lg:text-[18px]">
+                      {item.title}
+                    </h3>
+                    <p className="text-left text-sm text-zinc-400 lg:text-[16px]">
+                      {item.desc}
+                    </p>
+                  </div>
                 </div>
-                <div className="mx-auto mt-[20px] flex w-full max-w-[315px] flex-col items-start gap-2 pb-[10px] md:mx-0 md:mt-[40px] md:max-w-none md:pb-0 lg:mx-0 lg:mt-[28px] lg:ml-[30px]">
-                  <h3 className="text-left text-xl font-bold lg:text-[18px]">
-                    {item.title}
-                  </h3>
-                  <p className="text-left text-sm text-zinc-400 lg:text-[16px]">
-                    {item.desc}
-                  </p>
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
