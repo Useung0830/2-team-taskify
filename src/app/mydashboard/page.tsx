@@ -30,9 +30,7 @@ export default function MyDashboard() {
   const targetdiv = useRef(null);
 
   const [total, setTotal] = useState<number>(0);
-  //loadPage는 api 함수에 전달할 page를 관리하는 상태, currentPage는 유저가 보고 있는 페이지
   const [loadPage, setLoadPage] = useState<number>(1);
-  // const [currentPage, setCurrentPage] = useState<number>(1);
 
   //1. 마운트 되면 임시 로그인
   useEffect(() => {
@@ -71,8 +69,6 @@ export default function MyDashboard() {
 
     fetchInitialDash();
   }, []);
-
-  //버튼을 눌렀을 때 currentPage가 불러온 데이터 중 어디에 위치해있는지를 파악하는 함수
 
   //====================================================================
 
