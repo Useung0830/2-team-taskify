@@ -26,9 +26,9 @@ interface GetCardListResponse {
   title: string;
   description: string;
   tags: string[];
-  dueDate: string;
-  assignee: Assignee;
-  imageUrl: string;
+  dueDate?: string;
+  assignee?: Assignee;
+  imageUrl?: string;
   teamId: string;
   columnId: number;
   createdAt: string;
@@ -60,8 +60,7 @@ export function ColumnList({ column }: { column: ColumnList }) {
     try {
       const params: Params = {
         columnId: id,
-        // @TODO size 변경 필요
-        size: 1,
+        size: 5,
         ...(cursorId.current && { cursorId: cursorId.current }),
       };
 
@@ -130,9 +129,9 @@ export function ColumnList({ column }: { column: ColumnList }) {
         <ColumnCard
           key={colCard.id}
           cardTitle={colCard.title}
-          // tags={tags}
-          // creator={colCard.assignee.nickname}
-          // imgSrc={colCard.imageUrl}
+          tags={colCard.tags}
+          creator={colCard.assignee?.nickname}
+          imgSrc={colCard.imageUrl}
         />
       ))}
       {/* observer */}
