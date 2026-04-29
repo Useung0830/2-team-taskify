@@ -32,7 +32,7 @@ export function DeleteAlertModal({
 
   return (
     <Modal>
-      <div className="w-83.775 md:w-135">
+      <div className="w-full max-w-83.75 min-w-83.75 md:max-w-150 md:min-w-150">
         <div className="flex w-full flex-col items-center gap-2 md:gap-3">
           <h2 className="text-lg font-semibold text-gray-200 lg:text-xl">
             칼럼을 삭제하시겠습니까?
