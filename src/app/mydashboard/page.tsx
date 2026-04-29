@@ -18,7 +18,7 @@ export interface DashboardList {
   createdByMe: boolean;
   userId: number;
 }
-export const SIZE = 9;
+export const SIZE = 10;
 
 export default function MyDashboard() {
   const [invitaionList, setInvitationList] = useState<T.Invitation[]>([]);
