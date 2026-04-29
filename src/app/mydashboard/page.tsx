@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 
-import { getDashboardList, getMyInvitationList, postLogin } from "@/api/data";
+import { getDashboardList, getMyInvitationList } from "@/api/data";
 import { Input } from "@/components/input/input";
 import * as T from "@/types/api";
 
@@ -31,15 +31,6 @@ export default function MyDashboard() {
 
   const [total, setTotal] = useState<number>(0);
   const [loadPage, setLoadPage] = useState<number>(1);
-
-  //1. 마운트 되면 임시 로그인
-  useEffect(() => {
-    const setUp = async () => {
-      //임시 로그인
-      await postLogin({ email: "email@mail.com", password: "12341234" });
-    };
-    setUp();
-  }, []);
 
   //데이터를 불러오는 함수
   const onNeedsMoreData = async () => {
@@ -123,8 +114,6 @@ export default function MyDashboard() {
     return () => observer.disconnect();
   }, [isLoading, hasMore]);
 
-  const hasMydata = true;
-
   const handleFieldChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
     if (error) setError("");
@@ -143,7 +132,7 @@ export default function MyDashboard() {
         <h2 className="py-1 text-lg font-bold md:text-[18px] lg:text-xl">
           내 대시보드
         </h2>
-        {hasMydata ? (
+        {dashboardList.length !== 0 ? (
           <MydashContainer
             data={dashboardList}
             total={total}
@@ -154,7 +143,7 @@ export default function MyDashboard() {
           <Emptydashboard dashtype="my" />
         )}
       </div>
-      <div className="flex flex-col gap-3">
+      <div className="flex flex-col gap-8">
         <div className="flex flex-col justify-between gap-4 lg:flex-row lg:items-center">
           <h2 className="flex flex-col py-1 text-lg font-bold md:text-[18px] lg:text-xl">
             초대받은 대시보드
