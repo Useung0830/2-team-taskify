@@ -5,8 +5,7 @@
   font-weight: 45 920;
   font-style: normal;
   font-display: swap;
-  src: url("@/assets/fonts/PretendardVariable.woff2")
-    format("woff2-variations");
+  src: url("@/assets/fonts/PretendardVariable.woff2") format("woff2-variations");
 }
 
 @layer base {
@@ -66,6 +65,14 @@
   --color-profile-cobalt: #1458bc;
   --color-profile-yellow: #bd8c00;
   --color-profile-orange: #9f4b00;
+
+  --color-profile-violet-light: #eed7fc;
+  --color-profile-cobalt-light: #cfe1fd;
+  --color-profile-green-light: #baf3db;
+  --color-profile-cyan-light: #b7e9f7;
+  --color-profile-rose-light: #fad7d4;
+  --color-profile-yellow-light: #ffefc2;
+  --color-profile-orange-light: #ffe0cc;
 
   --font-pretendard: "Pretendard", sans-serif;
 }

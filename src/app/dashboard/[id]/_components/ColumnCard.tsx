@@ -1,6 +1,6 @@
 import Image, { StaticImageData } from "next/image";
 
-import { Badge } from "@/components/Badge";
+import { BadgeContainer } from "@/components/Badge/BadgeContainer";
 
 import { Profile } from "../../../../components/Profile";
 
@@ -16,7 +16,6 @@ export function ColumnCard({
   cardTitle,
   creator,
   imgSrc,
-  tags,
   onClick,
 }: ColumnCardProps) {
   const handleSetting = () => {
@@ -25,17 +24,12 @@ export function ColumnCard({
   return (
     <div
       onClick={handleSetting}
-      className="bg-black-700 flex flex-col gap-5 rounded-[30px] border border-gray-800 p-5 text-gray-100 lg:w-90"
+      className="bg-black-700 flex flex-col gap-5 rounded-[30px] border border-gray-800 p-5 text-gray-100 lg:w-83"
     >
       {imgSrc && <Image className="w-full" src={imgSrc} alt="userAddImg" />}
       <h1 className="text-[18px] font-semibold">{cardTitle}</h1>
-      <div className="flex gap-1.5">
-        {/* 기능구현할 때는 배지리스트 받아서 처리 */}
-        {tags &&
-          tags.map((tag, index) => (
-            <Badge key={tag} index={index} content={tag} />
-          ))}
-      </div>
+      {/* 기능구현할 때는 배지리스트 받아서 처리 */}
+      <BadgeContainer tags={["프로젝트", "상"]} />
       <div>2025년 7월 20일</div>
       <Profile name={creator} />
     </div>
