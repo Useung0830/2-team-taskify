@@ -2,30 +2,18 @@ import Image from "next/image";
 
 import tag from "@/assets/mydashboard/colorchips.svg";
 
+import { DashboardList } from "../page";
+
 import { MyDashboardItemContainer } from "./MyDashBoardItemContainer";
 import { MyDashboardItemContainerAdd } from "./MyDashboardItemContainerAdd";
 
-// interface Assingee {
-//   profileImageUrl: string;
-//   nickname: string;
-//   id: number;
-// }
 interface DashboardCard {
   id: number;
   title: string;
-  // description: string;
-  // tags: string[];
-  // dueDate: string;
-  // assignee: Assingee;
-  // imageUrl: string;
-  // teamId: string;
-  // columnId: number;
-  // createdAt: string;
-  // updatedAt: string;
 }
 
 interface MydashboardListProp {
-  data: DashboardCard[];
+  data: DashboardList[];
   currentPage: number;
 }
 

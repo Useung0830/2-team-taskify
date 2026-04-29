@@ -20,7 +20,7 @@ export function MydashContainer({
   loadPage: number;
   handleNeedsMoreData: () => void;
 }) {
-  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [currentPage, setCurrentPage] = useState<number>(0);
   const widthSize = useWindowSize();
   const SHOW_FIRST_ITEM = widthSize >= 1024 ? 3 : 1;
   const SHOW_ITEMS = widthSize >= 1024 ? 4 : 2;
