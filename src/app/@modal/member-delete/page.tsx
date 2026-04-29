@@ -43,7 +43,7 @@ export default function MemberDelete() {
         await refreshDashboardData(dashboardId);
       }
 
-      alert("멤버가 성공적으로 삭제되었습니다.");
+      alert("멤버가 성공적으로 제외되었습니다.");
 
       router.back();
       setTimeout(() => {
@@ -53,7 +53,7 @@ export default function MemberDelete() {
     } catch (error) {
       const err = error as ApiError;
       const errorMessage =
-        err.response?.data?.message || "멤버 삭제에 실패했습니다.";
+        err.response?.data?.message || "멤버 제외에 실패했습니다.";
       alert(errorMessage);
     } finally {
       setIsLoading(false);
@@ -64,7 +64,7 @@ export default function MemberDelete() {
     <div className="flex w-full flex-col items-center gap-10">
       <div className="flex w-full flex-col items-center gap-2 md:gap-3">
         <h2 className="text-lg font-semibold text-gray-200 lg:text-xl">
-          멤버를 삭제하시겠습니까?
+          멤버를 제외하시겠습니까?
         </h2>
       </div>
 
@@ -82,7 +82,7 @@ export default function MemberDelete() {
           onClick={handleDeleteMember}
           disabled={isLoading}
         >
-          {isLoading ? "삭제 중..." : "삭제"}
+          {isLoading ? "제외 중..." : "제외"}
         </Button>
       </div>
     </div>

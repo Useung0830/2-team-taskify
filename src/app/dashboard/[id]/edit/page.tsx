@@ -1,10 +1,16 @@
 "use client";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useParams, useRouter } from "next/navigation";
+import { useCallback, useEffect, useState } from "react";
 
+import {
+  getInvitationListAction,
+  getMemberListAction,
+} from "@/actions/dashboard-edit";
+import { getDashboardDetail } from "@/api/data";
 import icSideMenu from "@/assets/ic-sidemenu.svg";
 import icTrash from "@/assets/ic-trash.svg";
+import { Invitation, Member } from "@/types/api";
 
 import { DashboardEdit } from "../_components/DashboardEdit";
 import { DashboardEditHeader } from "../_components/DashboardEditHeader";
@@ -17,11 +23,47 @@ export default function Edit() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<Section>("edit");
 
+  const [members, setMembers] = useState<Member[]>([]);
+  const [invitations, setInvitations] = useState<Invitation[]>([]);
+  const [dashboardData, setDashboardData] = useState({ title: "", color: "" });
+  const params = useParams();
+  const dashboardId = Number(params.id);
+
   const router = useRouter();
 
   const handleDelete = () => {
     router.push(`/dashboard-delete`);
   };
+
+  const handleFetchAllData = useCallback(async () => {
+    if (!dashboardId) return;
+
+    try {
+      const detailRes = await getDashboardDetail(dashboardId);
+
+      const [memberRes, inviteRes] = await Promise.all([
+        getMemberListAction({ dashboardId, page: 1, size: 20 }),
+        getInvitationListAction({ dashboardId, page: 1, size: 20 }),
+      ]);
+
+      setDashboardData({ title: detailRes.title, color: detailRes.color });
+      if (memberRes.success) setMembers(memberRes.data.members);
+      if (inviteRes.success) setInvitations(inviteRes.data.invitations);
+    } catch (error) {
+      console.error("데이터 로딩 오류:", error);
+
+      alert("해당 대시보드에 접근 권한이 없거나 존재하지 않습니다.");
+
+      router.push("/mydashboard");
+    }
+  }, [dashboardId, router]);
+
+  useEffect(() => {
+    const loadData = async () => {
+      await handleFetchAllData();
+    };
+    loadData();
+  }, [handleFetchAllData]);
 
   const handleSectionClick = (section: Section) => {
     if (section === "dashboardDelete") {
@@ -77,9 +119,16 @@ export default function Edit() {
               title={activeSection === "edit" ? "대시보드 편집" : "멤버 관리"}
             />
             {activeSection === "edit" ? (
-              <DashboardEdit />
+              <DashboardEdit
+                initialData={dashboardData}
+                onUpdate={handleFetchAllData}
+              />
             ) : (
-              <MemberManagement />
+              <MemberManagement
+                members={members}
+                invitations={invitations}
+                onUpdate={handleFetchAllData}
+              />
             )}
           </div>
         </main>
