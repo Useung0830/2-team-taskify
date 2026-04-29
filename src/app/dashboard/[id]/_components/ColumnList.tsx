@@ -5,26 +5,36 @@ import userAddImg from "@/assets/dashboard/img-userAdd.png";
 import { ColumnCard } from "./ColumnCard";
 import { ColumnListHeader } from "./ColumnListHeader";
 
+// ColumnResponse 기준을 맞추기 위해 옵셔널 속성 추가
 interface Columndata {
   id: number;
   title: string;
-  color: string;
+  color?: string;
   createdAt: string;
   updatedAt: string;
-  createdByMe: boolean;
-  userId: number;
+  createdByMe?: boolean;
+  userId?: number;
 }
 
 interface ColumnListProps {
   column: Columndata;
+  onSettingIconClick?: () => void; // 추가
 }
 
-export function ColumnList({ column }: ColumnListProps) {
+export function ColumnList({ column, onSettingIconClick }: ColumnListProps) {
   const { title } = column;
+
+  const handleColumnEditModal = () => {
+    onSettingIconClick?.();
+  };
 
   return (
     <div className="flex w-full flex-col gap-5 md:mx-10 lg:mx-0">
-      <ColumnListHeader title={title} contentCount={3} />
+      <ColumnListHeader
+        title={title}
+        contentCount={3}
+        onSettingClick={handleColumnEditModal}
+      />
       <ColumnCard cardTitle="기능 설정" creator="김정은" imgSrc={userAddImg} />
       <ColumnCard cardTitle="레퍼런스 찾기" creator="박민영" />
       <ColumnCard cardTitle="GUI 디자인" creator="박민영" imgSrc={userAddImg} />

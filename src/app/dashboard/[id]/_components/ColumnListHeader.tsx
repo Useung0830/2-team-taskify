@@ -17,9 +17,7 @@ export function ColumnListHeader({
   onSettingClick,
 }: ColumnListHeaderProp) {
   const handleColumnEdit = () => {
-    if (onSettingClick) {
-      onSettingClick();
-    }
+    onSettingClick?.();
   };
 
   return (
@@ -30,7 +28,12 @@ export function ColumnListHeader({
       </div>
       <div className="flex gap-5">
         <Image src={plusicon} alt="add" />
-        <Image src={settingicon} alt="setting" onClick={handleColumnEdit} />
+        <Image
+          src={settingicon}
+          alt="setting"
+          onClick={handleColumnEdit}
+          className="cursor-pointer"
+        />
       </div>
     </div>
   );
