@@ -155,7 +155,7 @@ export default function MyDashboard() {
           <Emptydashboard dashtype="my" />
         )}
       </div>
-      <div className="flex flex-col gap-3">
+      <div className="flex flex-col gap-8">
         <div className="flex flex-col justify-between gap-4 lg:flex-row lg:items-center">
           <h2 className="flex flex-col py-1 text-lg font-bold md:text-[18px] lg:text-xl">
             초대받은 대시보드

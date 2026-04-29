@@ -73,9 +73,8 @@ export default function Dashboard({ params }: DashboardPageProps) {
       </div>
 
       {/* 모바일과 태블릿 환경 전용 UI */}
-      <div className="flex w-full gap-4 py-6 md:mx-10 lg:hidden">
-        {/* 버튼 리스트 */}
-        {columnList?.map((column) => (
+      <div className="flex w-full gap-4 overflow-scroll py-6 [-ms-overflow-style:none] [scrollbar-width:none] md:mx-10 lg:hidden [&::-webkit-scrollbar]:hidden">
+        {columnList.map((column) => (
           <button
             key={column.id}
             value={column.title}
