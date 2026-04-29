@@ -5,6 +5,7 @@ import { useState } from "react";
 
 import { deleteMember } from "@/api/data";
 import { Button } from "@/components/Button";
+import { Modal } from "@/components/modal/Modal";
 import { refreshDashboardData } from "@/util/dashboard";
 
 interface ApiError {
@@ -59,31 +60,33 @@ export default function MemberDelete() {
   };
 
   return (
-    <div className="flex w-full flex-col items-center gap-10">
-      <div className="flex w-full flex-col items-center gap-2 md:gap-3">
-        <h2 className="text-lg font-semibold text-gray-200 lg:text-xl">
-          멤버를 제외하시겠습니까?
-        </h2>
-      </div>
+    <Modal>
+      <div className="flex w-full flex-col items-center gap-10">
+        <div className="flex w-full flex-col items-center gap-2 md:gap-3">
+          <h2 className="text-lg font-semibold text-gray-200 lg:text-xl">
+            멤버를 제외하시겠습니까?
+          </h2>
+        </div>
 
-      <div className="flex w-135 gap-5 max-md:w-73.75 max-md:gap-3">
-        <Button
-          colorType="secondary"
-          className="flex-1"
-          onClick={handleClose}
-          disabled={isLoading}
-        >
-          취소
-        </Button>
-        <Button
-          colorType="red"
-          className="flex-1"
-          onClick={handleDeleteMember}
-          disabled={isLoading}
-        >
-          {isLoading ? "제외 중..." : "제외"}
-        </Button>
+        <div className="flex w-135 gap-5 max-md:w-73.75 max-md:gap-3">
+          <Button
+            colorType="secondary"
+            className="flex-1"
+            onClick={handleClose}
+            disabled={isLoading}
+          >
+            취소
+          </Button>
+          <Button
+            colorType="red"
+            className="flex-1"
+            onClick={handleDeleteMember}
+            disabled={isLoading}
+          >
+            {isLoading ? "제외 중..." : "제외"}
+          </Button>
+        </div>
       </div>
-    </div>
+    </Modal>
   );
 }
