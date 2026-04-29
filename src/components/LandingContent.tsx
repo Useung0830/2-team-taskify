@@ -125,7 +125,7 @@ export function LandingContent() {
 
       {/* Point 2 Section */}
       <section className="mx-auto flex w-full max-w-[1920px] flex-col items-start overflow-hidden lg:flex-row lg:items-center lg:py-24">
-        <div className="z-10 order-2 mx-auto flex w-[315px] flex-col justify-center py-12 text-left md:mx-0 md:w-full md:max-w-[502px] md:py-16 md:pl-24 lg:order-1 lg:mx-0 lg:w-auto lg:py-0 lg:pl-[clamp(40px,12vw,240px)]">
+        <div className="z-10 order-2 mx-auto flex w-[315px] flex-col justify-center py-12 text-left md:mx-0 md:w-full md:max-w-[530px] md:py-16 md:pl-24 lg:order-1 lg:mx-0 lg:max-w-[700px] lg:py-0 lg:pl-[clamp(40px,12vw,240px)]">
           <p className="text-brand-500 text-sm font-bold md:text-lg">Point 2</p>
           <h2 className="mt-4 text-[24px] leading-tight font-bold md:text-[32px] lg:text-[45px]">
             자세한 정보는 명확하게,
@@ -166,7 +166,7 @@ export function LandingContent() {
       {/* Point 3 */}
       <section className="relative w-full py-12 md:py-24">
         <div className="mx-auto w-full max-w-[1920px] lg:pr-[240px] lg:pl-[clamp(40px,12vw,240px)]">
-          <div className="mx-auto w-[320px] text-left md:mx-0 md:w-full md:max-w-[502px] md:pl-24 lg:mx-0 lg:w-auto lg:py-6 lg:pl-0">
+          <div className="mx-auto w-[320px] text-left md:mx-0 md:w-full md:max-w-[502px] md:pl-24 lg:mx-0 lg:max-w-[700px] lg:py-6 lg:pl-0">
             <p className="text-brand-500 mb-2 text-base font-bold lg:text-lg">
               Point 3
             </p>
