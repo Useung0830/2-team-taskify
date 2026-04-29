@@ -2,7 +2,7 @@
 
 import * as T from "@/types/api";
 
-import { get, post, put, del } from "./fetch";
+import { get, post, put, del, fetchInstance } from "./fetch";
 
 // ==========================================================
 // [ Auth ] - 로그인 및 비밀번호 변경
@@ -43,17 +43,17 @@ export async function putMyInfoUpdate(
   return put<T.UpdateUserRequest, T.User>("/users/me", data);
 }
 
-export async function postProfileImage(
-  imageFile: File
-): Promise<T.UploadProfileImageResponse> {
+export const postProfileImage = async (
+  file: File
+): Promise<{ profileImageUrl: string }> => {
   const formData = new FormData();
-  formData.append("image", imageFile);
+  formData.append("image", file);
 
-  return post<FormData, T.UploadProfileImageResponse>(
-    "/users/me/image",
-    formData
-  );
-}
+  return fetchInstance("/users/me/image", {
+    method: "POST",
+    body: formData,
+  });
+};
 
 // ==========================================================
 // [ Card ] - 카드 생성, 목록 조회, 수정, 상세 조회, 삭제

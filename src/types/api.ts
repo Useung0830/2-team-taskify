@@ -358,3 +358,11 @@ export interface APIResponse {
   success: boolean;
   message: string;
 }
+
+export interface ApiError {
+  response?: {
+    data?: {
+      message?: string;
+    };
+  };
+}
