@@ -1,11 +1,11 @@
 import Image from "next/image";
 
+import icCrown from "@/assets/common/ic-crown.svg";
 import colorChipsBlue from "@/assets/dashboard/colorchips-blue.svg";
 import colorChipsGreen from "@/assets/dashboard/colorchips-green.svg";
 import colorChipsOrange from "@/assets/dashboard/colorchips-orange.svg";
 import colorChipsRed from "@/assets/dashboard/colorchips-red.svg";
 import colorChipsYellow from "@/assets/dashboard/colorchips-yellow.svg";
-import icCrown from "@/assets/common/ic-crown.svg";
 
 const CHIP_IMAGE_MAP: Record<string, string> = {
   "#206E4E": colorChipsGreen,

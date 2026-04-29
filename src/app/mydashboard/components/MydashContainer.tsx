@@ -5,6 +5,7 @@ import { useState } from "react";
 
 import leftbtn from "@/assets/mydashboard/ic_left_arrow.svg";
 import rightbtn from "@/assets/mydashboard/ic_right_arrow.svg";
+
 import { useWindowSize } from "../hooks/usewindow-size";
 
 import { mockdata } from "./mock";

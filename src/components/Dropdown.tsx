@@ -23,7 +23,7 @@ export function Dropdown({
 
       <div
         onClick={() => setIsOpen(!isOpen)}
-        className="bg-black-800 flex h-[54px] w-[157.5px] cursor-pointer items-center justify-between rounded-[14px] border-[1px] border-solid border-gray-700 px-[20px] py-[6px] transition-all md:w-[260px]"
+        className="bg-black-800 flex h-13.5 w-[157.5px] cursor-pointer items-center justify-between rounded-[14px] border border-solid border-gray-700 px-5 py-1.5 transition-all md:w-65"
       >
         <span
           className={`font-pretendard truncate text-[16px] ${selected ? "text-gray-100" : "text-gray-400"}`}
@@ -40,7 +40,7 @@ export function Dropdown({
       </div>
 
       {isOpen && (
-        <ul className="bg-black-800 absolute z-10 mt-2 max-h-[200px] w-[157.5px] overflow-y-auto rounded-lg border border-gray-700 shadow-lg md:w-[260px] [&::-webkit-scrollbar]:w-[6px] [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-gray-600 [&::-webkit-scrollbar-track]:bg-transparent">
+        <ul className="bg-black-800 absolute z-10 mt-2 max-h-50 w-[157.5px] overflow-y-auto rounded-lg border border-gray-700 shadow-lg md:w-65 [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-gray-600 [&::-webkit-scrollbar-track]:bg-transparent">
           {options.map((option) => (
             <li
               key={option}
@@ -48,7 +48,7 @@ export function Dropdown({
                 setSelected(option);
                 setIsOpen(false);
               }}
-              className="font-pretendard hover:bg-black-700 cursor-pointer px-4 py-3 text-[16px] text-gray-100 transition-colors"
+              className="hover:bg-black-700 cursor-pointer px-4 py-3 text-[16px] text-gray-100 transition-colors"
             >
               {option}
             </li>

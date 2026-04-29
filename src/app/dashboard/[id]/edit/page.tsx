@@ -1,41 +1,96 @@
-interface ColumnEditProps {
-  onClose: () => void;
-  onDelete: () => void;
-}
+"use client";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
-export default function ColumnEdit({ onClose, onDelete }: ColumnEditProps) {
-  const handleClose = () => {
-    onClose();
+import icSideMenu from "@/assets/ic-sidemenu.svg";
+import icTrash from "@/assets/ic-trash.svg";
+
+import { DashboardEdit } from "../_components/DashboardEdit";
+import { DashboardEditHeader } from "../_components/DashboardEditHeader";
+import { EditSideButton } from "../_components/EditSideButton";
+import { MemberManagement } from "../_components/MemberManagement";
+
+type Section = "edit" | "members" | "dashboardDelete";
+
+export default function Edit() {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState<Section>("edit");
+
+  const router = useRouter();
+
+  const handleDelete = () => {
+    router.push(`/dashboard-delete`);
   };
 
-  const handleDeleteButton = () => {
-    onDelete();
+  const handleSectionClick = (section: Section) => {
+    if (section === "dashboardDelete") {
+      return handleDelete();
+    }
+    setActiveSection(section);
+    setIsSidebarOpen(false);
   };
 
   return (
-    <div className="bg-black-900 fixed inset-0 z-100 flex w-full items-center justify-center backdrop-blur-sm">
-      <div className="text-2xl font-bold text-white">
-        컬럼 관리
-        <div className="x-full mt-2 flex w-md flex-col gap-3 rounded-lg text-lg text-white">
-          <button className="cursor-pointer bg-blue-900 text-white hover:bg-blue-700 active:bg-blue-700 disabled:bg-blue-950">
-            수정하기
-          </button>
-
-          <button
-            onClick={handleDeleteButton}
-            className="cursor-pointer bg-gray-900 text-gray-300 hover:bg-gray-700 active:bg-gray-700 disabled:bg-red-950"
+    <div className="grid h-screen md:grid-cols-[minmax(250px,540px)_1fr]">
+      <aside
+        className={`bg-black-900 flex px-6 pt-22.5 max-md:fixed max-md:top-0 max-md:left-0 max-md:z-50 max-md:h-full max-md:w-62.5 max-md:justify-start ${isSidebarOpen ? "max-md:block" : "max-md:hidden"} md:relative md:flex md:justify-end`}
+      >
+        <div className="flex w-full max-w-69 min-w-37.75 flex-col gap-2 text-lg text-white">
+          <EditSideButton
+            isActive={activeSection === "edit"}
+            handleClick={() => handleSectionClick("edit")}
           >
-            삭제하기
-          </button>
+            대시보드 편집
+          </EditSideButton>
 
-          <button
-            onClick={handleClose}
-            className="text-md mt-5 cursor-pointer text-rose-900 underline"
+          <EditSideButton
+            isActive={activeSection === "members"}
+            handleClick={() => handleSectionClick("members")}
           >
-            닫기
-          </button>
+            멤버 관리
+          </EditSideButton>
+
+          <div className="bg-modal-background mx-4 my-1 h-px" />
+
+          <EditSideButton
+            isDelete
+            icon={icTrash}
+            handleClick={() => handleSectionClick("dashboardDelete")}
+          >
+            대시보드 삭제하기
+          </EditSideButton>
         </div>
+      </aside>
+
+      <div className="flex flex-col">
+        <header className="border-black-700 flex h-18 items-center border-b-2 pl-5">
+          <button onClick={() => setIsSidebarOpen(true)} className="md:hidden">
+            <Image src={icSideMenu} alt="사이드 메뉴" height={20} width={20} />
+          </button>
+        </header>
+
+        {/* 구역 3: 메인 콘텐츠 */}
+        <main className="flex-1 overflow-y-auto">
+          <div className="flex max-w-185 flex-col gap-7.5 px-12.5 text-zinc-400 max-md:px-5">
+            <DashboardEditHeader
+              title={activeSection === "edit" ? "대시보드 편집" : "멤버 관리"}
+            />
+            {activeSection === "edit" ? (
+              <DashboardEdit />
+            ) : (
+              <MemberManagement />
+            )}
+          </div>
+        </main>
       </div>
+
+      {isSidebarOpen && (
+        <div
+          className="fixed inset-0 z-40 bg-black/50 md:hidden"
+          onClick={() => setIsSidebarOpen(false)}
+        />
+      )}
     </div>
   );
 }
