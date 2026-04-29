@@ -114,8 +114,6 @@ export default function MyDashboard() {
     return () => observer.disconnect();
   }, [isLoading, hasMore]);
 
-  const hasMydata = true;
-
   const handleFieldChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
     if (error) setError("");
@@ -134,7 +132,7 @@ export default function MyDashboard() {
         <h2 className="py-1 text-lg font-bold md:text-[18px] lg:text-xl">
           내 대시보드
         </h2>
-        {hasMydata ? (
+        {dashboardList.length !== 0 ? (
           <MydashContainer
             data={dashboardList}
             total={total}
