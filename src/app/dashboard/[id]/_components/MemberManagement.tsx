@@ -3,7 +3,10 @@
 import { useParams, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
-import { getMemberList, getInvitationList } from "@/api/data";
+import {
+  getInvitationListAction,
+  getMemberListAction,
+} from "@/actions/dashboard-edit";
 
 import { MemberHeader } from "./MemberHeader";
 import { MemberList } from "./MemberList";
@@ -51,22 +54,28 @@ export function MemberManagement() {
 
   useEffect(() => {
     const fetchData = async () => {
+      if (!dashboardId) return;
+
       try {
+        // 서버 액션 호출 (Promise.all 활용)
         const [memberRes, inviteRes] = await Promise.all([
-          getMemberList({ dashboardId, page: 1, size: 6 }),
-          getInvitationList(dashboardId, { page: 1, size: 6 }),
+          getMemberListAction({ dashboardId, page: 1, size: 6 }),
+          getInvitationListAction({ dashboardId, page: 1, size: 6 }),
         ]);
 
-        setMembers(memberRes.members);
-        setInvitations(inviteRes.invitations);
+        if (memberRes.success) {
+          setMembers(memberRes.data.members);
+        }
+
+        if (inviteRes.success) {
+          setInvitations(inviteRes.data.invitations);
+        }
       } catch (error) {
         console.error("데이터 로딩 중 오류 발생:", error);
       }
     };
 
-    if (dashboardId) {
-      fetchData();
-    }
+    fetchData();
   }, [dashboardId, searchParams]);
 
   return (
