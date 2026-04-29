@@ -128,7 +128,6 @@ export default function MyDashboard() {
   //검색어로 데이터 가져오는 함수
   const handleSearchInvited = async () => {
     const result = await getMyInvitationList({ title: value });
-    console.log(result);
     return result;
   };
 
@@ -136,7 +135,6 @@ export default function MyDashboard() {
     e.preventDefault();
     const result = await handleSearchInvited();
     setInvitationList(result.invitations);
-    console.log(invitaionList);
   };
 
   return (
