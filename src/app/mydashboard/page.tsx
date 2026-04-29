@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 
-import { getDashboardList, getMyInvitationList, postLogin } from "@/api/data";
+import { getDashboardList, getMyInvitationList } from "@/api/data";
 import { Input } from "@/components/input/input";
 import * as T from "@/types/api";
 
@@ -30,18 +30,7 @@ export default function MyDashboard() {
   const targetdiv = useRef(null);
 
   const [total, setTotal] = useState<number>(0);
-  //loadPage는 api 함수에 전달할 page를 관리하는 상태, currentPage는 유저가 보고 있는 페이지
   const [loadPage, setLoadPage] = useState<number>(1);
-  // const [currentPage, setCurrentPage] = useState<number>(1);
-
-  //1. 마운트 되면 임시 로그인
-  useEffect(() => {
-    const setUp = async () => {
-      //임시 로그인
-      await postLogin({ email: "email@mail.com", password: "12341234" });
-    };
-    setUp();
-  }, []);
 
   //데이터를 불러오는 함수
   const onNeedsMoreData = async () => {
@@ -71,8 +60,6 @@ export default function MyDashboard() {
 
     fetchInitialDash();
   }, []);
-
-  //버튼을 눌렀을 때 currentPage가 불러온 데이터 중 어디에 위치해있는지를 파악하는 함수
 
   //====================================================================
 
@@ -138,6 +125,20 @@ export default function MyDashboard() {
     }
   };
 
+  //검색어로 데이터 가져오는 함수
+  const handleSearchInvited = async () => {
+    const result = await getMyInvitationList({ title: value });
+    console.log(result);
+    return result;
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const result = await handleSearchInvited();
+    setInvitationList(result.invitations);
+    console.log(invitaionList);
+  };
+
   return (
     <div className="font-pretendard flex flex-col gap-2.5 px-5 text-gray-100">
       <h1 className="pt-3.5 text-4xl font-bold">홈</h1>
@@ -163,19 +164,21 @@ export default function MyDashboard() {
           </h2>
           <div>
             {invitaionList.length !== 0 && (
-              <Input>
-                <Input.Wrapper>
-                  <Input.SearchIcon />
-                  <Input.Field
-                    id="test"
-                    placeholder="검색"
-                    value={value}
-                    onChange={handleFieldChange}
-                    onBlur={handleFieldBlur}
-                  />
-                </Input.Wrapper>
-                <Input.Error />
-              </Input>
+              <form onSubmit={handleSubmit}>
+                <Input>
+                  <Input.Wrapper>
+                    <Input.SearchIcon />
+                    <Input.Field
+                      id="test"
+                      placeholder="검색"
+                      value={value}
+                      onChange={handleFieldChange}
+                      onBlur={handleFieldBlur}
+                    />
+                  </Input.Wrapper>
+                  <Input.Error />
+                </Input>
+              </form>
             )}
           </div>
         </div>
