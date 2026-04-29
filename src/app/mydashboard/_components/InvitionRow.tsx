@@ -18,8 +18,6 @@ export function InvitionRow({
   handleDismiss: (id: number) => void;
   handleAccept: (id: number) => void;
 }) {
-  // 거절하는 함수
-
   return (
     <div className="flex flex-col justify-between gap-1 px-2.5 pt-4 pb-4.5 md:flex-row">
       <div className="w-75">{title}</div>
