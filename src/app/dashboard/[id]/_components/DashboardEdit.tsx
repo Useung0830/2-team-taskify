@@ -64,7 +64,6 @@ export function DashboardEdit({ initialData, onUpdate }: DashboardEditProps) {
       setIsUpdating(true);
       await putDashboardUpdate(dashboardId, dashboardData);
       setOriginalData(dashboardData);
-      alert("변경사항이 저장되었습니다.");
       onUpdate(); // 부모 데이터 갱신 요청
     } catch (error) {
       const err = error as ApiError;

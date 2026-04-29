@@ -38,7 +38,7 @@ export default function Edit() {
   const searchParams = useSearchParams();
 
   const handleDelete = () => {
-    router.push(`/dashboard-delete`);
+    router.push(`/dashboard/${dashboardId}/edit/dashboard-delete`);
   };
 
   const handleFetchAllData = useCallback(async () => {
@@ -139,7 +139,6 @@ export default function Edit() {
               <MemberManagement
                 members={members}
                 invitations={invitations}
-                onUpdate={handleFetchAllData}
                 memberPagination={{
                   current: memberPage,
                   total: Math.ceil(totalMemberCount / 6),

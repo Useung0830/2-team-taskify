@@ -35,7 +35,6 @@ export default function Invite() {
     e.preventDefault();
 
     if (!email) {
-      alert("이메일을 입력해주세요.");
       return;
     }
 
@@ -47,8 +46,6 @@ export default function Invite() {
       await postInvitation(dashboardId, { email });
 
       await refreshDashboardData(dashboardId);
-
-      alert("초대가 완료되었습니다.");
 
       router.back();
     } catch (error) {

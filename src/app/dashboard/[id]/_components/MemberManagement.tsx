@@ -37,7 +37,6 @@ interface Invitation {
 interface MemberManagementProps {
   members: Member[];
   invitations: Invitation[];
-  onUpdate: () => void;
   memberPagination: {
     current: number;
     total: number;
@@ -53,7 +52,6 @@ interface MemberManagementProps {
 export function MemberManagement({
   members,
   invitations,
-  onUpdate: handleFetchAllData,
   memberPagination,
   invitePagination,
 }: MemberManagementProps) {
@@ -64,12 +62,7 @@ export function MemberManagement({
         <MemberHeader pagination={memberPagination}>구성원</MemberHeader>
         <div className="flex-1 rounded-lg">
           {members.map((member) => (
-            <MemberList
-              key={member.id}
-              type="member"
-              data={member}
-              onDelete={handleFetchAllData}
-            />
+            <MemberList key={member.id} type="member" data={member} />
           ))}
         </div>
       </div>
@@ -79,12 +72,7 @@ export function MemberManagement({
         <MemberHeader pagination={invitePagination}>초대내역</MemberHeader>
         <div className="flex-1 overflow-y-auto rounded-lg">
           {invitations.map((invite) => (
-            <MemberList
-              key={invite.id}
-              type="invite"
-              data={invite}
-              onDelete={handleFetchAllData}
-            />
+            <MemberList key={invite.id} type="invite" data={invite} />
           ))}
         </div>
       </div>

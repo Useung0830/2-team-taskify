@@ -32,7 +32,6 @@ export default function DashboardDelete() {
         router.push("/mydashboard");
         router.refresh();
       }, 100);
-      alert("대시보드가 삭제되었습니다.");
     } catch (error) {
       console.error("대시보드 삭제 실패:", error);
       alert("삭제에 실패했습니다. 다시 시도해주세요.");
@@ -62,7 +61,8 @@ export default function DashboardDelete() {
           취소
         </Button>
         <Button
-          className="bg-red flex-1 text-white hover:bg-red-900 disabled:opacity-50"
+          className="flex-1"
+          colorType="red"
           onClick={handleDelete}
           disabled={isLoading}
         >
