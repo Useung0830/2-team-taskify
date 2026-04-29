@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 import plusicon from "@/assets/dashboard/ic-plusbtn.svg";
 import settingicon from "@/assets/dashboard/ic-setting.svg";
@@ -29,8 +30,12 @@ export function ColumnListHeader({
         <span className="text-gray-400">{contentCount}</span>
       </div>
       <div className="flex gap-5">
-        <Image src={plusicon} alt="add" />
-        <Image src={settingicon} alt="setting" onClick={handleColumnEdit} />
+        <Link href={"/task-add"}>
+          <Image src={plusicon} alt="add" />
+        </Link>
+        <Link href={"/column-modify"}>
+          <Image src={settingicon} alt="setting" onClick={handleColumnEdit} />
+        </Link>
       </div>
     </div>
   );
