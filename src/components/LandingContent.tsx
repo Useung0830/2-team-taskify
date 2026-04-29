@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 
 import imgSection1 from "@/assets/landing/img-section1.svg";
 import imgSection2 from "@/assets/landing/img-section2.svg";
@@ -48,7 +49,6 @@ export function LandingContent() {
 
   return (
     <main className="min-h-screen overflow-x-hidden bg-[#161519] font-[family-name:var(--font-pretendard)] text-white">
-      {/* Hero Section */}
       <section className="relative mx-auto flex w-full max-w-[1920px] flex-col items-center overflow-hidden md:flex-row md:items-center lg:h-[940px] lg:gap-[100px]">
         <div className="z-10 flex w-full flex-col justify-center px-6 py-10 md:mt-[51px] md:w-auto md:px-12 md:py-0 lg:mt-0 lg:h-full lg:pl-[clamp(40px,12vw,240px)]">
           <div className="text-center md:text-left">
@@ -62,12 +62,19 @@ export function LandingContent() {
             </div>
 
             <div className="mt-10 grid w-full grid-cols-2 gap-3 md:flex md:flex-col md:items-start md:gap-4 lg:mt-[50px] lg:flex-row lg:gap-5">
-              <button className="h-[50px] w-full rounded-full bg-zinc-700 text-sm font-semibold transition-colors hover:bg-zinc-600 md:h-[60px] md:w-[293px] md:text-base lg:w-[200px]">
-                회원가입하기
-              </button>
-              <button className="bg-brand-500 hover:bg-brand-400 h-[50px] w-full rounded-full text-sm font-semibold text-white transition-colors md:h-[60px] md:w-[293px] md:text-base lg:w-[200px]">
-                로그인하기
-              </button>
+              {/* 2. 회원가입 버튼 수정 */}
+              <Link href="/signup" className="w-full md:w-auto">
+                <button className="h-[50px] w-full cursor-pointer rounded-full bg-zinc-700 text-sm font-semibold transition-colors hover:bg-zinc-600 md:h-[60px] md:w-[293px] md:text-base lg:w-[200px]">
+                  회원가입하기
+                </button>
+              </Link>
+
+              {/* 3. 로그인 버튼 수정 */}
+              <Link href="/login" className="w-full md:w-auto">
+                <button className="bg-brand-500 hover:bg-brand-400 h-[50px] w-full cursor-pointer rounded-full text-sm font-semibold text-white transition-colors md:h-[60px] md:w-[293px] md:text-base lg:w-[200px]">
+                  로그인하기
+                </button>
+              </Link>
             </div>
           </div>
         </div>
@@ -102,7 +109,6 @@ export function LandingContent() {
           />
         </div>
 
-        {/* md:mx-0 md:pl-24를 추가하여 정렬 통일 */}
         <div className="mx-auto w-[315px] space-y-4 text-left md:mx-0 md:w-full md:max-w-[535px] md:pl-24 lg:mx-0 lg:w-full lg:max-w-[520px] lg:pl-0">
           <p className="text-brand-500 text-sm font-bold md:text-lg">Point 1</p>
           <h2 className="text-[24px] leading-tight font-bold md:text-[32px] lg:text-[50px]">
@@ -119,7 +125,6 @@ export function LandingContent() {
 
       {/* Point 2 Section */}
       <section className="mx-auto flex w-full max-w-[1920px] flex-col items-start overflow-hidden lg:flex-row lg:items-center lg:py-24">
-        {/* md:pl-24로 통일 */}
         <div className="z-10 order-2 mx-auto flex w-[315px] flex-col justify-center py-12 text-left md:mx-0 md:w-full md:max-w-[502px] md:py-16 md:pl-24 lg:order-1 lg:mx-0 lg:w-auto lg:py-0 lg:pl-[clamp(40px,12vw,240px)]">
           <p className="text-brand-500 text-sm font-bold md:text-lg">Point 2</p>
           <h2 className="mt-4 text-[24px] leading-tight font-bold md:text-[32px] lg:text-[45px]">
@@ -161,7 +166,6 @@ export function LandingContent() {
       {/* Point 3 */}
       <section className="relative w-full py-12 md:py-24">
         <div className="mx-auto w-full max-w-[1920px] lg:pr-[240px] lg:pl-[clamp(40px,12vw,240px)]">
-          {/* md:pl-24로 통일 */}
           <div className="mx-auto w-[320px] text-left md:mx-0 md:w-full md:max-w-[502px] md:pl-24 lg:mx-0 lg:w-auto lg:py-6 lg:pl-0">
             <p className="text-brand-500 mb-2 text-base font-bold lg:text-lg">
               Point 3
