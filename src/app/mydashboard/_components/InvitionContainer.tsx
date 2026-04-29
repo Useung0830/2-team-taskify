@@ -1,5 +1,3 @@
-"use client";
-
 import { putInvitationAnswer } from "@/api/data";
 
 import { InvitionHeader } from "./InvitionHeader";
@@ -33,10 +31,12 @@ export function InvitionContainer({ invitedData }: InvitionContainerProps) {
   const onClickDismiss = async (id: number) => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const result = await putInvitationAnswer(id, { inviteAccepted: false });
+    window.location.reload();
   };
   const onClickAccept = async (id: number) => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const result = await putInvitationAnswer(id, { inviteAccepted: true });
+    window.location.reload();
   };
   return (
     <div>
