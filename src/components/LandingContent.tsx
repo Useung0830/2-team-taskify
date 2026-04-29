@@ -217,7 +217,7 @@ export function LandingContent() {
                     />
                   </div>
 
-                  <div className="mx-auto mt-[20px] flex w-full max-w-[315px] flex-col items-start gap-2 pb-[40px] md:mx-0 md:mt-[40px] md:max-w-none md:pb-0 lg:mx-0 lg:mt-[28px] lg:ml-[30px]">
+                  <div className="mx-auto mt-[20px] flex w-full max-w-[315px] flex-col items-start gap-2 pb-[40px] md:mx-0 md:mt-[0px] md:max-w-none md:pb-0 lg:mx-0 lg:mt-[28px] lg:ml-[30px]">
                     <h3 className="text-left text-xl font-bold lg:text-[18px]">
                       {item.title}
                     </h3>
