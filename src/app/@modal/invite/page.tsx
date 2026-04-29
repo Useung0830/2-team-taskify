@@ -51,11 +51,6 @@ export default function Invite() {
       alert("초대가 완료되었습니다.");
 
       router.back();
-
-      setTimeout(() => {
-        router.replace(`/dashboard/${dashboardId}/edit?refetch=${Date.now()}`);
-        router.refresh();
-      }, 100);
     } catch (error) {
       const err = error as ApiError;
       const errorMessage =

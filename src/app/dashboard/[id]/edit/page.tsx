@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { useParams, useRouter } from "next/navigation";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 
 import {
@@ -30,6 +30,7 @@ export default function Edit() {
   const dashboardId = Number(params.id);
 
   const router = useRouter();
+  const searchParams = useSearchParams();
 
   const handleDelete = () => {
     router.push(`/dashboard-delete`);
@@ -42,8 +43,8 @@ export default function Edit() {
       const detailRes = await getDashboardDetail(dashboardId);
 
       const [memberRes, inviteRes] = await Promise.all([
-        getMemberListAction({ dashboardId, page: 1, size: 20 }),
-        getInvitationListAction({ dashboardId, page: 1, size: 20 }),
+        getMemberListAction({ dashboardId, page: 1, size: 6 }),
+        getInvitationListAction({ dashboardId, page: 1, size: 6 }),
       ]);
 
       setDashboardData({ title: detailRes.title, color: detailRes.color });
@@ -63,7 +64,7 @@ export default function Edit() {
       await handleFetchAllData();
     };
     loadData();
-  }, [handleFetchAllData]);
+  }, [handleFetchAllData, searchParams]);
 
   const handleSectionClick = (section: Section) => {
     if (section === "dashboardDelete") {
