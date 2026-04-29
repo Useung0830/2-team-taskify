@@ -125,7 +125,7 @@ export default function MyDashboard() {
     }
 
     return () => observer.disconnect();
-  }, [invitaionList, isLoading, hasMore]);
+  }, [isLoading, hasMore]);
 
   const hasMydata = true;
 
