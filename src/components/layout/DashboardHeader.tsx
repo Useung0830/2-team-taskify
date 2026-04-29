@@ -83,8 +83,9 @@ export function DashboardHeader({ members, totalCount }: DashboardHeaderProps) {
               {member.profileImageUrl ? (
                 <Image
                   src={member.profileImageUrl}
-                  alt="p"
+                  alt={`${member.nickname} profile`}
                   fill
+                  sizes="(max-width: 768px) 24px, 34px"
                   className="rounded-full object-cover"
                 />
               ) : (
