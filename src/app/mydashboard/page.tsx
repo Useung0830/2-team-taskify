@@ -18,7 +18,7 @@ export interface DashboardList {
   createdByMe: boolean;
   userId: number;
 }
-export const SIZE = 9;
+export const SIZE = 10;
 
 export default function MyDashboard() {
   const [invitaionList, setInvitationList] = useState<T.Invitation[]>([]);
@@ -112,6 +112,7 @@ export default function MyDashboard() {
     }
 
     return () => observer.disconnect();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoading, hasMore]);
 
   const handleFieldChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -123,6 +124,18 @@ export default function MyDashboard() {
     if (value.length < 3) {
       setError("검색 글자 수는 3글자 이상이어야 합니다.");
     }
+  };
+
+  //검색어로 데이터 가져오는 함수
+  const handleSearchInvited = async () => {
+    const result = await getMyInvitationList({ title: value });
+    return result;
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const result = await handleSearchInvited();
+    setInvitationList(result.invitations);
   };
 
   return (
@@ -150,19 +163,21 @@ export default function MyDashboard() {
           </h2>
           <div>
             {invitaionList.length !== 0 && (
-              <Input>
-                <Input.Wrapper>
-                  <Input.SearchIcon />
-                  <Input.Field
-                    id="test"
-                    placeholder="검색"
-                    value={value}
-                    onChange={handleFieldChange}
-                    onBlur={handleFieldBlur}
-                  />
-                </Input.Wrapper>
-                <Input.Error />
-              </Input>
+              <form onSubmit={handleSubmit}>
+                <Input>
+                  <Input.Wrapper>
+                    <Input.SearchIcon />
+                    <Input.Field
+                      id="test"
+                      placeholder="검색"
+                      value={value}
+                      onChange={handleFieldChange}
+                      onBlur={handleFieldBlur}
+                    />
+                  </Input.Wrapper>
+                  <Input.Error />
+                </Input>
+              </form>
             )}
           </div>
         </div>

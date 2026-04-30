@@ -1,31 +1,18 @@
-import Image from "next/image";
+import { HashtagIcon } from "@/assets/dashboard/ic-colorchips";
 
-import tag from "@/assets/mydashboard/colorchips.svg";
+import { DashboardList } from "../page";
 
 import { MyDashboardItemContainer } from "./MyDashBoardItemContainer";
 import { MyDashboardItemContainerAdd } from "./MyDashboardItemContainerAdd";
 
-// interface Assingee {
-//   profileImageUrl: string;
-//   nickname: string;
-//   id: number;
-// }
 interface DashboardCard {
   id: number;
   title: string;
-  // description: string;
-  // tags: string[];
-  // dueDate: string;
-  // assignee: Assingee;
-  // imageUrl: string;
-  // teamId: string;
-  // columnId: number;
-  // createdAt: string;
-  // updatedAt: string;
+  color: string;
 }
 
 interface MydashboardListProp {
-  data: DashboardCard[];
+  data: DashboardList[];
   currentPage: number;
 }
 
@@ -36,8 +23,8 @@ export function MydashboardList({ data, currentPage }: MydashboardListProp) {
       {data.map((item: DashboardCard) => (
         <MyDashboardItemContainer key={item.id} dashid={item.id}>
           {/* @TODO Hash 컴포넌트로 교체 */}
-          <div className="flex gap-1">
-            <Image src={tag} alt="tag" />
+          <div className="flex items-center gap-1">
+            <HashtagIcon size={20} color={item.color} />
             {item.title}
           </div>
         </MyDashboardItemContainer>
