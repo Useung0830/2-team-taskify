@@ -1,4 +1,4 @@
-import { DashboardColorChoiceList } from "@/components/DashboardColorChoiceList";
+// import { DashboardColorChoiceList } from "@/components/DashboardColorChoiceList";
 import { ModalHeader } from "@/components/modal/ModalHeader";
 
 export default function NewDashboard() {
@@ -9,7 +9,7 @@ export default function NewDashboard() {
         className="bg-black-800 h-13.5 rounded-md border border-gray-700 px-5 py-1.5 text-gray-400"
         placeholder="새로운 대시보드"
       />
-      <DashboardColorChoiceList />
+      {/* <DashboardColorChoiceList size="edit" /> */}
       <div className="flex gap-5">
         <button className="h-15 w-full rounded-full bg-gray-900 px-7.5 py-1.5">
           취소

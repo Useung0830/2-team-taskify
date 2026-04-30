@@ -1,15 +1,21 @@
-import Image from "next/image";
-
-import icLeft from "@/assets/ic-chevronleft.svg";
-import icRight from "@/assets/ic-chevronright.svg";
-
 import { InviteButton } from "./InviteButton";
+import { PaginationButton } from "./PaginationButton";
 interface MemberHeaderProps {
-  children: React.ReactNode;
+  children: string;
+  pagination: {
+    current: number;
+    total: number;
+    // 에러 메시지가 요구하는 타입 형식
+    setPage: (p: number | ((prev: number) => number)) => void;
+  };
 }
 
-export function MemberHeader({ children }: MemberHeaderProps) {
+export function MemberHeader({ children, pagination }: MemberHeaderProps) {
   const isInvitationSection = children === "초대내역";
+  const { current, total, setPage } = pagination;
+
+  const handleNext = () => setPage((prev) => prev + 1);
+  const handlePrev = () => setPage((prev) => prev - 1);
 
   return (
     <div className="flex items-center justify-between">
@@ -17,13 +23,13 @@ export function MemberHeader({ children }: MemberHeaderProps) {
         <span className="text-xl font-bold text-gray-100">{children}</span>
         {isInvitationSection && <InviteButton />}
       </div>
-      <div className="flex">
-        <span className="font-semibold">1 of 3</span>
-        <div className="flex">
-          <Image src={icLeft} alt="왼쪽 버튼" height={24} width={24} />
-          <Image src={icRight} alt="왼쪽 버튼" height={24} width={24} />
-        </div>
-      </div>
+
+      <PaginationButton
+        current={current - 1}
+        total={total === 0 ? 1 : total}
+        onClickPrev={handlePrev}
+        onClickNext={handleNext}
+      />
     </div>
   );
 }

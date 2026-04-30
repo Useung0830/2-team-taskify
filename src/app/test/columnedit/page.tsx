@@ -125,7 +125,7 @@ export default function ColumnEditModalTest() {
       <div className="flex h-screen w-full flex-col items-center justify-center gap-4">
         <button
           onClick={handleColumnEditModalOpen}
-          className="rounded-full bg-blue-600 px-10 py-6 text-2xl font-bold text-white md:text-3xl"
+          className="rounded-full bg-purple-950 px-10 py-6 text-xl font-bold text-white md:text-2xl"
         >
           칼럼 수정 모달 Open
         </button>

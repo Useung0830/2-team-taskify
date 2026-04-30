@@ -38,7 +38,7 @@ export function ColumnEditModal({
   const [newTitle, setNewTitle] = useState(initialTitle);
   const [originTitle] = useState(initialTitle);
   const [errorMsg, setErrorMsg] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+  const [isDataLoading, setIsDataLoading] = useState(false);
   const trimNewTitle = newTitle.trim();
 
   // 삭제하기 버튼 클릭 시 delete alert 모달을 띄우고 상태 제어를 위해 추가
@@ -54,10 +54,6 @@ export function ColumnEditModal({
   const isInputDuplicatedOthers = columnsList
     .filter((title) => title !== originTitle)
     .includes(trimNewTitle);
-
-  // 변경 버튼 비활성화 조건 : 비어있고, 변경사항 없고, 기존 칼럼명 같고, 다른 칼럼명과 중복될 때 + isLoading까지
-  // const isEditBtnDisabled =
-  //   isInputEmpty || isInputSameOrigin || isInputDuplicatedOthers || isLoading;
 
   /** 취소 버튼 핸들러 */
   const handleColumnEditModalClose = () => {
@@ -87,7 +83,7 @@ export function ColumnEditModal({
 
     // API 함수 putColumnUpdate 실행
     try {
-      setIsLoading(true);
+      setIsDataLoading(true);
       await putColumnUpdate(columnId, { title: trimNewTitle });
       onEdit?.();
     } catch (error) {
@@ -96,7 +92,7 @@ export function ColumnEditModal({
         errorData.response?.data?.message || "칼럼 수정에 실패하였습니다."
       );
     } finally {
-      setIsLoading(false);
+      setIsDataLoading(false);
     }
   };
 
@@ -104,7 +100,7 @@ export function ColumnEditModal({
   const handleAllColumnCardDelete = async () => {
     // API 함수 deleteColumn 실행
     try {
-      setIsLoading(true);
+      setIsDataLoading(true);
       await deleteColumn(columnId);
       alert("해당 컬럼의 모든 할 일 카드들이 성공적으로 삭제되었습니다!");
       onEdit?.();
@@ -166,24 +162,12 @@ export function ColumnEditModal({
             "mt-6 flex items-center justify-between gap-10 text-center md:mt-7.5 md:gap-15"
           )}
         >
-          {/* 왼쪽 : 삭제하기 버튼 */}
-          <button
-            type="button"
-            onClick={() => setIsDeleteAlertModalOpen(true)}
-            className={cn(
-              "text-Pretendard w-fit justify-start text-base font-semibold text-red-500 underline md:text-lg"
-            )}
-          >
-            삭제하기
-          </button>
-
-          {/* 오른쪽 : 취소|변경 버튼 */}
-          <div className={cn("flex flex-1 justify-end gap-3 md:gap-5")}>
+          <div className={cn("flex flex-1 justify-between gap-3 md:gap-5")}>
             <button
               type="button"
               onClick={handleColumnEditModalClose}
               className={cn(
-                "flex h-12.5 flex-1 cursor-pointer items-center justify-center rounded-full bg-gray-900 px-7.5 py-1.5 text-base text-gray-100 md:h-15 md:text-lg"
+                "bg-stroke text-background flex h-12.5 flex-1 cursor-pointer items-center justify-center rounded-full px-7.5 py-1.5 text-lg font-semibold md:h-15 md:text-xl"
               )}
             >
               취소
@@ -191,11 +175,12 @@ export function ColumnEditModal({
             <button
               type="button"
               onClick={handleColumnTitleChange}
+              disabled={isDataLoading}
               className={cn(
-                "bg-brand-500 flex h-12.5 flex-1 cursor-pointer items-center justify-center rounded-full px-7.5 py-1.5 text-base text-white md:h-15 md:text-lg"
+                "flex h-12.5 flex-1 cursor-pointer items-center justify-center rounded-full bg-blue-700 px-7.5 py-1.5 text-lg font-semibold text-blue-100 md:h-15 md:text-xl"
               )}
             >
-              {isLoading ? "변경 중..." : "변경"}
+              변경
             </button>
           </div>
         </div>
