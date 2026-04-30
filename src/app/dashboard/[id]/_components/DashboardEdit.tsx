@@ -124,7 +124,7 @@ export function DashboardEdit() {
         </Input>
         <div className="min-w-83.75">
           <DashboardColorChoiceList
-            size={"edit"}
+            type={"edit"}
             selectedColorName={selectedColorName}
             onColorChange={handleColorChange}
           />
