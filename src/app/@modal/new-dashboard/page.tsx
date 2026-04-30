@@ -14,8 +14,7 @@ import { ModalHeader } from "@/components/modal/ModalHeader";
 export default function NewDashboard() {
   const [value, setValue] = useState("");
   const [error, setError] = useState("");
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [selectColor, setSelectColor] = useState();
+  const [selectColor, setSelectColor] = useState<ColorName>();
   const [selectHex, setSelectHex] = useState("");
   const [hasSelection, setHasSelection] = useState<boolean>(false);
   const router = useRouter();
@@ -36,6 +35,7 @@ export default function NewDashboard() {
   const handleColorSelect = (id: ColorName) => {
     const hexcode = typeToHex(id);
     setSelectHex(hexcode);
+    setSelectColor(id);
     setHasSelection(true);
   };
 

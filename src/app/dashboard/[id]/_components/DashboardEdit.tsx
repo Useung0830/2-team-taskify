@@ -40,7 +40,7 @@ const COLOR_MAP: ColorMap = {
   "#1458BC": "blue",
 };
 
-const REVERSE_COLOR_MAP = Object.fromEntries(
+export const REVERSE_COLOR_MAP = Object.fromEntries(
   Object.entries(COLOR_MAP).map(([hex, name]) => [name, hex])
 );
 
@@ -102,6 +102,9 @@ export function DashboardEdit() {
     const hexCode = REVERSE_COLOR_MAP[name];
     setDashboardData({ ...dashboardData, color: hexCode });
   };
+  if (!dashboardData.color) {
+    return null; // 또는 <div>데이터 불러오는 중...</div>
+  }
 
   return (
     <div>

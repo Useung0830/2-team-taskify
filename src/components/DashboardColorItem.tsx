@@ -11,7 +11,7 @@ export function DashboardColorItem({
   color,
   isSelected,
   handleClick,
-  hasSelection,
+  hasSelection = true,
 }: DashboardColorItemProp) {
   const colorMatch = {
     red: "bg-profile-rose",
@@ -27,7 +27,6 @@ export function DashboardColorItem({
     //hasSelection이 있으면 전체 흐리게, 없으면 전체 밝게
     opacity = "opacity-40";
   }
-
   return (
     <div
       onClick={handleClick}
