@@ -19,7 +19,7 @@ const sizeVariants = cva("flex gap-2", {
 type ColorName = "red" | "orange" | "yellow" | "green" | "blue";
 
 interface Props extends VariantProps<typeof sizeVariants> {
-  selectedColorName: ColorName;
+  selectedColorName?: ColorName;
   onColorChange: (colorName: ColorName) => void;
 }
 

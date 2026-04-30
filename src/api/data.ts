@@ -202,8 +202,10 @@ export async function getDashboardList(
 
   const query = new URLSearchParams({ navigationMethod });
 
-  if (navigationMethod === "infiniteScroll" && cursorId !== undefined) {
-    query.append("cursorId", String(cursorId));
+  if (navigationMethod === "infiniteScroll") {
+    if (cursorId !== undefined && cursorId !== null)
+      query.append("cursorId", String(cursorId));
+    if (size !== undefined) query.append("size", String(size));
   }
 
   if (navigationMethod === "pagination") {
