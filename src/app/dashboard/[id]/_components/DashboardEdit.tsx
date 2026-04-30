@@ -26,7 +26,7 @@ const initialDashboardData: DashboardData = {
   color: "",
 };
 
-export type ColorName = "red" | "orange" | "yellow" | "green" | "blue";
+type ColorName = "red" | "orange" | "yellow" | "green" | "blue";
 
 interface ColorMap {
   [hex: string]: ColorName;
