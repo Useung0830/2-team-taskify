@@ -29,10 +29,6 @@ export default function DashboardDelete() {
       await deleteDashboard(dashboardId);
 
       router.back();
-      setTimeout(() => {
-        router.push("/mydashboard");
-        router.refresh();
-      }, 100);
     } catch (error) {
       console.error("대시보드 삭제 실패:", error);
       alert("삭제에 실패했습니다. 다시 시도해주세요.");

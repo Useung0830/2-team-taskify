@@ -45,7 +45,7 @@ export function AccountSetting({ initialData }: Props) {
 
   // 취소 버튼 핸들러
   const handleCancel = () => {
-    router.back(); // 이전 페이지로 이동
+    router.back();
   };
 
   const handleName = (value: string) => {

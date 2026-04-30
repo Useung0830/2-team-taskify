@@ -45,9 +45,8 @@ export default function Edit() {
     if (!dashboardId) return;
 
     try {
-      const detailRes = await getDashboardDetail(dashboardId);
-
-      const [memberRes, inviteRes] = await Promise.all([
+      const [detailRes, memberRes, inviteRes] = await Promise.all([
+        getDashboardDetail(dashboardId),
         getMemberListAction({ dashboardId, page: memberPage, size: 6 }),
         getInvitationListAction({ dashboardId, page: invitePage, size: 6 }),
       ]);

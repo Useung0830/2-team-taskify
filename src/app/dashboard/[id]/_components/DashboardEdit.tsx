@@ -53,10 +53,13 @@ export function DashboardEdit({ initialData, onUpdate }: DashboardEditProps) {
     dashboardData.color !== originalData.color;
 
   useEffect(() => {
-    Promise.resolve().then(() => {
+    const syncInitialData = async () => {
+      await Promise.resolve();
       setDashboardData(initialData);
       setOriginalData(initialData);
-    });
+    };
+
+    syncInitialData();
   }, [initialData]);
 
   const handleSave = async () => {
