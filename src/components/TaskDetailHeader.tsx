@@ -1,5 +1,3 @@
-import { Badge } from "@/components/Badge";
-
 import { KebabButton } from "./KebabButton";
 import { ModalCloseButton } from "./modal/ModalCloseButton";
 
@@ -13,11 +11,7 @@ export function TaskDetailHeader() {
           <ModalCloseButton />
         </div>
       </div>
-      <div className="flex gap-2">
-        <Badge color="blue">프로젝트</Badge>
-        <Badge color="violet">디자인</Badge>
-        <Badge color="green">상</Badge>
-      </div>
+      <div className="flex gap-2"></div>
     </div>
   );
 }

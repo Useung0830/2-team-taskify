@@ -94,7 +94,6 @@ export function ColumnList({ column }: { column: ColumnList }) {
     };
 
     load();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   useEffect(() => {
