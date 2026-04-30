@@ -40,11 +40,6 @@ export default function DashboardSetupModal() {
     setHasSelection(true);
   };
 
-  const postData = {
-    title: dashboardTitle,
-    color: selectHex,
-  };
-
   //selectColor를 헥사코드로 바꿔주는 함수
   const typeToHex = (type: ColorName) => {
     return ColorMatch[type];
@@ -53,7 +48,10 @@ export default function DashboardSetupModal() {
   //대시보드 생성하는 함수
   const handlePostNewDashboard = async () => {
     if (selectHex && dashboardTitle) {
-      const response = await postDashboard(postData);
+      const response = await postDashboard({
+        title: dashboardTitle,
+        color: selectHex,
+      });
       router.push(`/dashboard/${response.id}`);
     }
   };
