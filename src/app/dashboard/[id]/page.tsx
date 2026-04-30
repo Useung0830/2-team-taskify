@@ -12,7 +12,7 @@ import { ColumnList } from "./_components/ColumnList";
 // import { DUMMY_COLUMNS } from "./mock";
 
 // ColumnResponse 기준을 맞추기 위해 옵셔널 속성 추가
-interface Column {
+export interface Column {
   id: number;
   title: string;
   color?: string;

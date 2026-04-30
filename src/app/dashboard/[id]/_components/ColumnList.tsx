@@ -6,7 +6,7 @@ import { ColumnCard } from "./ColumnCard";
 import { ColumnListHeader } from "./ColumnListHeader";
 
 // ColumnResponse 기준을 맞추기 위해 옵셔널 속성 추가
-interface Columndata {
+export interface Columndata {
   id: number;
   title: string;
   color?: string;
