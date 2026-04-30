@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import { getDashboardList } from "@/api/data";
+import { getDashboardList, getMyInfo } from "@/api/data";
 import logoImg from "@/assets/common/logo.svg";
 
 import { DashboardAdd } from "./DashboardAdd";
@@ -21,6 +21,8 @@ export interface Dashboard {
 export async function SideMenu() {
   let initialDashboards: Dashboard[] = [];
   let initialTotalCount: number = 0;
+
+  const myInfo = await getMyInfo();
 
   try {
     const response = await getDashboardList({
@@ -58,7 +60,10 @@ export async function SideMenu() {
           </div>
         </div>
       </div>
-      <UserAccount />
+      <UserAccount
+        nickname={myInfo.nickname}
+        profileImageUrl={myInfo.profileImageUrl}
+      />
     </div>
   );
 }
