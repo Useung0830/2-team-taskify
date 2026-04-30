@@ -1,9 +1,10 @@
-import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
+
+import { getDashboardList } from "@/api/data";
+import { LandingContent } from "@/components/LandingContent";
 import { MainFooter } from "@/components/layout/MainFooter";
 import { MainHeader } from "@/components/layout/MainHeader";
-import { LandingContent } from "@/components/LandingContent";
-import { getDashboardList } from "@/api/data";
 
 export default async function Home() {
   const cookieStore = await cookies();

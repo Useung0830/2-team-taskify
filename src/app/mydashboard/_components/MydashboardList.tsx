@@ -8,6 +8,7 @@ import { MyDashboardItemContainerAdd } from "./MyDashboardItemContainerAdd";
 interface DashboardCard {
   id: number;
   title: string;
+  color: string;
 }
 
 interface MydashboardListProp {
