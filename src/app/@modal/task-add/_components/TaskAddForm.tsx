@@ -48,7 +48,6 @@ export function TaskAddForm({
     dueDate: "",
   });
 
-  // 태그 로드 및 추천 로직
   useEffect(() => {
     const fetchExistingTags = async () => {
       try {
@@ -92,6 +91,7 @@ export function TaskAddForm({
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
+
     try {
       let imageUrl = "";
       if (imageFile) {
@@ -101,21 +101,34 @@ export function TaskAddForm({
         );
         imageUrl = uploadRes.imageUrl;
       }
-      const submitData = {
-        assigneeUserId: Number(formData.assigneeUserId),
+
+      const submitData: any = {
         dashboardId: Number(dashboardId),
         columnId: Number(formData.columnId),
         title: formData.title,
         description: formData.description,
-        dueDate: formData.dueDate ? formData.dueDate.replace("T", " ") : "",
-        tags,
-        imageUrl: imageUrl || "",
       };
+
+      if (formData.assigneeUserId && formData.assigneeUserId !== 0) {
+        submitData.assigneeUserId = Number(formData.assigneeUserId);
+      }
+
+      if (formData.dueDate) {
+        submitData.dueDate = formData.dueDate.replace("T", " ");
+      }
+
+      submitData.tags = tags;
+
+      if (imageUrl) {
+        submitData.imageUrl = imageUrl;
+      }
+
       await postCard(submitData);
       router.back();
       router.refresh();
     } catch (error) {
-      alert("생성 실패");
+      console.error("카드 생성 중 오류:", error);
+      alert("생성 실패: 입력 내용을 확인해 주세요.");
     } finally {
       setIsLoading(false);
     }
