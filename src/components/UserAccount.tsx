@@ -1,14 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import { getMyInfo } from "@/api/data";
 import icSetting from "@/assets/common/ic-setting.svg";
 
-interface UserAccountProps {
-  nickname: string;
-  profileImageUrl: string | null;
-}
+export async function UserAccount() {
+  const myInfo = await getMyInfo();
+  const { nickname = "", profileImageUrl = null } = myInfo;
 
-export function UserAccount({ nickname, profileImageUrl }: UserAccountProps) {
   return (
     <div className="flex items-center justify-between border-t-2 border-[#2C2B30] px-7.5 py-3 text-gray-100">
       <div className="justify-cente flex items-center gap-2">

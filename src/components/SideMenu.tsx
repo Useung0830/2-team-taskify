@@ -1,9 +1,8 @@
 import Image from "next/image";
 
-import { getDashboardList, getMyInfo } from "@/api/data";
 import logoImg from "@/assets/common/logo.svg";
 
-import { DashboardAdd } from "./DashboardAdd";
+import { DashboardAddButton } from "./DashboardAddButton";
 import { SideDashboardList } from "./SideDashboardList";
 import { SideHomeButton } from "./SideHomeButton";
 import { UserAccount } from "./UserAccount";
@@ -23,24 +22,6 @@ interface SideMenuProps {
 }
 
 export async function SideMenu({ isOpen = false }: SideMenuProps) {
-  let initialDashboards: Dashboard[] = [];
-  let initialTotalCount: number = 0;
-
-  const myInfo = await getMyInfo();
-
-  try {
-    const response = await getDashboardList({
-      navigationMethod: "pagination",
-      page: 1,
-      size: 20,
-    });
-
-    initialDashboards = response.dashboards;
-    initialTotalCount = response.totalCount;
-  } catch (error) {
-    console.error("대시보드 목록을 불러오는데 실패했습니다:", error);
-  }
-
   return (
     <>
       <div
@@ -57,26 +38,14 @@ export async function SideMenu({ isOpen = false }: SideMenuProps) {
         </div>
         <div className="flex flex-1 flex-col overflow-hidden px-6 max-lg:px-2.5">
           <div className="flex min-h-0 flex-1 flex-col">
-            <DashboardAdd />
+            <DashboardAddButton />
             <SideHomeButton />
             <div className="min-h-0 flex-1 text-gray-100">
-              {initialDashboards.length > 0 ? (
-                <SideDashboardList
-                  initialDashboards={initialDashboards}
-                  initialTotalCount={initialTotalCount}
-                />
-              ) : (
-                <p className="px-3 py-4 text-center text-sm text-gray-400">
-                  대시보드가 없습니다.
-                </p>
-              )}
+              <SideDashboardList />
             </div>
           </div>
         </div>
-        <UserAccount
-          nickname={myInfo.nickname}
-          profileImageUrl={myInfo.profileImageUrl}
-        />
+        <UserAccount />
       </div>
     </>
   );

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 import icCrown from "@/assets/common/ic-crown.svg";
 import colorChipsBlue from "@/assets/dashboard/colorchips-blue.svg";
@@ -25,19 +25,18 @@ interface SideButtonProps {
 
 function SideButton({ id, title, color, createdByMe }: SideButtonProps) {
   const chipSrc = CHIP_IMAGE_MAP[color] || colorChipsGreen;
-
+  const router = useRouter();
   return (
-    <Link href={`/dashboard/${id}`} passHref>
-      <div className="flex cursor-pointer items-center justify-between rounded-xl px-2.5 py-4 transition-colors duration-300 ease-in-out hover:bg-[#2C2B30]">
-        <div className="flex items-center justify-center gap-2">
-          <Image className="h-6 w-6" src={chipSrc} alt={`${color} 컬러칩`} />
-          <span className="text-white">{title}</span>
-        </div>
-        {createdByMe && (
-          <Image className="h-6" src={icCrown} alt="왕관 아이콘" />
-        )}
+    <div
+      onClick={() => router.push(`/dashboard/${id}`)}
+      className="flex cursor-pointer items-center justify-between rounded-xl px-2.5 py-4 transition-colors duration-300 ease-in-out hover:bg-[#2C2B30]"
+    >
+      <div className="flex items-center justify-center gap-2">
+        <Image className="h-6 w-6" src={chipSrc} alt={`${color} 컬러칩`} />
+        <span className="text-white">{title}</span>
       </div>
-    </Link>
+      {createdByMe && <Image className="h-6" src={icCrown} alt="왕관 아이콘" />}
+    </div>
   );
 }
 export { SideButton };
