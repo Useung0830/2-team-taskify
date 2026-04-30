@@ -70,7 +70,7 @@ export function ImageUpload({
                 src={previewUrl}
                 alt="업로드 이미지"
                 fill
-                className="object-cover"
+                className="object-contain object-center"
               />
             </div>
 
