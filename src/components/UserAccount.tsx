@@ -22,14 +22,14 @@ function UserAccount({ nickname, profileImageUrl }: UserAccountProps) {
             />
           ) : (
             <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[12px] font-semibold whitespace-nowrap text-white">
-              {nickname.slice(0, 2)} {/* ← 앞 2글자 */}
+              {nickname.slice(0, 2)}
             </span>
           )}
         </div>
         <span>{nickname}</span>
       </div>
       <Link href={"/account-setting"}>
-        <Image src={icSetting} height={24} width={24} alt="설정 아이콘" />
+        <Image src={icSetting} height={20} width={20} alt="설정 아이콘" />
       </Link>
     </div>
   );
