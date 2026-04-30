@@ -33,12 +33,6 @@ export default function NewDashboard() {
     if (error) setError("");
   };
 
-  // const handleFieldBlur = () => {
-  //   if (value.length < 3) {
-  //     setError("검색 글자 수는 3글자 이상이어야 합니다.");
-  //   }
-  // };
-
   const handleColorSelect = (id: ColorName) => {
     const hexcode = typeToHex(id);
     setSelectHex(hexcode);
@@ -57,10 +51,16 @@ export default function NewDashboard() {
 
   //대시보드 생성하는 함수
   const handlePostNewDash = async () => {
-    if (selectColor && value) {
+    if (selectHex && value) {
       const response = await postDashboard(postData);
       router.push(`/dashboard/${response.id}`);
     }
+  };
+
+  const handleCancel = (e: React.MouseEvent) => {
+    router.back();
+    e.stopPropagation();
+    e.preventDefault();
   };
 
   return (
@@ -74,7 +74,6 @@ export default function NewDashboard() {
               placeholder="대시보드 이름을 입력해주세요."
               value={value}
               onChange={handleFieldChange}
-              // onBlur={handleFieldBlur}
             />
           </Input.Wrapper>
           <Input.Error />
@@ -85,7 +84,9 @@ export default function NewDashboard() {
           hasSelection={hasSelection}
         />
         <div className="flex gap-5">
-          <Button colorType="secondary">취소</Button>
+          <Button colorType="secondary" type="button" onClick={handleCancel}>
+            취소
+          </Button>
           <Button>생성</Button>
         </div>
       </form>
