@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useState, useEffect } from "react";
 
-import { getColumnList } from "@/api/data";
+import { getColumnList, getDashboardList } from "@/api/data";
 import { ColumnEditModal } from "@/app/dashboard/[id]/_components/ColumnEditModal";
 import { ColumnList } from "@/app/dashboard/[id]/_components/ColumnList";
 import colorChip from "@/assets/dashboard/ic-colorchips.svg";
@@ -40,23 +40,72 @@ export default function TestPageColumnEdit() {
 
       try {
         setIsLoading(true);
+
+        const fetchDashboardList = await getDashboardList({
+          navigationMethod: "pagination",
+          page: 1,
+          size: 10,
+        });
+
+        // 칼럼 리스트 불러오기
         const res = (await getColumnList(
           TEST_DASHBOARD_ID
         )) as unknown as ColumnListResponse;
 
         // 디버깅 위해 추가
-        console.warn("API에서 받아온 데이터 : ", res.data);
-        console.warn("API에서 받아온 데이터 결과 : ", res.result);
+        console.warn("API에서 받아온 칼럼리스트 : ", res.data);
+        console.warn("API에서 받아온 칼럼리스트 결과 : ", res.result);
+        console.warn(
+          "API에서 받아온 대시보드들:",
+          fetchDashboardList.dashboards
+        );
 
         if (res.result === "SUCCESS") {
-          const fetchedData = Array.isArray(res.data) ? res.data : [];
+          let fetchedData = Array.isArray(res.data) ? res.data : [];
+
+          if (fetchedData.length === 0) {
+            alert(
+              "칼럼 리스트에 데이터가 존재하지 않아 임시 데이터를 생성합니다."
+            );
+            console.warn(
+              "칼럼 리스트에 데이터가 존재하지 않아 임시 데이터를 생성합니다."
+            );
+            fetchedData = [
+              {
+                id: 33,
+                title: "공통 컴포넌트 코드 리팩토링",
+                color: "#7AC555",
+                createdAt: "2026-04-23T15:55:16.991Z",
+                updatedAt: "2026-04-23T15:55:16.991Z",
+                createdByMe: false,
+                userId: 2,
+              },
+              {
+                id: 99,
+                title: "API 연동 로직 수정",
+                color: "#FFA500",
+                createdAt: "2026.04.20",
+                updatedAt: "2026.04.28",
+                createdByMe: false,
+                userId: 2,
+              },
+              {
+                id: 18144,
+                title: "테스트 코드 작성",
+                color: "#a9F7Cd",
+                createdAt: new Date().toISOString(),
+                updatedAt: new Date().toISOString(),
+                createdByMe: true,
+                userId: 6740,
+              },
+            ];
+          }
           setColumns(fetchedData);
-          console.warn("서버에서 데이터 불러오기 성공!");
-          alert("서버에서 데이터 불러오기 성공!");
+          console.warn("데이터 로드 성공!");
+          //alert("서버에서 데이터 불러오기 성공!");
         } else {
           console.error("서버에서 데이터 불러오기 실패 : ", res.result);
-          // 서버 응답이 FAIL이면 setColumns를 빈 배열로 초기화
-          setColumns([]);
+          setColumns([]); // 서버 응답이 FAIL이면 setColumns를 빈 배열로 초기화
         }
       } catch (error) {
         console.error("데이터 로딩 에러 발생 : ", error);

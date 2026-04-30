@@ -1,12 +1,13 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 
 import { putColumnUpdate, deleteColumn } from "@/api/data"; // 칼럼 삭제, 칼럼 수정 API 함수 임포트
+import icX from "@/assets/common/ic-x.svg";
 import { Input } from "@/components/input/input";
 import { Label } from "@/components/label/label";
 import { Modal } from "@/components/modal/Modal";
-import { ModalHeader } from "@/components/modal/ModalHeader";
 import { cn } from "@/lib/cn";
 
 import { ColumnEditDeleteAlertModal } from "./ColumnEditDeleteAlertModal";
@@ -103,9 +104,10 @@ export function ColumnEditModal({
   const handleAllColumnCardDelete = async () => {
     // API 함수 deleteColumn 실행
     try {
+      setIsLoading(true);
       await deleteColumn(columnId);
       alert("해당 컬럼의 모든 할 일 카드들이 성공적으로 삭제되었습니다!");
-      window.location.reload();
+      onEdit?.();
     } catch (error) {
       const errorData = error as APIError;
       alert(errorData.response?.data?.message || "칼럼 삭제에 실패하였습니다.");
@@ -116,8 +118,8 @@ export function ColumnEditModal({
   if (isDeleteAlertModalOpen) {
     return (
       <ColumnEditDeleteAlertModal
-        onCancel={() => setIsDeleteAlertModalOpen(false)}
-        onDelete={handleAllColumnCardDelete}
+        onCancel={() => setIsDeleteAlertModalOpen(false)} // No 클릭 시 모달 닫기
+        onDelete={handleAllColumnCardDelete} // Yes 클릭 시 칼럼 삭제 실행
       />
     );
   }
@@ -127,7 +129,16 @@ export function ColumnEditModal({
       {/* For responsive(Desktop | Tablet | Mobile) modal width */}
       <div className="w-full max-w-83.75 min-w-83.75 md:max-w-150 md:min-w-150">
         {/* Modal Title */}
-        <ModalHeader>칼럼 관리</ModalHeader>
+        <div className="flex items-center justify-between">
+          <h2 className="text-2xl font-semibold text-gray-300">칼럼 관리</h2>
+          <button
+            type="button"
+            onClick={handleColumnEditModalClose}
+            className="relative h-6 w-6 transition-transform hover:scale-110 active:opacity-70"
+          >
+            <Image src={icX} height={24} width={24} alt="닫기 버튼" />
+          </button>
+        </div>
         <Input errorMessage={errorMsg}>
           {/* Input Field to modify(edit) ColumnName */}
           <Label
