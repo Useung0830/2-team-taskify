@@ -1,5 +1,6 @@
+import { Profile } from "@/components/Profile";
+
 import { UserInfo } from "./InvitionContainer";
-import { Profile } from "./Profile";
 
 export function InvitionRow({
   title,
