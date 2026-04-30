@@ -1,4 +1,5 @@
 "use client";
+import { name } from "eslint-plugin-import-x/meta";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -11,15 +12,15 @@ import {
 import { Input } from "@/components/input/input";
 import { ModalHeader } from "@/components/modal/ModalHeader";
 
-export default function NewDashboard() {
-  const [value, setValue] = useState("");
+export default function DashboardSetupModal() {
+  const [dashboardTitle, setDashboardTitle] = useState("");
   const [error, setError] = useState("");
   const [selectColor, setSelectColor] = useState<ColorName>();
   const [selectHex, setSelectHex] = useState("");
   const [hasSelection, setHasSelection] = useState<boolean>(false);
   const router = useRouter();
 
-  const ColorMath = {
+  const ColorMatch = {
     red: "#ae2e24",
     orange: "#9f4b00",
     yellow: "#bd8c00",
@@ -28,7 +29,7 @@ export default function NewDashboard() {
   };
 
   const handleFieldChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(e.target.value);
+    setDashboardTitle(e.target.value);
     if (error) setError("");
   };
 
@@ -40,18 +41,18 @@ export default function NewDashboard() {
   };
 
   const postData = {
-    title: value,
+    title: dashboardTitle,
     color: selectHex,
   };
 
   //selectColor를 헥사코드로 바꿔주는 함수
   const typeToHex = (type: ColorName) => {
-    return ColorMath[type];
+    return ColorMatch[type];
   };
 
   //대시보드 생성하는 함수
-  const handlePostNewDash = async () => {
-    if (selectHex && value) {
+  const handlePostNewDashboard = async () => {
+    if (selectHex && dashboardTitle) {
       const response = await postDashboard(postData);
       router.push(`/dashboard/${response.id}`);
     }
@@ -66,13 +67,13 @@ export default function NewDashboard() {
   return (
     <div className="border-gray-stroke flex flex-col gap-5 rounded-3xl">
       <ModalHeader>새 대시보드 생성</ModalHeader>
-      <form onSubmit={handlePostNewDash} className="flex flex-col gap-5">
+      <form onSubmit={handlePostNewDashboard} className="flex flex-col gap-5">
         <Input>
           <Input.Wrapper>
             <Input.Field
-              id="test"
+              id={name}
               placeholder="대시보드 이름을 입력해주세요."
-              value={value}
+              value={dashboardTitle}
               onChange={handleFieldChange}
             />
           </Input.Wrapper>
