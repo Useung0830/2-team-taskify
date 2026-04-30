@@ -9,7 +9,7 @@ interface DashboardProps {
 
 export function Emptydashboard({ dashtype }: DashboardProps) {
   return (
-    <div className="bg-black-800 flex h-fit w-full flex-col items-center justify-center gap-1 rounded-[16px] border border-gray-700 py-5 md:gap-2 md:px-10 lg:gap-2.5 lg:py-10">
+    <div className="bg-black-800 flex h-fit w-full flex-col items-center justify-center gap-1 rounded-2xl border border-gray-700 py-5 md:gap-2 md:px-10 lg:gap-2.5 lg:py-10">
       {dashtype === "my" ? (
         <Image
           className="h-15 w-15 md:h-20 md:w-20 lg:h-25 lg:w-25"

@@ -1,4 +1,6 @@
 // DashboardColorChoiceList.tsx
+
+"use client";
 import { VariantProps, cva } from "class-variance-authority";
 
 import { DashboardColorItem } from "./DashboardColorItem";
