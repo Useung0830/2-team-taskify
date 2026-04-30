@@ -126,7 +126,13 @@ export function ColumnList({ column }: { column: ColumnList }) {
     <div className="flex w-full flex-col gap-5 md:mx-10 lg:mx-0">
       <ColumnListHeader title={title} contentCount={totalCount} />
       {cardList?.map((colCard) => (
-        <ColumnCard key={colCard.id} cardTitle={colCard.title} />
+        <ColumnCard
+          key={colCard.id}
+          cardTitle={colCard.title}
+          // tags={tags}
+          // creator={colCard.assignee.nickname}
+          // imgSrc={colCard.imageUrl}
+        />
       ))}
       {/* observer */}
       <div ref={observerTarget}></div>
