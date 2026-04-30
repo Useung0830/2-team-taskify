@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-// 1. useRef, useEffect 추가
 import { useState, useRef, useEffect } from "react";
 import iconChevronDown from "@/assets/common/ic-chevron-down.svg";
 
@@ -15,13 +14,10 @@ export function Dropdown({ options, label, onSelect }: DropdownProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState("");
 
-  // 2. 드롭다운 전체 영역을 참조할 Ref 생성
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  // 3. 외부 클릭 감지 로직 추가
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      // 클릭된 요소가 dropdownRef(최상위 div) 내부에 포함되어 있지 않다면 닫기
       if (
         dropdownRef.current &&
         !dropdownRef.current.contains(event.target as Node)
@@ -30,17 +26,14 @@ export function Dropdown({ options, label, onSelect }: DropdownProps) {
       }
     };
 
-    // 전역 문서에 이벤트 리스너 등록
     document.addEventListener("mousedown", handleClickOutside);
 
-    // 컴포넌트가 사라질 때 리스너 제거 (메모리 관리)
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
 
   return (
-    // 4. 최상위 div에 ref 연결
     <div className="relative w-full" ref={dropdownRef}>
       <label className="font-pretendard mb-2 block text-[16px] font-semibold text-gray-100">
         {label}

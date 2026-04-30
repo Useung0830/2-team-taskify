@@ -122,15 +122,13 @@ export function TaskAddForm({
   };
 
   return (
-    <div className="/* 모바일: 요구사항 반영 */ /* 데스크탑: 기존 스타일 유지 (md 이상) */ fixed top-1/2 left-1/2 z-[100] flex h-full max-h-[812px] w-full max-w-[375px] -translate-x-1/2 -translate-y-1/2 flex-col overflow-y-auto border-none bg-[#1B1A1F] p-5 text-white shadow-2xl [scrollbar-width:none] md:fixed md:top-1/2 md:h-auto md:max-h-[calc(100vh-100px)] md:w-[506px] md:max-w-none md:translate-y-[-50%] md:rounded-[24px] md:border md:border-[#333] md:bg-[#242429] md:p-7 lg:max-h-[calc(100vh-128px)] lg:w-[600px] lg:p-[30px] [&::-webkit-scrollbar]:hidden">
-      {/* 헤더 섹션 */}
+    <div className="fixed top-1/2 left-1/2 z-[100] flex h-full max-h-[812px] w-full max-w-[375px] -translate-x-1/2 -translate-y-1/2 flex-col overflow-y-auto border-none bg-[#1B1A1F] p-5 text-white shadow-2xl [scrollbar-width:none] md:fixed md:top-1/2 md:h-auto md:max-h-[calc(100vh-100px)] md:w-[506px] md:max-w-none md:translate-y-[-50%] md:rounded-[24px] md:border md:border-[#333] md:bg-[#242429] md:p-7 lg:max-h-[calc(100vh-128px)] lg:w-[600px] lg:p-[30px] [&::-webkit-scrollbar]:hidden">
       <div className="mb-8 flex items-center justify-between">
         <h2 className="text-2xl font-bold">할 일 생성</h2>
         <ModalCloseButton />
       </div>
 
       <form onSubmit={handleSubmit} className="flex flex-col gap-6">
-        {/* 컬럼 / 담당자 드롭다운 */}
         <div className="grid grid-cols-2 gap-4">
           <Dropdown
             label="컬럼"
@@ -156,7 +154,6 @@ export function TaskAddForm({
           />
         </div>
 
-        {/* 제목 입력 */}
         <Input>
           <Label htmlFor="title">제목</Label>
           <Input.Wrapper>
@@ -173,7 +170,6 @@ export function TaskAddForm({
           </Input.Wrapper>
         </Input>
 
-        {/* 설명 입력 */}
         <div className="flex flex-col gap-2">
           <Label>설명</Label>
           <textarea
@@ -188,7 +184,6 @@ export function TaskAddForm({
           />
         </div>
 
-        {/* 마감일 입력 */}
         <Input>
           <Label htmlFor="dueDate">마감일</Label>
           <Input.Wrapper>
@@ -209,7 +204,6 @@ export function TaskAddForm({
           </Input.Wrapper>
         </Input>
 
-        {/* 태그 입력 및 추천 */}
         <div className="flex flex-col gap-2">
           <Label htmlFor="tags">태그</Label>
           <div className="relative">
@@ -280,10 +274,8 @@ export function TaskAddForm({
           </div>
         </div>
 
-        {/* 이미지 업로드 */}
         <ImageUpload onImageChange={(file) => setImageFile(file)} />
 
-        {/* 하단 버튼 */}
         <div className="mt-4 flex gap-3 pb-4">
           <button
             type="button"

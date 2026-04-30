@@ -51,14 +51,9 @@ export default function TaskAddPage() {
   if (isLoading) {
     return (
       <Modal>
-        {/* w-[540px]: 일반적인 대시보드 모달 너비 (프로젝트에 맞춰 조절)
-          min-h-[500px]: 폼 데이터가 들어왔을 때의 평균 높이와 맞춤
-      */}
         <div className="flex min-h-[500px] w-full flex-col items-center justify-center p-10 md:w-[540px]">
-          {/* 원형 스피너 */}
           <div className="h-12 w-12 animate-spin rounded-full border-4 border-gray-600 border-t-[#00A200]" />
 
-          {/* 안내 문구 */}
           <p className="mt-6 text-lg font-medium text-white">
             데이터를 불러오는 중입니다
           </p>
