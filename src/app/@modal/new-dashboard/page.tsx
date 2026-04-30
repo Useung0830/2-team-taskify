@@ -1,5 +1,5 @@
 "use client";
-import { name } from "eslint-plugin-import-x/meta";
+
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -67,11 +67,14 @@ export default function DashboardSetupModal() {
   return (
     <div className="border-gray-stroke flex flex-col gap-5 rounded-3xl">
       <ModalHeader>새 대시보드 생성</ModalHeader>
-      <form onSubmit={handlePostNewDashboard} className="flex flex-col gap-5">
+      <form
+        name="postNewDashboard"
+        onSubmit={handlePostNewDashboard}
+        className="flex flex-col gap-5"
+      >
         <Input>
           <Input.Wrapper>
             <Input.Field
-              id={name}
               placeholder="대시보드 이름을 입력해주세요."
               value={dashboardTitle}
               onChange={handleFieldChange}
