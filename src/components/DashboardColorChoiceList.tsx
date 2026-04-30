@@ -3,45 +3,49 @@ import { VariantProps, cva } from "class-variance-authority";
 
 import { DashboardColorItem } from "./DashboardColorItem";
 
-const sizeVariants = cva("flex gap-2", {
+const typeVariants = cva("flex gap-2", {
   variants: {
-    size: {
+    type: {
       default: "h-10 w-73.75 md:h-15 md:w-135",
-      lg: "h-22.5 w-185",
       edit: "h-22.5 w-full gap-4 max-lg:h-15 max-md:h-14 max-md:gap-3",
     },
   },
   defaultVariants: {
-    size: "default",
+    type: "default",
   },
 });
 
-type ColorName = "red" | "orange" | "yellow" | "green" | "blue";
+export type ColorName = "red" | "orange" | "yellow" | "green" | "blue";
 
-interface Props extends VariantProps<typeof sizeVariants> {
-  selectedColorName: ColorName;
+interface Props extends VariantProps<typeof typeVariants> {
+  selectedColorName?: ColorName;
   onColorChange: (colorName: ColorName) => void;
+  hasSelection?: boolean;
 }
 
 export function DashboardColorChoiceList({
-  size,
+  type,
   selectedColorName,
   onColorChange,
+  hasSelection = true,
 }: Props) {
   const colorList: ColorName[] = ["red", "orange", "yellow", "green", "blue"];
 
   return (
     <div className="flex flex-col gap-3">
       <div className="text-gray-300">색상</div>
-      <div className={sizeVariants({ size })}>
-        {colorList.map((name) => (
-          <DashboardColorItem
-            key={name}
-            color={name}
-            isSelected={selectedColorName === name}
-            handleClick={() => onColorChange(name)}
-          />
-        ))}
+      <div className={typeVariants({ type: type })}>
+        <div className="group flex h-10 w-73.75 gap-2 md:h-15 md:w-135">
+          {colorList.map((name) => (
+            <DashboardColorItem
+              key={name}
+              color={name}
+              isSelected={selectedColorName === name}
+              handleClick={() => onColorChange(name)}
+              hasSelection={hasSelection}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );
