@@ -8,7 +8,7 @@ interface UserAccountProps {
   profileImageUrl: string | null;
 }
 
-function UserAccount({ nickname, profileImageUrl }: UserAccountProps) {
+export function UserAccount({ nickname, profileImageUrl }: UserAccountProps) {
   return (
     <div className="flex items-center justify-between border-t-2 border-[#2C2B30] px-7.5 py-3 text-gray-100">
       <div className="justify-cente flex items-center gap-2">
@@ -34,5 +34,3 @@ function UserAccount({ nickname, profileImageUrl }: UserAccountProps) {
     </div>
   );
 }
-
-export { UserAccount };
