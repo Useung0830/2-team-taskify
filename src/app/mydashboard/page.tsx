@@ -18,7 +18,7 @@ export interface DashboardList {
   createdByMe: boolean;
   userId: number;
 }
-export const SIZE = 9;
+export const SIZE = 10;
 
 export default function MyDashboard() {
   const [invitaionList, setInvitationList] = useState<T.Invitation[]>([]);
@@ -114,8 +114,6 @@ export default function MyDashboard() {
     return () => observer.disconnect();
   }, [isLoading, hasMore]);
 
-  const hasMydata = true;
-
   const handleFieldChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
     if (error) setError("");
@@ -127,6 +125,18 @@ export default function MyDashboard() {
     }
   };
 
+  //검색어로 데이터 가져오는 함수
+  const handleSearchInvited = async () => {
+    const result = await getMyInvitationList({ title: value });
+    return result;
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const result = await handleSearchInvited();
+    setInvitationList(result.invitations);
+  };
+
   return (
     <div className="font-pretendard flex flex-col gap-2.5 px-5 text-gray-100">
       <h1 className="pt-3.5 text-4xl font-bold">홈</h1>
@@ -134,7 +144,7 @@ export default function MyDashboard() {
         <h2 className="py-1 text-lg font-bold md:text-[18px] lg:text-xl">
           내 대시보드
         </h2>
-        {hasMydata ? (
+        {dashboardList.length !== 0 ? (
           <MydashContainer
             data={dashboardList}
             total={total}
@@ -152,19 +162,21 @@ export default function MyDashboard() {
           </h2>
           <div>
             {invitaionList.length !== 0 && (
-              <Input>
-                <Input.Wrapper>
-                  <Input.SearchIcon />
-                  <Input.Field
-                    id="test"
-                    placeholder="검색"
-                    value={value}
-                    onChange={handleFieldChange}
-                    onBlur={handleFieldBlur}
-                  />
-                </Input.Wrapper>
-                <Input.Error />
-              </Input>
+              <form onSubmit={handleSubmit}>
+                <Input>
+                  <Input.Wrapper>
+                    <Input.SearchIcon />
+                    <Input.Field
+                      id="test"
+                      placeholder="검색"
+                      value={value}
+                      onChange={handleFieldChange}
+                      onBlur={handleFieldBlur}
+                    />
+                  </Input.Wrapper>
+                  <Input.Error />
+                </Input>
+              </form>
             )}
           </div>
         </div>
