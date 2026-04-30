@@ -43,14 +43,12 @@ export async function SideMenu({ isOpen = false }: SideMenuProps) {
 
   return (
     <>
-      {/* 오버레이 — md 이하에서 isOpen일 때만 표시 */}
       <div
         className={`fixed inset-0 z-20 bg-black/50 transition-opacity duration-300 lg:hidden ${
           isOpen ? "opacity-100" : "pointer-events-none opacity-0"
         }`}
       />
 
-      {/* 사이드바 */}
       <div
         className={`bg-black-900 fixed top-0 left-0 z-30 flex h-screen w-[clamp(220px,20vw,340px)] flex-col pt-2.5 transition-transform duration-300 lg:relative ${isOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"} `}
       >
