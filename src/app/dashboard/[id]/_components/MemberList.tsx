@@ -1,4 +1,7 @@
-import Link from "next/link";
+"use client";
+
+import { useParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 import { Button } from "@/components/Button";
 import { Profile } from "@/components/profile/Profile";
@@ -28,15 +31,26 @@ interface MemberListProps {
 }
 
 export function MemberList({ type, data }: MemberListProps) {
+  const params = useParams();
+  const router = useRouter();
+  const dashboardId = Number(params.id);
+
   const displayName =
     type === "member"
       ? (data as Member).nickname
       : (data as Invitation).invitee.email;
 
-  const targetHref =
-    type === "member"
-      ? `/member-delete?memberId=${data.id}`
-      : `/invite-cancel?invitationId=${data.id}`;
+  const handleAction = () => {
+    if (type === "member") {
+      router.push(
+        `/dashboard/${dashboardId}/edit/member-delete?memberId=${data.id}`
+      );
+    } else {
+      router.push(
+        `/dashboard/${dashboardId}/edit/invite-cancel?invitationId=${data.id}`
+      );
+    }
+  };
 
   return (
     <div className="flex items-center justify-between border-b border-[#383A42] py-3.5 text-gray-100 max-md:py-3">
@@ -50,11 +64,9 @@ export function MemberList({ type, data }: MemberListProps) {
         />
       </div>
       <div className="w-14">
-        <Link href={targetHref}>
-          <Button colorType="secondary" size="xs">
-            {type === "member" ? "삭제" : "취소"}
-          </Button>
-        </Link>
+        <Button colorType="secondary" size="xs" onClick={handleAction}>
+          {type === "member" ? "제외" : "취소"}
+        </Button>
       </div>
     </div>
   );
