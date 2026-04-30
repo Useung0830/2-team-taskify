@@ -1,23 +1,43 @@
-/**
- * Dashboard 컴포넌트 주석 처리했으니 풀어서 테스트 해보시면 됩니다
- **/
-
-// import { Dashboard } from "@/app/dashboard/[id]/page";
+import { redirect } from "next/navigation";
+import { cookies } from "next/headers";
 import { MainFooter } from "@/components/layout/MainFooter";
 import { MainHeader } from "@/components/layout/MainHeader";
+import { LandingContent } from "@/components/LandingContent";
+import { getDashboardList } from "@/api/data";
 
-export default function Home() {
-  /**
-   * 1. isLoggedIn = false : 랜딩 페이지와 로그인/회원가입 버튼
-   * 2. isLoggedIn = true  : /dashboard/1로 이동
-   */
-  const isLoggedIn = false;
-  const firstDashboardId = 1;
+export default async function Home() {
+  const cookieStore = await cookies();
+  const token = cookieStore.get("accessToken")?.value;
+  const isLoggedIn = !!token;
+
+  let firstDashboardId = null;
+
+  if (isLoggedIn) {
+    try {
+      const data = await getDashboardList({
+        navigationMethod: "pagination",
+        page: 1,
+        size: 1,
+      });
+
+      if (data && data.dashboards && data.dashboards.length > 0) {
+        firstDashboardId = data.dashboards[0].id;
+      }
+    } catch (error) {
+      console.error("Dashboard Fetch Error:", error);
+    }
+  }
+
+  if (firstDashboardId) {
+    redirect(`/dashboard/${firstDashboardId}`);
+  }
 
   return (
     <div className="bg-background flex min-h-screen flex-col">
-      <MainHeader isLoggedIn={isLoggedIn} firstDashboardId={firstDashboardId} />
-      <main className="flex-1 pt-24 pl-10">{/* <Dashboard /> */}</main>
+      <MainHeader isLoggedIn={isLoggedIn} />
+      <main className="flex-1 pt-16.75 md:pt-24">
+        <LandingContent />
+      </main>
       <MainFooter />
     </div>
   );
