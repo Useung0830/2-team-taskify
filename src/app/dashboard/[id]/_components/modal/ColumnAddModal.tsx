@@ -1,12 +1,13 @@
 "use client";
 
+import Image from "next/image";
 import { useMemo, useState } from "react";
 
 import { postColumn } from "@/api/data";
+import icX from "@/assets/common/ic-x.svg";
 import { Input } from "@/components/input/input";
 import { Label } from "@/components/label/label";
 import { Modal } from "@/components/modal/Modal";
-import { ModalHeader } from "@/components/modal/ModalHeader";
 import { cn } from "@/lib/cn";
 
 interface ColumnAddProps {
@@ -31,7 +32,7 @@ export function ColumnAddModal({
   const [isAddSubmitting, setIsAddSubmitting] = useState(false);
 
   const trimmedTitle = title.trim();
-  const isColumnAddDisabled = trimmedTitle.length === 0 || isAddSubmitting; // 칼럼 추가 비활성화 조건
+  //const isColumnAddDisabled = trimmedTitle.length === 0 || isAddSubmitting; // 칼럼 추가 비활성화 조건
 
   // currentColumnList에서 제목만 뽑아 데이터 정규화 후 배열에 저장
   const formattedColumnList = useMemo(
@@ -89,48 +90,62 @@ export function ColumnAddModal({
 
   return (
     <Modal>
-      <ModalHeader>새 칼럼 생성</ModalHeader>
-      <Input errorMessage={inputErrorMsg}>
-        <Label htmlFor="columnname" className="mt-4 mb-3 md:mt-7">
-          이름
-        </Label>
-        <Input.Wrapper>
-          <Input.Field
-            id="columnname"
-            placeholder="칼럼명을 입력해주세요"
-            value={title}
-            onChange={handleInputValueUpdate}
-          />
-        </Input.Wrapper>
-        <Input.Error />
-      </Input>
+      {/* Added for responsive (Desktop | Tablet | Mobile) */}
+      <div className="w-full max-w-83.75 min-w-83.75 md:max-w-150 md:min-w-150">
+        {/* ModalHeader: Title, Xbutton */}
+        <div className="flex items-center justify-between">
+          <h2 className="text-2xl font-semibold text-gray-300">새 칼럼 생성</h2>
+          <button
+            type="button"
+            onClick={handleCancelColumnAdd}
+            className="relative h-6 w-6 transition-transform hover:scale-110 active:opacity-70"
+          >
+            <Image src={icX} height={24} width={24} alt="닫기 버튼" />
+          </button>
+        </div>
 
-      <div
-        className={cn(
-          "mt-4 flex items-center justify-center gap-3 text-center md:mt-7.5 md:gap-5"
-        )}
-      >
-        <button
-          type="button"
-          onClick={handleCancelColumnAdd}
+        {/* Input Section */}
+        <Input errorMessage={inputErrorMsg}>
+          <Label htmlFor="columnname" className="mt-4 mb-3 md:mt-7">
+            이름
+          </Label>
+          <Input.Wrapper>
+            <Input.Field
+              id="columnname"
+              placeholder="칼럼명을 입력해주세요"
+              value={title}
+              onChange={handleInputValueUpdate}
+            />
+          </Input.Wrapper>
+          <Input.Error />
+        </Input>
+
+        {/* Button Section */}
+        <div
           className={cn(
-            "flex h-12.5 flex-1 cursor-pointer items-center justify-center rounded-full bg-gray-900 px-7.5 py-1.5 text-gray-100 md:h-15"
+            "mt-4 flex items-center justify-center gap-3 text-center md:mt-7.5 md:gap-5"
           )}
         >
-          취소
-        </button>
-        <button
-          type="button"
-          onClick={handleColumnAdd}
-          className={cn(
-            "bg-brand-500 flex h-12.5 flex-1 cursor-pointer items-center justify-center rounded-full px-7.5 py-1.5 text-white md:h-15",
-            isColumnAddDisabled
-              ? "bg-brand-500 cursor-not-allowed"
-              : "bg-brand-500 cursor-pointer"
-          )}
-        >
-          생성
-        </button>
+          <button
+            type="button"
+            onClick={handleCancelColumnAdd}
+            className={cn(
+              "flex h-12.5 flex-1 cursor-pointer items-center justify-center rounded-full bg-gray-900 px-7.5 py-1.5 text-gray-100 md:h-15"
+            )}
+          >
+            취소
+          </button>
+          <button
+            type="button"
+            onClick={handleColumnAdd}
+            disabled={isAddSubmitting}
+            className={cn(
+              "bg-brand-500 flex h-12.5 flex-1 cursor-pointer items-center justify-center rounded-full px-7.5 py-1.5 text-white md:h-15"
+            )}
+          >
+            생성
+          </button>
+        </div>
       </div>
     </Modal>
   );

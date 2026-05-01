@@ -3,14 +3,12 @@
 import Image from "next/image";
 import { useState } from "react";
 
-import { putColumnUpdate, deleteColumn } from "@/api/data"; // 칼럼 삭제, 칼럼 수정 API 함수 임포트
+import { putColumnUpdate } from "@/api/data"; // 칼럼 삭제, 칼럼 수정 API 함수 임포트
 import icX from "@/assets/common/ic-x.svg";
 import { Input } from "@/components/input/input";
 import { Label } from "@/components/label/label";
 import { Modal } from "@/components/modal/Modal";
 import { cn } from "@/lib/cn";
-
-import { ColumnDeleteAlertModal } from "./ColumnDeleteAlertModal";
 
 interface APIError {
   response?: {
@@ -38,10 +36,7 @@ export function ColumnEditModal({
   const [editedTitle, setEditedTitle] = useState(initialTitle);
   const [originTitle] = useState(initialTitle);
   const [errorMsg, setErrorMsg] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-
-  // 삭제하기 버튼 클릭 시 delete alert 모달을 띄우고 상태 제어를 위해 추가
-  const [isDeleteAlertModalOpen, setIsDeleteAlertModalOpen] = useState(false);
+  const [isEditSubmitted, setIsEditSubmitted] = useState(false);
 
   // isInputEmpty : 아무것도 입력되지 않은 상태
   const isInputEmpty = editedTitle.trim().length === 0;
@@ -82,7 +77,7 @@ export function ColumnEditModal({
 
     // API 함수 putColumnUpdate 실행
     try {
-      setIsLoading(true);
+      setIsEditSubmitted(true);
       await putColumnUpdate(columnId, { title: editedTitle.trim() });
       onEdit?.();
     } catch (error) {
@@ -91,39 +86,15 @@ export function ColumnEditModal({
         errorData.response?.data?.message || "칼럼 수정에 실패하였습니다."
       );
     } finally {
-      setIsLoading(false);
+      setIsEditSubmitted(false);
     }
   };
-
-  /** 삭제하기 버튼 핸들러 */
-  const handleAllColumnCardDelete = async () => {
-    // API 함수 deleteColumn 실행
-    try {
-      setIsLoading(true);
-      await deleteColumn(columnId);
-      alert("해당 컬럼의 모든 할 일 카드들이 성공적으로 삭제되었습니다!");
-      onEdit?.();
-    } catch (error) {
-      const errorData = error as APIError;
-      alert(errorData.response?.data?.message || "칼럼 삭제에 실패하였습니다.");
-    }
-  };
-
-  // 삭제하기 버튼이 클릭되어 ColumnEditDeleteAlertModal이 열린 상태
-  if (isDeleteAlertModalOpen) {
-    return (
-      <ColumnDeleteAlertModal
-        onCancel={() => setIsDeleteAlertModalOpen(false)} // No 클릭 시 모달 닫기
-        onDelete={handleAllColumnCardDelete} // Yes 클릭 시 칼럼 삭제 실행
-      />
-    );
-  }
 
   return (
     <Modal>
-      {/* For responsive(Desktop | Tablet | Mobile) modal width */}
+      {/* Added for responsive (Desktop | Tablet | Mobile) */}
       <div className="w-full max-w-83.75 min-w-83.75 md:max-w-150 md:min-w-150">
-        {/* Modal Title */}
+        {/* ModalHeader: Title, Xbutton */}
         <div className="flex items-center justify-between">
           <h2 className="text-2xl font-semibold text-gray-300">칼럼 관리</h2>
           <button
@@ -134,6 +105,8 @@ export function ColumnEditModal({
             <Image src={icX} height={24} width={24} alt="닫기 버튼" />
           </button>
         </div>
+
+        {/* Input Section */}
         <Input errorMessage={errorMsg}>
           {/* Input Field to modify(edit) ColumnName */}
           <Label
@@ -155,30 +128,19 @@ export function ColumnEditModal({
           </Input.Wrapper>
           <Input.Error className="min-w-max text-sm whitespace-nowrap md:text-base" />
         </Input>
+
         {/* Button Section */}
         <div
           className={cn(
             "mt-6 flex items-center justify-between gap-10 text-center md:mt-7.5 md:gap-15"
           )}
         >
-          {/* 왼쪽 : 삭제하기 버튼 */}
-          <button
-            type="button"
-            onClick={() => setIsDeleteAlertModalOpen(true)}
-            className={cn(
-              "text-Pretendard w-fit justify-start text-base font-semibold text-red-500 underline md:text-lg"
-            )}
-          >
-            삭제하기
-          </button>
-
-          {/* 오른쪽 : 취소|변경 버튼 */}
-          <div className={cn("flex flex-1 justify-end gap-3 md:gap-5")}>
+          <div className={cn("flex flex-1 justify-between gap-3 md:gap-5")}>
             <button
               type="button"
               onClick={handleColumnEditModalClose}
               className={cn(
-                "flex h-12.5 flex-1 cursor-pointer items-center justify-center rounded-full bg-gray-900 px-7.5 py-1.5 text-base text-gray-100 md:h-15 md:text-lg"
+                "bg-stroke text-background flex h-12.5 flex-1 cursor-pointer items-center justify-center rounded-full px-7.5 py-1.5 text-lg font-semibold md:h-15 md:text-xl"
               )}
             >
               취소
@@ -186,11 +148,12 @@ export function ColumnEditModal({
             <button
               type="button"
               onClick={handleColumnTitleChange}
+              disabled={isEditSubmitted}
               className={cn(
-                "bg-brand-500 flex h-12.5 flex-1 cursor-pointer items-center justify-center rounded-full px-7.5 py-1.5 text-base text-white md:h-15 md:text-lg"
+                "flex h-12.5 flex-1 cursor-pointer items-center justify-center rounded-full bg-blue-700 px-7.5 py-1.5 text-lg font-semibold text-blue-100 md:h-15 md:text-xl"
               )}
             >
-              {isLoading ? "변경 중..." : "변경"}
+              변경
             </button>
           </div>
         </div>
