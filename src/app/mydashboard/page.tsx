@@ -121,6 +121,7 @@ export default function MyDashboard() {
     }
 
     return () => observer.disconnect();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoading, hasMore]);
 
   const handleFieldChange = (e: React.ChangeEvent<HTMLInputElement>) => {

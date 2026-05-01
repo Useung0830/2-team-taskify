@@ -17,7 +17,7 @@ export interface ApiError {
   };
 }
 
-export type ColorName = "red" | "orange" | "yellow" | "green" | "blue";
+type ColorName = "red" | "orange" | "yellow" | "green" | "blue";
 
 interface ColorMap {
   [hex: string]: ColorName;
@@ -31,7 +31,7 @@ const COLOR_MAP: ColorMap = {
   "#1458BC": "blue",
 };
 
-const REVERSE_COLOR_MAP = Object.fromEntries(
+export const REVERSE_COLOR_MAP = Object.fromEntries(
   Object.entries(COLOR_MAP).map(([hex, name]) => [name, hex])
 );
 
@@ -84,6 +84,9 @@ export function DashboardEdit({ initialData, onUpdate }: DashboardEditProps) {
     const hexCode = REVERSE_COLOR_MAP[name];
     setDashboardData({ ...dashboardData, color: hexCode });
   };
+  if (!dashboardData.color) {
+    return null; // 또는 <div>데이터 불러오는 중...</div>
+  }
 
   return (
     <div>
@@ -106,7 +109,7 @@ export function DashboardEdit({ initialData, onUpdate }: DashboardEditProps) {
         </Input>
         <div className="min-w-83.75">
           <DashboardColorChoiceList
-            size={"edit"}
+            type={"edit"}
             selectedColorName={selectedColorName}
             onColorChange={handleColorChange}
           />

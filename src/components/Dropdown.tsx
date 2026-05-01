@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState, useRef, useEffect } from "react";
+
 import iconChevronDown from "@/assets/common/ic-chevron-down.svg";
 
 interface DropdownProps {

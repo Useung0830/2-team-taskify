@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import React, { useState, useEffect } from "react";
 
 import { postCard, postCardImage, getCardList } from "@/api/data";
 import { Dropdown } from "@/components/Dropdown";
@@ -102,6 +102,7 @@ export function TaskAddForm({
         imageUrl = uploadRes.imageUrl;
       }
 
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const submitData: any = {
         dashboardId: Number(dashboardId),
         columnId: Number(formData.columnId),
@@ -135,7 +136,7 @@ export function TaskAddForm({
   };
 
   return (
-    <div className="fixed top-1/2 left-1/2 z-[100] flex h-full max-h-[812px] w-full max-w-[375px] -translate-x-1/2 -translate-y-1/2 flex-col overflow-y-auto border-none bg-[#1B1A1F] p-5 text-white shadow-2xl [scrollbar-width:none] md:fixed md:top-1/2 md:h-auto md:max-h-[calc(100vh-100px)] md:w-[506px] md:max-w-none md:translate-y-[-50%] md:rounded-[24px] md:border md:border-[#333] md:bg-[#242429] md:p-7 lg:max-h-[calc(100vh-128px)] lg:w-[600px] lg:p-[30px] [&::-webkit-scrollbar]:hidden">
+    <div className="md:bg-modal-background fixed top-1/2 left-1/2 z-100 flex h-full max-h-203 w-full max-w-93.75 -translate-x-1/2 -translate-y-1/2 flex-col overflow-y-auto border-none bg-[#1B1A1F] p-5 text-white shadow-2xl [scrollbar-width:none] md:fixed md:top-1/2 md:h-auto md:max-h-[calc(100vh-100px)] md:w-126.5 md:max-w-none md:translate-y-[-50%] md:rounded-3xl md:border md:border-[#333] md:p-7 lg:max-h-[calc(100vh-128px)] lg:w-150 lg:p-7.5 [&::-webkit-scrollbar]:hidden">
       <div className="mb-8 flex items-center justify-between">
         <h2 className="text-2xl font-bold">할 일 생성</h2>
         <ModalCloseButton />
@@ -174,7 +175,7 @@ export function TaskAddForm({
               id="title"
               required
               placeholder="제목을 입력해 주세요"
-              className="!border-none bg-[#201F23]"
+              className="border-none! bg-[#201F23]"
               value={formData.title}
               onChange={(e) =>
                 setFormData({ ...formData, title: e.target.value })
@@ -208,7 +209,7 @@ export function TaskAddForm({
               onBlur={(e) => {
                 if (!formData.dueDate) e.target.type = "text";
               }}
-              className="w-full !border-none bg-[#201F23]"
+              className="w-full border-none! bg-[#201F23]"
               value={formData.dueDate}
               onChange={(e) =>
                 setFormData({ ...formData, dueDate: e.target.value })
@@ -252,7 +253,7 @@ export function TaskAddForm({
             </div>
 
             {tagInput && (
-              <div className="absolute top-[calc(100%+8px)] z-[110] w-full rounded-xl border border-gray-700 bg-[#1e1e1e] p-4 shadow-2xl">
+              <div className="absolute top-[calc(100%+8px)] z-110 w-full rounded-xl border border-gray-700 bg-[#1e1e1e] p-4 shadow-2xl">
                 <p className="mb-3 text-xs text-gray-500">
                   기존 태그 검색 결과
                 </p>
@@ -277,7 +278,7 @@ export function TaskAddForm({
                         onClick={() => addTag(tagInput)}
                         className="rounded bg-[#00A200] px-3 py-1 text-sm font-medium text-white"
                       >
-                        "{tagInput}" 신규 추가
+                        &quot;{tagInput}&quot; 신규 추가
                       </button>
                     </div>
                   )}

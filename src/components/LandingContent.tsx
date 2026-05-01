@@ -5,22 +5,18 @@ import Link from "next/link";
 
 import imgSection1 from "@/assets/landing/img-section1.svg";
 import imgSection2 from "@/assets/landing/img-section2.svg";
-import imgSection3 from "@/assets/landing/img-section3.svg";
-
-import imgSection4_1 from "@/assets/landing/img-section4-dashboard.svg";
-import imgSection4_2 from "@/assets/landing/img-section4-invite.svg";
-import imgSection4_3 from "@/assets/landing/img-section4-member.svg";
-
-import imgSection3_tablet from "@/assets/landing/img-section3-tablet.svg";
 import imgSection3_mobile from "@/assets/landing/img-section3-mobile.svg";
-
-import imgSection4_tablet_1 from "@/assets/landing/img-section4-dashboard-tablet.svg";
-import imgSection4_tablet_2 from "@/assets/landing/img-section4-invite-tablet.svg";
-import imgSection4_tablet_3 from "@/assets/landing/img-section4-member-tablet.svg";
-
+import imgSection3_tablet from "@/assets/landing/img-section3-tablet.svg";
+import imgSection3 from "@/assets/landing/img-section3.svg";
 import imgSection4_mobile_1 from "@/assets/landing/img-section4-dashboard-mobie.svg";
+import imgSection4_tablet_1 from "@/assets/landing/img-section4-dashboard-tablet.svg";
+import imgSection4_1 from "@/assets/landing/img-section4-dashboard.svg";
 import imgSection4_mobile_2 from "@/assets/landing/img-section4-invite-mobile.svg";
+import imgSection4_tablet_2 from "@/assets/landing/img-section4-invite-tablet.svg";
+import imgSection4_2 from "@/assets/landing/img-section4-invite.svg";
 import imgSection4_mobile_3 from "@/assets/landing/img-section4-member-mobile.svg";
+import imgSection4_tablet_3 from "@/assets/landing/img-section4-member-tablet.svg";
+import imgSection4_3 from "@/assets/landing/img-section4-member.svg";
 
 export function LandingContent() {
   const section3Cards = [

@@ -1,9 +1,12 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
-import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
+
 import { getColumnList, getMemberList } from "@/api/data";
 import { Modal } from "@/components/modal/Modal";
+
 import { TaskAddForm } from "./_components/TaskAddForm";
 
 export default function TaskAddPage() {
@@ -19,12 +22,11 @@ export default function TaskAddPage() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    if (!dashboardId || isNaN(dashboardId)) {
-      setIsLoading(false);
-      return;
-    }
-
     const fetchData = async () => {
+      if (!dashboardId || isNaN(dashboardId)) {
+        setIsLoading(false);
+        return;
+      }
       try {
         const [columnsData, membersData] = await Promise.all([
           getColumnList(dashboardId),
@@ -51,7 +53,7 @@ export default function TaskAddPage() {
   if (isLoading) {
     return (
       <Modal>
-        <div className="flex min-h-[500px] w-full flex-col items-center justify-center p-10 md:w-[540px]">
+        <div className="flex min-h-125 w-full flex-col items-center justify-center p-10 md:w-135">
           <div className="h-12 w-12 animate-spin rounded-full border-4 border-gray-600 border-t-[#00A200]" />
 
           <p className="mt-6 text-lg font-medium text-white">

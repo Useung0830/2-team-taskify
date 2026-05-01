@@ -138,7 +138,6 @@ export async function deleteColumn(columnId: number): Promise<void> {
   return del<void>(`/columns/${columnId}`);
 }
 
-
 export async function postCardImage(
   columnId: number,
   imageFile: File

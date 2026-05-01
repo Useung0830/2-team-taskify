@@ -1,8 +1,8 @@
 "use client";
 
+import { useParams, usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 // [수정] dashboardId 추출을 위해 필요한 훅 추가
-import { useParams, usePathname } from "next/navigation";
 
 import { getCardList } from "@/api/data";
 
@@ -103,6 +103,8 @@ export function ColumnList({ column }: { column: ColumnList }) {
     };
 
     load();
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   useEffect(() => {
@@ -141,7 +143,8 @@ export function ColumnList({ column }: { column: ColumnList }) {
         /**
          * 톱니바퀴 누르면 칼럼 관리로 -> 수정하기/삭제하기 버튼 선택 가능 -> 칼럼 수정/삭제 모달 띄우기
          **/
-        onSettingClick={handleOpenEdit}
+        //@TODO 컬럼 수정 모달 완성되면 다시연결
+        // onSettingClick={handleOpenEdit}
       />
       {cardList?.map((colCard) => (
         <ColumnCard

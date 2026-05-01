@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useRouter } from "next/navigation"; // [추가] 페이지 이동을 위한 useRouter 훅
+
 import plusicon from "@/assets/dashboard/ic-plusbtn.svg";
 import settingicon from "@/assets/dashboard/ic-setting.svg";
 
@@ -16,7 +17,7 @@ export function ColumnListHeader({
   title,
   contentCount,
   dashboardId,
-  onSettingClick,
+  // onSettingClick,
 }: ColumnListHeaderProp) {
   const router = useRouter(); // [추가]
 
@@ -51,7 +52,7 @@ export function ColumnListHeader({
         <Image
           src={settingicon}
           alt="setting"
-          onClick={onSettingClick}
+          // onClick={onSettingClick}
           className="cursor-pointer transition-transform hover:rotate-90"
         />
       </div>
