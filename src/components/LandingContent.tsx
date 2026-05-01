@@ -5,22 +5,18 @@ import Link from "next/link";
 
 import imgSection1 from "@/assets/landing/img-section1.svg";
 import imgSection2 from "@/assets/landing/img-section2.svg";
-import imgSection3 from "@/assets/landing/img-section3.svg";
-
-import imgSection4_1 from "@/assets/landing/img-section4-dashboard.svg";
-import imgSection4_2 from "@/assets/landing/img-section4-invite.svg";
-import imgSection4_3 from "@/assets/landing/img-section4-member.svg";
-
-import imgSection3_tablet from "@/assets/landing/img-section3-tablet.svg";
 import imgSection3_mobile from "@/assets/landing/img-section3-mobile.svg";
-
-import imgSection4_tablet_1 from "@/assets/landing/img-section4-dashboard-tablet.svg";
-import imgSection4_tablet_2 from "@/assets/landing/img-section4-invite-tablet.svg";
-import imgSection4_tablet_3 from "@/assets/landing/img-section4-member-tablet.svg";
-
+import imgSection3_tablet from "@/assets/landing/img-section3-tablet.svg";
+import imgSection3 from "@/assets/landing/img-section3.svg";
 import imgSection4_mobile_1 from "@/assets/landing/img-section4-dashboard-mobie.svg";
+import imgSection4_tablet_1 from "@/assets/landing/img-section4-dashboard-tablet.svg";
+import imgSection4_1 from "@/assets/landing/img-section4-dashboard.svg";
 import imgSection4_mobile_2 from "@/assets/landing/img-section4-invite-mobile.svg";
+import imgSection4_tablet_2 from "@/assets/landing/img-section4-invite-tablet.svg";
+import imgSection4_2 from "@/assets/landing/img-section4-invite.svg";
 import imgSection4_mobile_3 from "@/assets/landing/img-section4-member-mobile.svg";
+import imgSection4_tablet_3 from "@/assets/landing/img-section4-member-tablet.svg";
+import imgSection4_3 from "@/assets/landing/img-section4-member.svg";
 
 export function LandingContent() {
   const section3Cards = [
@@ -217,7 +213,7 @@ export function LandingContent() {
                     />
                   </div>
 
-                  <div className="mx-auto mt-[20px] flex w-full max-w-[315px] flex-col items-start gap-2 pb-[40px] md:mx-0 md:mt-[40px] md:max-w-none md:pb-0 lg:mx-0 lg:mt-[28px] lg:ml-[30px]">
+                  <div className="mx-auto mt-[20px] flex w-full max-w-[315px] flex-col items-start gap-2 pb-[40px] md:mx-0 md:mt-[0px] md:max-w-none md:pb-0 lg:mx-0 lg:mt-[28px] lg:ml-[30px]">
                     <h3 className="text-left text-xl font-bold lg:text-[18px]">
                       {item.title}
                     </h3>

@@ -143,13 +143,15 @@ export async function postCardImage(
   imageFile: File
 ): Promise<T.UploadCardImageResponse> {
   const formData = new FormData();
-  formData.append("columnId", String(columnId));
+  // 서버가 기다리는 키값은 "image"입니다.
   formData.append("image", imageFile);
 
-  return post<FormData, T.UploadCardImageResponse>(
-    `/columns/${columnId}/card-image`,
-    formData
-  );
+  // [수정] post 유틸리티 대신 fetchInstance를 직접 호출합니다.
+  // headers를 명시하지 않아야 브라우저가 '멀티파트' 경계값을 자동으로 생성합니다.
+  return fetchInstance(`/columns/${columnId}/card-image`, {
+    method: "POST",
+    body: formData,
+  });
 }
 
 // ==========================================================
@@ -202,8 +204,10 @@ export async function getDashboardList(
 
   const query = new URLSearchParams({ navigationMethod });
 
-  if (navigationMethod === "infiniteScroll" && cursorId !== undefined) {
-    query.append("cursorId", String(cursorId));
+  if (navigationMethod === "infiniteScroll") {
+    if (cursorId !== undefined && cursorId !== null)
+      query.append("cursorId", String(cursorId));
+    if (size !== undefined) query.append("size", String(size));
   }
 
   if (navigationMethod === "pagination") {
