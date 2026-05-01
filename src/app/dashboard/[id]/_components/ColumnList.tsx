@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
 import { getCardList } from "@/api/data";
@@ -138,9 +137,7 @@ export function ColumnList({ column }: { column: ColumnList }) {
       ))}
       {/* observer */}
       <div ref={observerTarget}></div>
-      <Link href={`column-add`}>
-        <ColumnAdd />
-      </Link>
+      <ColumnAdd />
     </div>
   );
 }
