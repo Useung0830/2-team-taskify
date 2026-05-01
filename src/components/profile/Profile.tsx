@@ -8,7 +8,7 @@ interface ProfileProps {
 
 export function Profile({ name, type, imageUrl }: ProfileProps) {
   return (
-    <div className="relative flex items-center justify-center gap-2">
+    <div className="relative flex gap-2">
       {type === "member" && (
         <div className="bg-profile-green relative flex h-6 w-6 items-center justify-center overflow-hidden rounded-2xl">
           {imageUrl ? (
