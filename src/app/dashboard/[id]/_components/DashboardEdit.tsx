@@ -3,7 +3,7 @@
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
-import { getDashboardDetail, putDashboardUpdate } from "@/api/data";
+import { putDashboardUpdate } from "@/api/data";
 import { DashboardColorChoiceList } from "@/components/DashboardColorChoiceList";
 import { Input } from "@/components/input/input";
 import { Label } from "@/components/label/label";
@@ -16,17 +16,8 @@ export interface ApiError {
     };
   };
 }
-interface DashboardData {
-  title: string;
-  color: string;
-}
 
-const initialDashboardData: DashboardData = {
-  title: "",
-  color: "",
-};
-
-export type ColorName = "red" | "orange" | "yellow" | "green" | "blue";
+type ColorName = "red" | "orange" | "yellow" | "green" | "blue";
 
 interface ColorMap {
   [hex: string]: ColorName;
@@ -40,18 +31,21 @@ const COLOR_MAP: ColorMap = {
   "#1458BC": "blue",
 };
 
-const REVERSE_COLOR_MAP = Object.fromEntries(
+export const REVERSE_COLOR_MAP = Object.fromEntries(
   Object.entries(COLOR_MAP).map(([hex, name]) => [name, hex])
 );
 
-export function DashboardEdit() {
+interface DashboardEditProps {
+  initialData: { title: string; color: string };
+  onUpdate: () => void;
+}
+
+export function DashboardEdit({ initialData, onUpdate }: DashboardEditProps) {
   const params = useParams();
   const dashboardId = Number(params.id);
 
-  const [dashboardData, setDashboardData] =
-    useState<DashboardData>(initialDashboardData);
-  const [originalData, setOriginalData] =
-    useState<DashboardData>(initialDashboardData);
+  const [dashboardData, setDashboardData] = useState(initialData);
+  const [originalData, setOriginalData] = useState(initialData);
   const [isUpdating, setIsUpdating] = useState(false);
 
   const isChanged =
@@ -59,33 +53,21 @@ export function DashboardEdit() {
     dashboardData.color !== originalData.color;
 
   useEffect(() => {
-    if (!dashboardId) return;
-
-    const fetchDashboard = async () => {
-      try {
-        const data = await getDashboardDetail(dashboardId);
-        const fetchedData = {
-          title: data.title,
-          color: data.color,
-        };
-        setDashboardData(fetchedData);
-        setOriginalData(fetchedData);
-      } catch (error) {
-        console.error("데이터 오류:", error);
-      }
+    const syncInitialData = async () => {
+      await Promise.resolve();
+      setDashboardData(initialData);
+      setOriginalData(initialData);
     };
 
-    fetchDashboard();
-  }, [dashboardId]);
+    syncInitialData();
+  }, [initialData]);
 
   const handleSave = async () => {
     try {
       setIsUpdating(true);
       await putDashboardUpdate(dashboardId, dashboardData);
-
-      // 저장 성공 시 현재 데이터를 다시 원본으로 설정 (토스트 사라짐)
       setOriginalData(dashboardData);
-      alert("변경사항이 저장되었습니다.");
+      onUpdate(); // 부모 데이터 갱신 요청
     } catch (error) {
       const err = error as ApiError;
       const errorMessage =
@@ -102,6 +84,9 @@ export function DashboardEdit() {
     const hexCode = REVERSE_COLOR_MAP[name];
     setDashboardData({ ...dashboardData, color: hexCode });
   };
+  if (!dashboardData.color) {
+    return null; // 또는 <div>데이터 불러오는 중...</div>
+  }
 
   return (
     <div>
@@ -124,7 +109,7 @@ export function DashboardEdit() {
         </Input>
         <div className="min-w-83.75">
           <DashboardColorChoiceList
-            size={"edit"}
+            type={"edit"}
             selectedColorName={selectedColorName}
             onColorChange={handleColorChange}
           />
