@@ -33,11 +33,11 @@ export default async function DashboardLayout({
 
   return (
     <div className="flex h-screen w-full overflow-hidden bg-[#181818] text-white">
-      <aside className="border-black-600 w-75 shrink-0 border-r">
+      <aside className="w-75 shrink-0">
         <SideMenu />
       </aside>
       <div className="flex flex-1 flex-col overflow-hidden">
-        <header className="border-black-600 flex h-17.5 shrink-0 items-center justify-between border-b px-8">
+        <header className="flex h-17.5 shrink-0 items-center justify-between px-8">
           {dashboardMembers && (
             <DashboardHeader
               members={(await dashboardMembers).members}
