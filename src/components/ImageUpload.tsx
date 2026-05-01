@@ -20,8 +20,7 @@ export function ImageUpload({
   );
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  // 이벤트 객체 e를 선언만 하고 사용하지 않고 있음, 설정된 규칙인 /^_/u에 부합하기 위해 언더바를 붙임
-  const handleClick = (_e: MouseEvent) => {
+  const handleClick = () => {
     if (!previewUrl) fileInputRef.current?.click();
   };
 

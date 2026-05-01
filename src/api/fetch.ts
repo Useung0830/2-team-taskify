@@ -1,51 +1,40 @@
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+import { cookies } from "next/headers";
 
 export const fetchInstance = async (
   endpoint: string,
   options: RequestInit = {}
 ) => {
-  // localStorage에서 토큰 가져오기
-  const token =
-    typeof window !== "undefined"
-      ? sessionStorage.getItem("accessToken")
-      : null;
+  const cookieStore = await cookies();
+  const token = cookieStore.get("accessToken")?.value;
 
-  // 기본 헤더 설정
-  const defaultHeaders: HeadersInit = {
-    "Content-Type": "application/json",
-  };
+  const defaultHeaders: Record<string, string> = {};
 
-  // 토큰이 있다면 Authorization 헤더 추가
+  if (!(options.body instanceof FormData)) {
+    defaultHeaders["Content-Type"] = "application/json";
+  }
+
   if (token) {
     defaultHeaders["Authorization"] = `Bearer ${token}`;
   }
 
-  const url = `${BASE_URL}${endpoint}`;
+  const url = `${process.env.NEXT_PUBLIC_BASE_URL}${endpoint}`;
+
   const config = {
     ...options,
     headers: {
       ...defaultHeaders,
-      ...(options.headers || {}), // headers가 undefined일 경우 대비
+      ...(options.headers || {}),
     },
   };
 
   const response = await fetch(url, config);
 
-  // 401 Unauthorized 처리 (로그만 찍거나 페이지 이동 로직)
-  if (response.status === 401) {
-    console.error("인증이 만료되었습니다. 다시 로그인해주세요.");
-    // window.location.href = '/login'; // 필요시 활성화
-  }
-
-  // 에러 응답 처리
   if (!response.ok) {
     const errorData = await response.json();
     throw new Error(errorData.message || "API 호출 에러");
   }
 
-  // 정상 응답 처리
-  if (response.status === 204) return null;
-  return await response.json();
+  return response.status === 204 ? null : await response.json();
 };
 
 // GET

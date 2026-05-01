@@ -349,3 +349,20 @@ export interface GetMemberListResponse {
   members: Member[];
   totalCount: number;
 }
+
+// ==========================================================
+// [ APIResponse ] - API 응답 구조
+// ==========================================================
+
+export interface APIResponse {
+  success: boolean;
+  message: string;
+}
+
+export interface ApiError {
+  response?: {
+    data?: {
+      message?: string;
+    };
+  };
+}

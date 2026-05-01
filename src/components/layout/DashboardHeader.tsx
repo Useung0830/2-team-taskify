@@ -31,16 +31,15 @@ interface DashboardHeaderProps {
 export function DashboardHeader({ members, totalCount }: DashboardHeaderProps) {
   const router = useRouter();
   const params = useParams();
-  const [isMounted, setIsMounted] = useState(true);
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
-    /**
-     * ESLint 규칙 → useEffect 안에서 setState 쓰는 걸 막는 것이므로 에러 발생
-     * 1. eslint-disable 주석으로 예외처리
-     * 2. 커스텀 훅 파일 생성
-     **/
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setIsMounted(true);
+    //eslint 임시방편으로 오류 방지
+    const timer = setTimeout(() => {
+      setIsMounted(true);
+    }, 0);
+
+    return () => clearTimeout(timer);
   }, []);
 
   const dashboardId = params?.dashboardId;
@@ -69,7 +68,7 @@ export function DashboardHeader({ members, totalCount }: DashboardHeaderProps) {
 
   return (
     <header
-      className={`bg-black-900 font-pretendard border-black-800 h-12.5w-full fixed top-0 right-0 z-30 flex items-center justify-between border-b-2 px-3 md:left-55 md:h-15 md:w-[calc(100%-220px)] md:justify-end md:px-6 lg:left-85 lg:w-[calc(100%-340px)]`}
+      className={`bg-black-900 font-pretendard border-black-800 fixed top-0 right-0 z-30 flex h-12.5 w-full items-center justify-between border-b-2 px-3 md:left-55 md:h-15 md:w-[calc(100%-220px)] md:justify-end md:px-6 lg:left-85 lg:w-[calc(100%-340px)]`}
     >
       <div className="flex-1 md:hidden" />
 
@@ -84,8 +83,9 @@ export function DashboardHeader({ members, totalCount }: DashboardHeaderProps) {
               {member.profileImageUrl ? (
                 <Image
                   src={member.profileImageUrl}
-                  alt="p"
+                  alt={`${member.nickname} profile`}
                   fill
+                  sizes="(max-width: 768px) 24px, 34px"
                   className="rounded-full object-cover"
                 />
               ) : (

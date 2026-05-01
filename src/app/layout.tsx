@@ -2,12 +2,17 @@ import "./globals.css";
 
 export default function RootLayout({
   children,
+  modal,
 }: Readonly<{
   children: React.ReactNode;
+  modal: React.ReactNode;
 }>) {
   return (
     <html lang="ko">
-      <body className="bg-background">{children}</body>
+      <body className="bg-background">
+        {children}
+        {modal}
+      </body>
     </html>
   );
 }

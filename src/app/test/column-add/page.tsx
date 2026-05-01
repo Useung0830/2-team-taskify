@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-import { ColumnAdd } from "@/app/dashboard/[id]/components/ColumnAdd";
+import { ColumnAddModal } from "@/app/dashboard/[id]/_components/ColumnAddModal";
 
 export default function TestColumnAdd() {
   const [isColumnAddModalOpen, setIsColumnAddModalOpen] = useState(false);
@@ -52,8 +52,8 @@ export default function TestColumnAdd() {
         </button>
       </div>
       {isColumnAddModalOpen && (
-        <ColumnAdd
-          currentColumnName={columnNames}
+        <ColumnAddModal
+          currentColumnTitle={columnNames}
           maxColumns={10}
           onCancel={() => setIsColumnAddModalOpen(false)}
           onCreate={handleColumnCreate}
