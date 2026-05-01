@@ -5,9 +5,6 @@ import { useEffect, useRef, useState } from "react";
 import { useParams, usePathname } from "next/navigation";
 
 import { getCardList } from "@/api/data";
-import { DeleteAlertModal } from "@/components/DeleteAlertModal";
-
-import ColumnEdit from "../edit/page";
 
 import { ColumnCard } from "./ColumnCard";
 import { ColumnListHeader } from "./ColumnListHeader";
@@ -106,7 +103,6 @@ export function ColumnList({ column }: { column: ColumnList }) {
     };
 
     load();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   useEffect(() => {
@@ -135,15 +131,6 @@ export function ColumnList({ column }: { column: ColumnList }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoading, hasMore]);
 
-  // 칼럼 삭제 모달 상태 관리
-  const [isColumnEdit, setIsColumnEdit] = useState(false);
-  // const [isModifyState, setIsModifyState] = useState(false);
-  const [isDeleteState, setIsDeleteState] = useState(false);
-
-  const handleOpenEdit = () => {
-    setIsColumnEdit(true);
-  };
-
   return (
     <div className="flex w-full flex-col gap-5 md:mx-10 lg:mx-0">
       <ColumnListHeader
@@ -164,33 +151,10 @@ export function ColumnList({ column }: { column: ColumnList }) {
           // tags={colCard.tags}
           // creator={colCard.assignee.nickname}
           // imgSrc={colCard.imageUrl}
-          onClick={handleOpenEdit}
         />
       ))}
       {/* observer */}
       <div ref={observerTarget}></div>
-      {/* 관리 버튼 클릭 -> /dashboard/{dashboardid}/edit 이동 -> 수정/삭제하기 버튼 선택에 따른 상태 관리 */}
-      {isColumnEdit && (
-        <ColumnEdit
-          onClose={() => setIsColumnEdit(false)}
-          onDelete={() => {
-            setIsColumnEdit(false); // 관리창 닫기
-            setIsDeleteState(true); // 삭제 확인 모달 열기
-          }}
-        />
-      )}
-      {/* 수정하기 모달 로직 */}
-
-      {/* 삭제하기 모달 로직 */}
-      {isDeleteState && (
-        <DeleteAlertModal
-          onCancel={() => setIsDeleteState(false)}
-          onDelete={() => {
-            setIsDeleteState(false);
-            // API 호출
-          }}
-        />
-      )}
     </div>
   );
 }

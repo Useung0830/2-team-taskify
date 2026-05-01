@@ -1,10 +1,3 @@
-"use client";
-
-import { useParams, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
-
-import { getMemberList, getInvitationList } from "@/api/data";
-
 import { MemberHeader } from "./MemberHeader";
 import { MemberList } from "./MemberList";
 
@@ -41,39 +34,32 @@ interface Invitation {
   updatedAt: string;
 }
 
-export function MemberManagement() {
-  const [members, setMembers] = useState<Member[]>([]);
-  const [invitations, setInvitations] = useState<Invitation[]>([]);
+interface MemberManagementProps {
+  members: Member[];
+  invitations: Invitation[];
+  memberPagination: {
+    current: number;
+    total: number;
+    setPage: (p: number | ((prev: number) => number)) => void;
+  };
+  invitePagination: {
+    current: number;
+    total: number;
+    setPage: (p: number | ((prev: number) => number)) => void;
+  };
+}
 
-  const params = useParams();
-  const searchParams = useSearchParams();
-  const dashboardId = Number(params.id);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const [memberRes, inviteRes] = await Promise.all([
-          getMemberList({ dashboardId, page: 1, size: 6 }),
-          getInvitationList(dashboardId, { page: 1, size: 6 }),
-        ]);
-
-        setMembers(memberRes.members);
-        setInvitations(inviteRes.invitations);
-      } catch (error) {
-        console.error("데이터 로딩 중 오류 발생:", error);
-      }
-    };
-
-    if (dashboardId) {
-      fetchData();
-    }
-  }, [dashboardId, searchParams]);
-
+export function MemberManagement({
+  members,
+  invitations,
+  memberPagination,
+  invitePagination,
+}: MemberManagementProps) {
   return (
     <div className="flex flex-col gap-6">
       {/* 1. 구성원 섹션 */}
       <div className="flex flex-1 flex-col gap-2.5">
-        <MemberHeader>구성원</MemberHeader>
+        <MemberHeader pagination={memberPagination}>구성원</MemberHeader>
         <div className="flex-1 rounded-lg">
           {members.map((member) => (
             <MemberList key={member.id} type="member" data={member} />
@@ -83,7 +69,7 @@ export function MemberManagement() {
 
       {/* 2. 초대 내역 섹션 */}
       <div className="flex flex-1 flex-col gap-2.5">
-        <MemberHeader>초대내역</MemberHeader>
+        <MemberHeader pagination={invitePagination}>초대내역</MemberHeader>
         <div className="flex-1 overflow-y-auto rounded-lg">
           {invitations.map((invite) => (
             <MemberList key={invite.id} type="invite" data={invite} />

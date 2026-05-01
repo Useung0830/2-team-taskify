@@ -45,7 +45,7 @@ export function AccountSetting({ initialData }: Props) {
 
   // 취소 버튼 핸들러
   const handleCancel = () => {
-    router.back(); // 이전 페이지로 이동
+    router.back();
   };
 
   const handleName = (value: string) => {
@@ -57,11 +57,6 @@ export function AccountSetting({ initialData }: Props) {
   };
 
   const handleUpdate = async () => {
-    if (!nickname.trim()) {
-      alert("닉네임을 입력해주세요.");
-      return;
-    }
-
     setIsPending(true);
 
     try {
@@ -87,7 +82,6 @@ export function AccountSetting({ initialData }: Props) {
       const updateResult = await updateUserInfoAction(updateData);
 
       if (updateResult.success) {
-        alert("정보가 성공적으로 수정되었습니다.");
         router.back();
       } else {
         throw new Error(updateResult.message || "정보 수정 실패");
@@ -95,12 +89,6 @@ export function AccountSetting({ initialData }: Props) {
     } catch (error) {
       const apiError = error as T.ApiError;
       console.error("수정 프로세스 에러:", apiError);
-
-      const errorMessage =
-        apiError.response?.data?.message ||
-        (error instanceof Error ? error.message : "오류가 발생했습니다.");
-
-      alert(errorMessage);
     } finally {
       setIsPending(false);
     }
