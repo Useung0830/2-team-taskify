@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { useParams, useRouter } from "next/navigation";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 
 import {
@@ -23,6 +23,11 @@ export default function Edit() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<Section>("edit");
 
+  const [memberPage, setMemberPage] = useState(1);
+  const [invitePage, setInvitePage] = useState(1);
+  const [totalMemberCount, setTotalMemberCount] = useState(0);
+  const [totalInviteCount, setTotalInviteCount] = useState(0);
+
   const [members, setMembers] = useState<Member[]>([]);
   const [invitations, setInvitations] = useState<Invitation[]>([]);
   const [dashboardData, setDashboardData] = useState({ title: "", color: "" });
@@ -30,25 +35,31 @@ export default function Edit() {
   const dashboardId = Number(params.id);
 
   const router = useRouter();
+  const searchParams = useSearchParams();
 
   const handleDelete = () => {
-    router.push(`/dashboard-delete`);
+    router.push(`/dashboard/${dashboardId}/edit/dashboard-delete`);
   };
 
   const handleFetchAllData = useCallback(async () => {
     if (!dashboardId) return;
 
     try {
-      const detailRes = await getDashboardDetail(dashboardId);
-
-      const [memberRes, inviteRes] = await Promise.all([
-        getMemberListAction({ dashboardId, page: 1, size: 20 }),
-        getInvitationListAction({ dashboardId, page: 1, size: 20 }),
+      const [detailRes, memberRes, inviteRes] = await Promise.all([
+        getDashboardDetail(dashboardId),
+        getMemberListAction({ dashboardId, page: memberPage, size: 6 }),
+        getInvitationListAction({ dashboardId, page: invitePage, size: 6 }),
       ]);
 
       setDashboardData({ title: detailRes.title, color: detailRes.color });
-      if (memberRes.success) setMembers(memberRes.data.members);
-      if (inviteRes.success) setInvitations(inviteRes.data.invitations);
+      if (memberRes.success) {
+        setMembers(memberRes.data.members);
+        setTotalMemberCount(memberRes.data.totalCount);
+      }
+      if (inviteRes.success) {
+        setInvitations(inviteRes.data.invitations);
+        setTotalInviteCount(inviteRes.data.totalCount);
+      }
     } catch (error) {
       console.error("데이터 로딩 오류:", error);
 
@@ -56,14 +67,14 @@ export default function Edit() {
 
       router.push("/mydashboard");
     }
-  }, [dashboardId, router]);
+  }, [dashboardId, router, memberPage, invitePage]);
 
   useEffect(() => {
     const loadData = async () => {
       await handleFetchAllData();
     };
     loadData();
-  }, [handleFetchAllData]);
+  }, [handleFetchAllData, searchParams]);
 
   const handleSectionClick = (section: Section) => {
     if (section === "dashboardDelete") {
@@ -127,7 +138,16 @@ export default function Edit() {
               <MemberManagement
                 members={members}
                 invitations={invitations}
-                onUpdate={handleFetchAllData}
+                memberPagination={{
+                  current: memberPage,
+                  total: Math.ceil(totalMemberCount / 6),
+                  setPage: setMemberPage,
+                }}
+                invitePagination={{
+                  current: invitePage,
+                  total: Math.ceil(totalInviteCount / 6),
+                  setPage: setInvitePage,
+                }}
               />
             )}
           </div>

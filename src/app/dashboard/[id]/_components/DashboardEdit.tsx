@@ -17,7 +17,7 @@ export interface ApiError {
   };
 }
 
-export type ColorName = "red" | "orange" | "yellow" | "green" | "blue";
+type ColorName = "red" | "orange" | "yellow" | "green" | "blue";
 
 interface ColorMap {
   [hex: string]: ColorName;
@@ -31,7 +31,7 @@ const COLOR_MAP: ColorMap = {
   "#1458BC": "blue",
 };
 
-const REVERSE_COLOR_MAP = Object.fromEntries(
+export const REVERSE_COLOR_MAP = Object.fromEntries(
   Object.entries(COLOR_MAP).map(([hex, name]) => [name, hex])
 );
 
@@ -53,10 +53,13 @@ export function DashboardEdit({ initialData, onUpdate }: DashboardEditProps) {
     dashboardData.color !== originalData.color;
 
   useEffect(() => {
-    Promise.resolve().then(() => {
+    const syncInitialData = async () => {
+      await Promise.resolve();
       setDashboardData(initialData);
       setOriginalData(initialData);
-    });
+    };
+
+    syncInitialData();
   }, [initialData]);
 
   const handleSave = async () => {
@@ -64,7 +67,6 @@ export function DashboardEdit({ initialData, onUpdate }: DashboardEditProps) {
       setIsUpdating(true);
       await putDashboardUpdate(dashboardId, dashboardData);
       setOriginalData(dashboardData);
-      alert("변경사항이 저장되었습니다.");
       onUpdate(); // 부모 데이터 갱신 요청
     } catch (error) {
       const err = error as ApiError;
@@ -82,6 +84,9 @@ export function DashboardEdit({ initialData, onUpdate }: DashboardEditProps) {
     const hexCode = REVERSE_COLOR_MAP[name];
     setDashboardData({ ...dashboardData, color: hexCode });
   };
+  if (!dashboardData.color) {
+    return null; // 또는 <div>데이터 불러오는 중...</div>
+  }
 
   return (
     <div>
@@ -104,7 +109,7 @@ export function DashboardEdit({ initialData, onUpdate }: DashboardEditProps) {
         </Input>
         <div className="min-w-83.75">
           <DashboardColorChoiceList
-            size={"edit"}
+            type={"edit"}
             selectedColorName={selectedColorName}
             onColorChange={handleColorChange}
           />

@@ -1,12 +1,22 @@
+"use client";
+
+import { Profile } from "@/app/mydashboard/_components/Profile";
+import { Button } from "@/components/Button";
+
 import { UserInfo } from "./InvitionContainer";
-import { Profile } from "./Profile";
 
 export function InvitionRow({
   title,
   inviter,
+  id,
+  handleDismiss,
+  handleAccept,
 }: {
   title: string;
   inviter: UserInfo;
+  id: number;
+  handleDismiss: (id: number) => void;
+  handleAccept: (id: number) => void;
 }) {
   return (
     <div className="flex flex-col justify-between gap-1 px-2.5 pt-4 pb-4.5 md:flex-row">
@@ -16,13 +26,17 @@ export function InvitionRow({
           {/* 임시 컴포넌트 @TODO 교체 필요*/}
           <Profile name={inviter.nickname} />
         </div>
-        <div className="flex gap-3">
-          <button className="rounded-[100px] bg-gray-900 px-3.5 py-1.5">
+        <div className="flex w-32.5 gap-3">
+          <Button
+            size={"sm"}
+            colorType={"secondary"}
+            onClick={() => handleDismiss(id)}
+          >
             거절
-          </button>
-          <button className="rounded-[100px] bg-green-500 px-3.5 py-1.5">
+          </Button>
+          <Button size={"sm"} onClick={() => handleAccept(id)}>
             수락
-          </button>
+          </Button>
         </div>
       </div>
     </div>

@@ -1,8 +1,8 @@
 "use client";
 
 import { useParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 
-import { deleteInvitation, deleteMember } from "@/api/data";
 import { Button } from "@/components/Button";
 import { Profile } from "@/components/profile/Profile";
 
@@ -28,11 +28,11 @@ interface Invitation {
 interface MemberListProps {
   type: "member" | "invite";
   data: Member | Invitation;
-  onDelete: () => void;
 }
 
-export function MemberList({ type, data, onDelete }: MemberListProps) {
+export function MemberList({ type, data }: MemberListProps) {
   const params = useParams();
+  const router = useRouter();
   const dashboardId = Number(params.id);
 
   const displayName =
@@ -40,26 +40,15 @@ export function MemberList({ type, data, onDelete }: MemberListProps) {
       ? (data as Member).nickname
       : (data as Invitation).invitee.email;
 
-  // 삭제/취소 핸들러
-  const handleAction = async () => {
-    const confirmMessage =
-      type === "member"
-        ? "해당 멤버를 삭제하시겠습니까?"
-        : "초대를 취소하시겠습니까?";
-
-    if (!confirm(confirmMessage)) return;
-
-    try {
-      if (type === "member") {
-        await deleteMember(data.id);
-      } else {
-        await deleteInvitation(dashboardId, data.id);
-      }
-      onDelete();
-      alert("성공적으로 처리되었습니다.");
-    } catch (error) {
-      console.error("처리 중 오류 발생:", error);
-      alert("요청을 처리하는 중 오류가 발생했습니다.");
+  const handleAction = () => {
+    if (type === "member") {
+      router.push(
+        `/dashboard/${dashboardId}/edit/member-delete?memberId=${data.id}`
+      );
+    } else {
+      router.push(
+        `/dashboard/${dashboardId}/edit/invite-cancel?invitationId=${data.id}`
+      );
     }
   };
 
