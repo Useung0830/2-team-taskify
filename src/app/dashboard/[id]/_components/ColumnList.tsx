@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+// [수정] dashboardId 추출을 위해 필요한 훅 추가
+import { useParams, usePathname } from "next/navigation";
 
 import { getCardList } from "@/api/data";
 
@@ -43,6 +45,13 @@ interface Params {
 
 export function ColumnList({ column }: { column: ColumnList }) {
   const { title, id } = column;
+
+  // [수정] dashboardId 추출 로직을 컴포넌트 상단에 배치
+  const params = useParams();
+  const pathname = usePathname();
+  const dashboardId =
+    Number(params.dashboardId) || Number(pathname.split("/")[2]);
+
   const [cardList, setCardList] = useState<GetCardListResponse[]>([]);
   const cursorId = useRef<number | null>(null);
   const [hasMore, setHasMore] = useState(true);
@@ -60,8 +69,8 @@ export function ColumnList({ column }: { column: ColumnList }) {
     try {
       const params: Params = {
         columnId: id,
-        // @TODO size 변경 필요
-        size: 1,
+        // [수정] 기존 1에서 적절한 사이즈(5)로 변경
+        size: 5,
         ...(cursorId.current && { cursorId: cursorId.current }),
       };
 
@@ -70,7 +79,7 @@ export function ColumnList({ column }: { column: ColumnList }) {
         setTotalCount(coldata.totalCount);
         setCardList((prev) => {
           const updated = [...prev, ...coldata.cards];
-          if (updated.length === coldata.totalCount) {
+          if (updated.length >= coldata.totalCount) {
             setHasMore(false);
           }
           return updated;
@@ -124,12 +133,22 @@ export function ColumnList({ column }: { column: ColumnList }) {
 
   return (
     <div className="flex w-full flex-col gap-5 md:mx-10 lg:mx-0">
-      <ColumnListHeader title={title} contentCount={totalCount} />
+      <ColumnListHeader
+        title={title}
+        contentCount={totalCount}
+        // [수정] 추출한 dashboardId를 Header에 전달
+        dashboardId={dashboardId}
+        /**
+         * 톱니바퀴 누르면 칼럼 관리로 -> 수정하기/삭제하기 버튼 선택 가능 -> 칼럼 수정/삭제 모달 띄우기
+         **/
+        onSettingClick={handleOpenEdit}
+      />
       {cardList?.map((colCard) => (
         <ColumnCard
           key={colCard.id}
           cardTitle={colCard.title}
-          // tags={tags}
+          // [참고] 필요시 아래 주석들을 해제하여 데이터 연결
+          // tags={colCard.tags}
           // creator={colCard.assignee.nickname}
           // imgSrc={colCard.imageUrl}
         />

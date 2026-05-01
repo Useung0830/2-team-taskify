@@ -1,29 +1,47 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
-
+import { useState, useRef, useEffect } from "react";
 import iconChevronDown from "@/assets/common/ic-chevron-down.svg";
 
-export function Dropdown({
-  options,
-  label,
-}: {
+interface DropdownProps {
   options: string[];
   label: string;
-}) {
+  onSelect?: (value: string) => void;
+}
+
+export function Dropdown({ options, label, onSelect }: DropdownProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState("");
 
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
-    <div className="relative w-full">
+    <div className="relative w-full" ref={dropdownRef}>
       <label className="font-pretendard mb-2 block text-[16px] font-semibold text-gray-100">
         {label}
       </label>
 
       <div
         onClick={() => setIsOpen(!isOpen)}
-        className="bg-black-800 flex h-13.5 w-[157.5px] cursor-pointer items-center justify-between rounded-[14px] border border-solid border-gray-700 px-5 py-1.5 transition-all md:w-65"
+        className="bg-black-800 flex h-13.5 w-full cursor-pointer items-center justify-between rounded-[14px] border border-solid border-gray-700 px-5 py-1.5 transition-all"
       >
         <span
           className={`font-pretendard truncate text-[16px] ${selected ? "text-gray-100" : "text-gray-400"}`}
@@ -40,13 +58,14 @@ export function Dropdown({
       </div>
 
       {isOpen && (
-        <ul className="bg-black-800 absolute z-10 mt-2 max-h-50 w-[157.5px] overflow-y-auto rounded-lg border border-gray-700 shadow-lg md:w-65 [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-gray-600 [&::-webkit-scrollbar-track]:bg-transparent">
+        <ul className="bg-black-800 absolute z-10 mt-2 max-h-50 w-full overflow-y-auto rounded-lg border border-gray-700 shadow-lg [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-gray-600 [&::-webkit-scrollbar-track]:bg-transparent">
           {options.map((option) => (
             <li
               key={option}
               onClick={() => {
                 setSelected(option);
                 setIsOpen(false);
+                if (onSelect) onSelect(option);
               }}
               className="hover:bg-black-700 cursor-pointer px-4 py-3 text-[16px] text-gray-100 transition-colors"
             >
