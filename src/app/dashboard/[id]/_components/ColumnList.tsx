@@ -28,7 +28,7 @@ interface GetCardListResponse {
   title: string;
   description: string;
   tags: string[];
-  dueDate?: string;
+  dueDate: string;
   assignee?: Assignee;
   imageUrl?: string;
   teamId: string;
@@ -150,6 +150,7 @@ export function ColumnList({ column }: { column: ColumnList }) {
         <ColumnCard
           key={colCard.id}
           cardTitle={colCard.title}
+          duedate={colCard.dueDate}
           tags={colCard.tags}
           creator={colCard.assignee?.nickname}
           imgSrc={colCard.imageUrl}
