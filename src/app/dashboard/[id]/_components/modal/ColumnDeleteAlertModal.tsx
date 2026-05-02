@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+//import { useState } from "react";
 
 import { deleteColumn } from "@/api/data";
 import icX from "@/assets/common/ic-x.svg";
@@ -11,7 +11,7 @@ import { Modal } from "@/components/modal/Modal";
 interface ColumnDeleteAlertModalProps {
   columnId: number;
   onCancel?: () => void;
-  onDelete?: () => void;
+  onDelete?: () => Promise<void> | void;
   notifyToast?: (message: string) => void;
 }
 
@@ -21,9 +21,6 @@ export function ColumnDeleteAlertModal({
   onDelete,
   notifyToast,
 }: ColumnDeleteAlertModalProps) {
-  const [isDeleteSubmitting, setIsDeleteSubmitting] = useState(false);
-  const isColumnDeleteDisabled = isDeleteSubmitting; // 칼럼 삭제 비활성화 조건
-
   /** 취소 버튼 핸들러 */
   const handleCancel = () => {
     onCancel?.();
@@ -32,11 +29,9 @@ export function ColumnDeleteAlertModal({
   /** 삭제 버튼 핸들러 */
   const handleDelete = async () => {
     try {
-      setIsDeleteSubmitting(true);
-
       await deleteColumn(columnId);
       notifyToast?.(
-        "해당 컬럼의 모든 할 일 카드들이 성공적으로 삭제되었습니다!"
+        "해당 칼럼의 모든 할 일 카드들이 성공적으로 삭제되었습니다!"
       );
       onDelete?.();
     } catch (error) {
@@ -45,14 +40,12 @@ export function ColumnDeleteAlertModal({
           ? `${error.message}로 칼럼 삭제에 실패하였습니다.`
           : "알 수 없는 오류로 칼럼 삭제에 실패하였습니다."
       );
-    } finally {
-      setIsDeleteSubmitting(false);
     }
   };
 
   return (
     <Modal>
-      <div className="w-full max-w-83.75 min-w-83.75 pt-0 pr-5 pb-6 pl-5 md:max-w-150 md:min-w-150 md:pt-4 md:pr-7.5 md:pl-7.5">
+      <div className="w-full max-w-83.75 min-w-83.75 md:max-w-150 md:min-w-150">
         <div className="relative flex w-full flex-col items-center gap-2">
           <h2 className="text-2xl font-semibold text-gray-300 md:text-[28px]">
             칼럼을 삭제하시겠습니까?
@@ -79,7 +72,6 @@ export function ColumnDeleteAlertModal({
           </Button>
           <Button
             className="bg-profile-rose h-12.5 flex-1 text-lg text-white hover:bg-red-800 active:bg-red-900 md:h-14"
-            disabled={isColumnDeleteDisabled}
             onClick={handleDelete}
           >
             Yes

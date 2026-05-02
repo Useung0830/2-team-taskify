@@ -9,7 +9,7 @@ import {
   ColumnDeleteAlertModal,
 } from "@/app/dashboard/[id]/_components/modal";
 
-interface Column {
+export interface Column {
   columnId: number;
   title: string;
   teamId: string;
@@ -62,7 +62,7 @@ export default function TestColumnManagementPage() {
   useEffect(() => {
     const init = async () => {
       try {
-        // 테스트용 임시 로그인
+        // 테스트 로그인
         await postLogin({ email: "777@777.com", password: "123123123" });
 
         const dashboardResponse = await getDashboardList({
@@ -86,11 +86,14 @@ export default function TestColumnManagementPage() {
 
     init();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [dashboardId]);
 
   return (
     <div className="p-6 text-white">
-      <h1 className="mb-4 text-2xl font-bold">Column Management Test</h1>
+      <h1 className="mb-4 text-2xl font-bold">
+        Test&nbsp;&nbsp;|&nbsp;&nbsp;Column
+        Management&nbsp;&nbsp;|&nbsp;&nbsp;칼럼 추가, 수정, 삭제
+      </h1>
 
       <div className="mb-5 flex flex-wrap gap-2">
         {columnList.map((col) => (
@@ -106,7 +109,9 @@ export default function TestColumnManagementPage() {
           </button>
         ))}
         {columnList.length === 0 && (
-          <p className="text-gray-400">칼럼이 없습니다.</p>
+          <p className="text-gray-400">
+            생성된 칼럼이 없습니다. 추가하기 버튼을 이용해 칼럼을 생성해 주세요!
+          </p>
         )}
       </div>
 
@@ -117,7 +122,7 @@ export default function TestColumnManagementPage() {
           disabled={!dashboardId}
           className="rounded bg-blue-700 px-4 py-2 disabled:opacity-50"
         >
-          칼럼 추가
+          칼럼 추가하기
         </button>
 
         <button
@@ -129,7 +134,7 @@ export default function TestColumnManagementPage() {
           }}
           className="rounded bg-purple-700 px-4 py-2"
         >
-          칼럼 수정
+          칼럼 수정하기
         </button>
 
         <button
@@ -141,7 +146,7 @@ export default function TestColumnManagementPage() {
           }}
           className="rounded bg-rose-700 px-4 py-2"
         >
-          칼럼 삭제
+          칼럼 삭제하기
         </button>
       </div>
 
@@ -161,7 +166,7 @@ export default function TestColumnManagementPage() {
       {isEditModalOpen && selectedColumn && (
         <ColumnEditModal
           columnId={selectedColumn.columnId}
-          initialTitle={selectedColumn.title}
+          originTitle={selectedColumn.title}
           columnList={columnList.map((c) => c.title)}
           onCancel={() => setIsEditModalOpen(false)}
           onEdit={async () => {
