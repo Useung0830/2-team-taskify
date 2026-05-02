@@ -138,6 +138,7 @@ export function ColumnList({ column }: { column: ColumnList }) {
       <ColumnListHeader
         title={title}
         contentCount={totalCount}
+        columnId={id}
         // [수정] 추출한 dashboardId를 Header에 전달
         dashboardId={dashboardId}
         /**
