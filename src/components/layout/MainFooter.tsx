@@ -21,18 +21,12 @@ export function MainFooter() {
         </div>
 
         <div className="flex gap-5 md:gap-6 lg:gap-8">
-          <Link
-            href="/privacy"
-            className="text-sm text-gray-400 transition hover:text-white md:text-[15px] lg:text-base"
-          >
+          <span className="text-sm text-gray-400 md:text-[15px] lg:text-base">
             Privacy Policy
-          </Link>
-          <Link
-            href="/faq"
-            className="text-sm text-gray-400 transition hover:text-white md:text-[15px] lg:text-base"
-          >
+          </span>
+          <span className="text-sm text-gray-400 md:text-[15px] lg:text-base">
             FAQ
-          </Link>
+          </span>
         </div>
 
         <div className="flex h-5.5 w-23 items-center gap-3.5">

@@ -40,7 +40,16 @@ export default function MyDashboard() {
       size: SIZE,
     });
 
-    setDashboardList((prev) => [...prev, ...fetchdata.dashboards]);
+    setDashboardList((prev) => {
+      const combined = [...prev, ...fetchdata.dashboards];
+
+      const uniqueData = [
+        ...new Map(
+          combined.map((item: DashboardList) => [item.id, item])
+        ).values(),
+      ];
+      return uniqueData;
+    });
     setTotal(fetchdata.totalCount);
     setLoadPage((prev) => prev + 1);
   };
@@ -112,6 +121,7 @@ export default function MyDashboard() {
     }
 
     return () => observer.disconnect();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoading, hasMore]);
 
   const handleFieldChange = (e: React.ChangeEvent<HTMLInputElement>) => {
