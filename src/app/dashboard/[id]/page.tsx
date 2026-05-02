@@ -1,8 +1,9 @@
 "use client";
 
+import { useSearchParams } from "next/navigation";
 import { use, useEffect, useState } from "react";
 
-import { getColumnList, getDashboardDetail, postLogin } from "@/api/data";
+import { getColumnList, getDashboardDetail } from "@/api/data";
 import { HashtagIcon } from "@/assets/dashboard/ic-colorchips";
 
 import { ColumnList } from "./_components/ColumnList";
@@ -34,12 +35,9 @@ export default function Dashboard({ params }: DashboardPageProps) {
   const [activeCol, setActiveCol] = useState(columnList?.[0]);
   const [dashboardDetail, setDashboardDetail] = useState<Dashboard>();
   const { id } = use(params);
+  const searchParams = useSearchParams();
 
   useEffect(() => {
-    const setUp = async () => {
-      //임시 로그인
-      await postLogin({ email: "333@333.com", password: "123123123" });
-    };
     const fetchdashboardData = async () => {
       const columnData = await getColumnList(id);
       const dashboardData = await getDashboardDetail(id);
@@ -51,9 +49,8 @@ export default function Dashboard({ params }: DashboardPageProps) {
         setActiveCol(columnData.data[0]);
       }
     };
-    setUp();
     fetchdashboardData();
-  }, [id]);
+  }, [id, searchParams]);
 
   const handleTabSwitch = (col: ColumnList) => {
     setActiveCol(() => col);

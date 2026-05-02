@@ -29,7 +29,7 @@ export function KebabButton() {
       >
         <Image src={icMore} height={24} width={24} alt="더보기 아이콘" />
       </button>
-      {isOpen && <PopDoverMenu />}
+      {isOpen && <PopDoverMenu type="columnEdit" />}
     </div>
   );
 }
