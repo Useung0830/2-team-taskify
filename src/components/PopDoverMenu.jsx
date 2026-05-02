@@ -6,7 +6,7 @@ import { useParams, useRouter } from "next/navigation";
 import icDelete from "@/assets/common/ic-delete.svg";
 import icEdit from "@/assets/common/ic-edit.svg";
 
-export function PopDoverMenu({ title = "", type, columnId = 0 }) {
+export function PopDoverMenu({ title = "", type, columnId = 0, taskId = 0 }) {
   const router = useRouter();
   const params = useParams();
 
@@ -17,8 +17,8 @@ export function PopDoverMenu({ title = "", type, columnId = 0 }) {
       router.push(
         `/dashboard/${dashboardId}/column-edit?columnId=${columnId}&columnName=${title}`
       );
-    } else if (type === "cardEdit") {
-      router.push("/task-edit");
+    } else if (type === "taskEdit") {
+      router.push(`/dashboard/${dashboardId}/${taskId}/edit`);
     }
   };
 
@@ -28,7 +28,7 @@ export function PopDoverMenu({ title = "", type, columnId = 0 }) {
         `/dashboard/${dashboardId}/column-delete?columnId=${columnId}`
       );
     } else if (type === "cardEdit") {
-      router.push("/task-delete");
+      router.push(`/dashboard/${dashboardId}/${taskId}/delete`);
     }
   };
 

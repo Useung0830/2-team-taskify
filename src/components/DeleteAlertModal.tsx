@@ -22,7 +22,6 @@ export function DeleteAlertModal() {
 
     try {
       await deleteColumn(columnId);
-      alert("칼럼이 삭제되었습니다.");
       router.back();
       router.refresh();
     } catch (error) {
