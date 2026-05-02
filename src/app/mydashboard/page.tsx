@@ -8,6 +8,7 @@ import * as T from "@/types/api";
 import { Emptydashboard } from "./_components/Emptydashboard";
 import { InvitionContainer } from "./_components/InvitionContainer";
 import { MydashContainer } from "./_components/MydashContainer";
+import { SearchNoResult } from "./_components/SearchNoResult";
 
 export interface DashboardList {
   id: number;
@@ -22,6 +23,7 @@ export const SIZE = 10;
 
 export default function MyDashboard() {
   const [invitaionList, setInvitationList] = useState<T.Invitation[]>([]);
+  // const [searchInvited, setSearchInvited] = useState<T.Invitation[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
   const [value, setValue] = useState("");
@@ -70,7 +72,7 @@ export default function MyDashboard() {
     fetchInitialDash();
   }, []);
 
-  //====================================================================
+  //======================================================================
 
   //데이터 가져올 함수 정의
   const fetchInvitionList = async () => {
@@ -171,13 +173,13 @@ export default function MyDashboard() {
             초대받은 대시보드
           </h2>
           <div>
-            {invitaionList.length !== 0 && (
+            {(invitaionList.length !== 0 || value.length !== 0) && (
               <form onSubmit={handleSubmit}>
                 <Input>
                   <Input.Wrapper>
                     <Input.SearchIcon />
                     <Input.Field
-                      id="test"
+                      id="invitedSearch"
                       placeholder="검색"
                       value={value}
                       onChange={handleFieldChange}
@@ -190,12 +192,14 @@ export default function MyDashboard() {
             )}
           </div>
         </div>
-        {invitaionList.length !== 0 ? (
-          <div>
-            <InvitionContainer invitedData={invitaionList} />
-          </div>
+        {invitaionList.length === 0 ? (
+          value === "" ? (
+            <Emptydashboard dashtype="invite" />
+          ) : (
+            <SearchNoResult />
+          )
         ) : (
-          <Emptydashboard dashtype="invite" />
+          <InvitionContainer invitedData={invitaionList} />
         )}
       </div>
       <div ref={targetdiv}></div>

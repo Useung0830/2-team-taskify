@@ -135,7 +135,7 @@ export function ColumnList({ column }: { column: ColumnList }) {
   }, [isLoading, hasMore]);
 
   return (
-    <div className="flex w-full flex-col gap-5 md:mx-10 lg:mx-0">
+    <div className="flex min-w-83.5 flex-col gap-5 md:mx-10 lg:mx-0">
       <ColumnListHeader
         title={title}
         contentCount={totalCount}
