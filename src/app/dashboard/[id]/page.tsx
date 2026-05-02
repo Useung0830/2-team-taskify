@@ -5,6 +5,7 @@ import { use, useEffect, useState } from "react";
 import { getColumnList, getDashboardDetail } from "@/api/data";
 import { HashtagIcon } from "@/assets/dashboard/ic-colorchips";
 
+import { ColumnAdd } from "./_components/ColumnAdd";
 import { ColumnList } from "./_components/ColumnList";
 
 export interface ColumnList {
@@ -86,7 +87,10 @@ export default function Dashboard({ params }: DashboardPageProps) {
       <div className="pt-2.5 lg:hidden">
         <div className="flex w-full justify-center gap-1.5">
           {activeCol ? (
-            <ColumnList key={activeCol.id} column={activeCol} />
+            <div>
+              <ColumnList key={activeCol.id} column={activeCol} />
+              <ColumnAdd />
+            </div>
           ) : (
             <div className="text-gray-400">컬럼 데이터가 없습니다.</div>
           )}
@@ -98,6 +102,7 @@ export default function Dashboard({ params }: DashboardPageProps) {
         {columnList?.map((column) => (
           <ColumnList key={column.id} column={column} />
         ))}
+        <ColumnAdd />
       </div>
     </div>
   );
