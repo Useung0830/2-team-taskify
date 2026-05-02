@@ -8,6 +8,7 @@ import { getCardList } from "@/api/data";
 
 import { ColumnCard } from "./ColumnCard";
 import { ColumnListHeader } from "./ColumnListHeader";
+import { NoCard } from "./NoCard";
 
 interface ColumnList {
   id: number;
@@ -146,16 +147,20 @@ export function ColumnList({ column }: { column: ColumnList }) {
         //@TODO 컬럼 수정 모달 완성되면 다시연결
         // onSettingClick={handleOpenEdit}
       />
-      {cardList?.map((colCard) => (
-        <ColumnCard
-          key={colCard.id}
-          cardTitle={colCard.title}
-          duedate={colCard.dueDate}
-          tags={colCard.tags}
-          creator={colCard.assignee?.nickname}
-          imgSrc={colCard.imageUrl}
-        />
-      ))}
+      {cardList.length === 0 ? (
+        <NoCard />
+      ) : (
+        cardList?.map((colCard) => (
+          <ColumnCard
+            key={colCard.id}
+            cardTitle={colCard.title}
+            duedate={colCard.dueDate}
+            tags={colCard.tags}
+            creator={colCard.assignee?.nickname}
+            imgSrc={colCard.imageUrl}
+          />
+        ))
+      )}
       {/* observer */}
       <div ref={observerTarget}></div>
     </div>
